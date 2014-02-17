@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Block name:</b>
+  <%= @admin_block.block_name %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%= @admin_block.code %>
+</p>
+
+<p>
+  <b>District:</b>
+  <%= @admin_block.district.district_name %>
+</p>
+
+<p>
+  <b>Is Laboratory Present ?:</b>
+  <%= @admin_block.laboratory_present %>
+</p>
+
+<p>
+  <b>Laboratory Name:</b>
+  <%= @admin_block.lab_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_block_path(@admin_block) %> |
+<%= link_to 'Back', admin_blocks_path %>

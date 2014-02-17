@@ -1,0 +1,25 @@
+<%= form_for(@admin_grampanchyat) do |f| %>
+  <% if @admin_grampanchyat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_grampanchyat.errors.count, "error") %> prohibited this admin_grampanchyat from being saved:</h2>
+
+      <ul>
+      <% @admin_grampanchyat.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :grampanchyat_name %><br />
+    <%= f.text_field :gram_name %>
+  </div>
+  <div class="field">
+    <%= f.label :block %><br />
+    <%= f.collection_select :block_id , Admin::Block.all, :id, :block_name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

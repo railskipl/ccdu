@@ -1,0 +1,43 @@
+<%= form_for(@admin_block) do |f| %>
+  <% if @admin_block.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_block.errors.count, "error") %> prohibited this admin_block from being saved:</h2>
+
+      <ul>
+      <% @admin_block.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :block_name %><br />
+    <%= f.text_field :block_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :district_id %><br />
+    <%= f.collection_select :district_id , Admin::District.all, :id, :district_name%>
+  </div>
+
+  <div class="field">
+    <%= f.label :code %><br />
+    <%= f.text_field :code , :maxlength => 3 , :size => 10%>
+  </div>
+
+  <div class="field">
+    <%= f.label "Is Laboratory Present ?" %><br />
+    Yes<%= f.radio_button :laboratory_present , "Yes" %>
+    No <%= f.radio_button :laboratory_present , "No"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :lab_name %><br />
+    <%= f.text_field :lab_name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

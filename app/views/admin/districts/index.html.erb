@@ -1,0 +1,27 @@
+<br/><%= link_to "Back to dashboard", admin_root_path%><br/><br/>
+
+<h1>Listing admin_districts</h1>
+
+<table>
+  <tr>
+    <th>District name</th>
+    <th>Zone</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @admin_districts.each do |admin_district| %>
+  <tr>
+    <td><%= admin_district.district_name %></td>
+    <td><%= admin_district.zone_id %></td>
+    <td><%= link_to 'Show', admin_district %></td>
+    <td><%= link_to 'Edit', edit_admin_district_path(admin_district) %></td>
+    <td><%= link_to 'Destroy', admin_district, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New District', new_admin_district_path %>

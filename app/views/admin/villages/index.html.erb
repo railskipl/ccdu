@@ -1,0 +1,26 @@
+<br/><%= link_to "Back to dashboard", admin_root_path%><br/><br/>
+<h1>Listing admin_villages</h1>
+
+<table>
+  <tr>
+    <th>Village name</th>
+    <th>Grampanchyat</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @admin_villages.each do |admin_village| %>
+  <tr>
+    <td><%= admin_village.village_name %></td>
+    <td><%= admin_village.grampanchyat.gram_name %></td>
+    <td><%= link_to 'Show', admin_village %></td>
+    <td><%= link_to 'Edit', edit_admin_village_path(admin_village) %></td>
+    <td><%= link_to 'Destroy', admin_village, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Village', new_admin_village_path %>

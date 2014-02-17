@@ -1,0 +1,25 @@
+<br/><%= link_to "Back to dashboard", admin_root_path%><br/><br/>
+
+<h1>Listing Water Source</h1>
+
+<table>
+  <tr>
+    <th>Source name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @admin_sources.each do |admin_source| %>
+  <tr>
+    <td><%= admin_source.source_name %></td>
+    <td><%= link_to 'Show', admin_source %></td>
+    <td><%= link_to 'Edit', edit_admin_source_path(admin_source) %></td>
+    <td><%= link_to 'Destroy', admin_source, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Source', new_admin_source_path %>

@@ -1,0 +1,43 @@
+<%= form_for(@admin_district) do |f| %>
+  <% if @admin_district.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_district.errors.count, "error") %> prohibited this admin_district from being saved:</h2>
+
+      <ul>
+      <% @admin_district.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :district_name %><br />
+    <%= f.text_field :district_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :zone %><br />
+    <%= f.collection_select :zone_id , Admin::Zone.all, :id, :zone_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Is Laboratory Present ?" %><br />
+    Yes<%= f.radio_button :lab_present, "Yes" %>
+    No <%= f.radio_button :lab_present, "No" %>
+  </div>
+
+  <div class="field">
+    <%= f.label  "Laboratory Name" %><br />
+    <%= f.text_field :lab_name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

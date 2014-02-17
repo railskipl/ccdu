@@ -1,0 +1,26 @@
+<br/><%= link_to "Back to dashboard", admin_root_path%><br/><br/>
+<h1>Listing admin_grampanchyats</h1>
+
+<table>
+  <tr>
+    <th>Gram name</th>
+    <th>Block</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @admin_grampanchyats.each do |admin_grampanchyat| %>
+  <tr>
+    <td><%= admin_grampanchyat.gram_name %></td>
+    <td><%= admin_grampanchyat.block.block_name %></td>
+    <td><%= link_to 'Show', admin_grampanchyat %></td>
+    <td><%= link_to 'Edit', edit_admin_grampanchyat_path(admin_grampanchyat) %></td>
+    <td><%= link_to 'Destroy', admin_grampanchyat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Grampanchyat', new_admin_grampanchyat_path %>

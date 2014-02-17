@@ -1,0 +1,25 @@
+<br/><%= link_to "Back to dashboard", admin_root_path%><br/><br/>
+
+<h1>Listing admin_zones</h1>
+
+<table>
+  <tr>
+    <th>Zone name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @admin_zones.each do |admin_zone| %>
+  <tr>
+    <td><%= admin_zone.zone_name %></td>
+    <td><%= link_to 'Show', admin_zone %></td>
+    <td><%= link_to 'Edit', edit_admin_zone_path(admin_zone) %></td>
+    <td><%= link_to 'Destroy', admin_zone, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Zone', new_admin_zone_path %>

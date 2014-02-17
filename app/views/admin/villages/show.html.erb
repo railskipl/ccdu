@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Village name:</b>
+  <%= @admin_village.village_name %>
+</p>
+
+<p>
+  <b>Grampanchyat:</b>
+  <%= @admin_village.grampanchyat.gram_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_village_path(@admin_village) %> |
+<%= link_to 'Back', admin_villages_path %>

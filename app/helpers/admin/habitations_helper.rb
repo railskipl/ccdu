@@ -1,0 +1,2 @@
+module Admin::HabitationsHelper
+end

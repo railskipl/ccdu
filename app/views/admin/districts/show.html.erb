@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>District name:</b>
+  <%= @admin_district.district_name %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%= @admin_district.code %>
+</p>
+
+<p>
+  <b>Zone:</b>
+  <%= @admin_district.zone.zone_name %>
+</p>
+
+<p>
+  <b>Is Laboratory Present ?:</b>
+  <%= @admin_district.lab_present %>
+</p>
+
+<p>
+  <b>Laboratory Name:</b>
+  <%= @admin_district.lab_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_district_path(@admin_district) %> |
+<%= link_to 'Back', admin_districts_path %>

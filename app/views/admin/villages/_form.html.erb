@@ -1,0 +1,25 @@
+<%= form_for(@admin_village) do |f| %>
+  <% if @admin_village.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_village.errors.count, "error") %> prohibited this admin_village from being saved:</h2>
+
+      <ul>
+      <% @admin_village.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :village_name %><br />
+    <%= f.text_field :village_name %>
+  </div>
+  <div class="field">
+    <%= f.label :grampanchyat_id %><br />
+    <%= f.collection_select :grampanchyat_id, Admin::Grampanchyat.all, :id, :gram_name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

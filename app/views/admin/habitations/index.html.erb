@@ -1,0 +1,27 @@
+<br/><%= link_to "Back to dashboard", admin_root_path%><br/><br/>
+
+<h1>Listing Habitations</h1>
+
+<table>
+  <tr>
+    <th>Habitation name</th>
+    <th>Village</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @admin_habitations.each do |admin_habitation| %>
+  <tr>
+    <td><%= admin_habitation.habitation_name %></td>
+    <td><%= admin_habitation.village.village_name %></td>
+    <td><%= link_to 'Show', admin_habitation %></td>
+    <td><%= link_to 'Edit', edit_admin_habitation_path(admin_habitation) %></td>
+    <td><%= link_to 'Destroy', admin_habitation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Habitation', new_admin_habitation_path %>

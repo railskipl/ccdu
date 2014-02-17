@@ -1,0 +1,17 @@
+<%= form_for(@user, :html => { :multipart => true }) do |f| %>
+<% for message in @user.errors.full_messages %>
+<%= message %>
+<% end %>
+<p><%= f.text_field :username, :placeholder=>"User Name" %></p>
+<p><%= f.text_field :user_ID, :placeholder=>"User ID" %></p>
+<p><%= f.email_field :email, :placeholder=>"Email" %></p>
+<p><%= f.password_field :password, :placeholder=>"Password" %></p>
+<p><%= f.password_field :password_confirmation, :placeholder=>"Confirm Password" %></p>
+<%= hidden_field_tag "user[role_ids][]", 6 %>
+<p><%= f.text_field :mobile_no, :placeholder=>"Mobile Number" %></p>
+<p><%= f.text_field :imei, :placeholder=>"IMEI Number" %></p>
+  
+
+
+<p><%= f.submit "Create"  %></p>
+<% end %>

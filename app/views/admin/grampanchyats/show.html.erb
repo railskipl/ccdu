@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Gram name:</b>
+  <%= @admin_grampanchyat.gram_name %>
+</p>
+
+<p>
+  <b>Block:</b>
+  <%= @admin_grampanchyat.block.block_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_grampanchyat_path(@admin_grampanchyat) %> |
+<%= link_to 'Back', admin_grampanchyats_path %>
