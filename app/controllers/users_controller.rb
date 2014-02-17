@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def new
   	@user = User.new
+    @role = Role.find_by_name("vendor")
   end
 
   def create
