@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 	#skip_before_filter :require_no_authentication, :only => [:new, :create]
-
+  before_filter :authenticate_user!
   def index
-  	@users = User.with_role(:mobile)
+  	@users = User.with_role(:vendor)
     #raise @user.inspect
   end
 
