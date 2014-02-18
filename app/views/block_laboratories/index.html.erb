@@ -1,0 +1,28 @@
+<%= link_to "Back to dashboard", root_path%><br/>
+
+
+<h1>Listing block_laboratories</h1>
+
+<table>
+  <tr>
+    <th>Labname</th>
+    <th>Address</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @block_laboratories.each do |block_laboratory| %>
+  <tr>
+    <td><%= block_laboratory.labname %></td>
+    <td><%= block_laboratory.address %></td>
+    <td><%= link_to 'Show', block_laboratory %></td>
+    <td><%= link_to 'Edit', edit_block_laboratory_path(block_laboratory) %></td>
+    <td><%= link_to 'Destroy', block_laboratory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Block laboratory', new_block_laboratory_path %>

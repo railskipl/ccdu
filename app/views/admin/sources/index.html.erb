@@ -12,7 +12,7 @@
 
 <% @admin_sources.each do |admin_source| %>
   <tr>
-    <td><%= admin_source.source_name %></td>
+    <td><%= admin_source.source_name rescue nil%></td>
     <td><%= link_to 'Show', admin_source %></td>
     <td><%= link_to 'Edit', edit_admin_source_path(admin_source) %></td>
     <td><%= link_to 'Destroy', admin_source, method: :delete, data: { confirm: 'Are you sure?' } %></td>

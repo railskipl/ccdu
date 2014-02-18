@@ -1,0 +1,2 @@
+module BlockLaboratoriesHelper
+end

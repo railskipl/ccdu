@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>IMEI:</b>
+  <%= @mobile_device.imei rescue nil%>
+</p>
+
+<p>
+  <b>Manufacturer Name:</b>
+  <%= @mobile_device.manufacturer_name rescue nil%>
+</p>
+
+<p>
+  <b>Phone Number:</b>
+  <%= @mobile_device.phone_no rescue nil%>
+</p>
+
+<p>
+  <b>Purchase Date:</b>
+  <%= @mobile_device.purchase_date rescue nil%>
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_mobile_device_path(@mobile_device) %> |
+<%= link_to 'Back', mobile_devices_path %>

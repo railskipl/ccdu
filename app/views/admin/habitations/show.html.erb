@@ -2,12 +2,12 @@
 
 <p>
   <b>Habitation name:</b>
-  <%= @admin_habitation.habitation_name %>
+  <%= @admin_habitation.habitation_name rescue nil%>
 </p>
 
 <p>
   <b>Village:</b>
-  <%= @admin_habitation.village.village_name %>
+  <%= @admin_habitation.village.village_name rescue nil%>
 </p>
 
 

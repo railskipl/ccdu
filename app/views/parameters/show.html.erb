@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Ph:</b>
+  <%= @parameter.ph rescue nil%>
+</p>
+
+<p>
+  <b>Hardness:</b>
+  <%= @parameter.hardness rescue nil%>
+</p>
+
+<p>
+  <b>Alkalinity:</b>
+  <%= @parameter.alkalinity rescue nil%>
+</p>
+
+<p>
+  <b>Chloride:</b>
+  <%= @parameter.chloride rescue nil%>
+</p>
+
+<p>
+  <b>Nitrate:</b>
+  <%= @parameter.nitrate rescue nil%>
+</p>
+
+<p>
+  <b>Fluroide:</b>
+  <%= @parameter.fluroide rescue nil%>
+</p>
+
+<p>
+  <b>Residual chlorine:</b>
+  <%= @parameter.residual_chlorine rescue nil%>
+</p>
+
+<p>
+  <b>Tds:</b>
+  <%= @parameter.tds rescue nil%>
+</p>
+
+<p>
+  <b>Bact:</b>
+  <%= @parameter.bact rescue nil%>
+</p>
+
+<p>
+  <b>Sanitary survey:</b>
+  <%= @parameter.sanitary_survey rescue nil%>
+</p>
+
+<p>
+  <b>No of chemical sample:</b>
+  <%= @parameter.no_of_chemical_sample rescue nil%>
+</p>
+
+
+<%= link_to 'Edit', edit_parameter_path(@parameter) %> |
+<%= link_to 'Back', parameters_path %>

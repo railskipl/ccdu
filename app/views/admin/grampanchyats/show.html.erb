@@ -2,12 +2,12 @@
 
 <p>
   <b>Gram name:</b>
-  <%= @admin_grampanchyat.gram_name %>
+  <%= @admin_grampanchyat.gram_name rescue nil%>
 </p>
 
 <p>
   <b>Block:</b>
-  <%= @admin_grampanchyat.block.block_name %>
+  <%= @admin_grampanchyat.block.block_name rescue nil%>
 </p>
 
 

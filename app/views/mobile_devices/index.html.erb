@@ -1,0 +1,28 @@
+<%= link_to "Back to dashboard", root_path%>
+<h1>Listing Mobile Device</h1>
+
+<table>
+  <tr>
+    <th>IMEI</th>
+    <th>Manufacturer Name</th>
+    <th>Phone Number</th>
+    <th>Purchase Date</th>
+    
+  </tr>
+
+<% @mobile_devices.each do |mobile_device| %>
+  <tr>
+    <td><%= mobile_device.imei rescue nil%></td>
+    <td><%= mobile_device.manufacturer_name rescue nil%></td>
+    <td><%= mobile_device.phone_no rescue nil%></td>
+    <td><%= mobile_device.purchase_date rescue nil%></td>
+    <td><%= link_to 'Show', mobile_device_path(mobile_device) %></td>
+    <td><%= link_to 'Edit', edit_mobile_device_path(mobile_device) %></td>
+    <td><%= link_to 'Destroy', mobile_device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New mobile device', new_mobile_device_path %>

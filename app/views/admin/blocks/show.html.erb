@@ -2,27 +2,27 @@
 
 <p>
   <b>Block name:</b>
-  <%= @admin_block.block_name %>
+  <%= @admin_block.block_name rescue nil%>
 </p>
 
 <p>
   <b>Code:</b>
-  <%= @admin_block.code %>
+  <%= @admin_block.code rescue nil%>
 </p>
 
 <p>
   <b>District:</b>
-  <%= @admin_block.district.district_name %>
+  <%= @admin_block.district.district_name rescue nil%>
 </p>
 
 <p>
   <b>Is Laboratory Present ?:</b>
-  <%= @admin_block.laboratory_present %>
+  <%= @admin_block.laboratory_present rescue nil%>
 </p>
 
 <p>
   <b>Laboratory Name:</b>
-  <%= @admin_block.lab_name %>
+  <%= @admin_block.lab_name rescue nil%>
 </p>
 
 

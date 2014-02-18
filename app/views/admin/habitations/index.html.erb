@@ -13,8 +13,8 @@
 
 <% @admin_habitations.each do |admin_habitation| %>
   <tr>
-    <td><%= admin_habitation.habitation_name %></td>
-    <td><%= admin_habitation.village.village_name %></td>
+    <td><%= admin_habitation.habitation_name rescue nil%></td>
+    <td><%= admin_habitation.village.village_name rescue nil%></td>
     <td><%= link_to 'Show', admin_habitation %></td>
     <td><%= link_to 'Edit', edit_admin_habitation_path(admin_habitation) %></td>
     <td><%= link_to 'Destroy', admin_habitation, method: :delete, data: { confirm: 'Are you sure?' } %></td>

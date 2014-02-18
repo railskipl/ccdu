@@ -1,3 +1,5 @@
+<%= link_to "Back", users_path%>
+
 <%= form_for(@user, :html => { :multipart => true }) do |f| %>
 <% for message in @user.errors.full_messages %>
 <%= message %>
@@ -7,10 +9,10 @@
 <p><%= f.email_field :email, :placeholder=>"Email" %></p>
 <p><%= f.password_field :password, :placeholder=>"Password" %></p>
 <p><%= f.password_field :password_confirmation, :placeholder=>"Confirm Password" %></p>
-<!-- Dynamic role id depending upon role name -->
-<%= hidden_field_tag "user[role_ids][]", @role.id %>
+<!-- Mobile Surveyor role -->
+<%= hidden_field_tag "user[role_ids][]", 6 %>
 <p><%= f.text_field :mobile_no, :placeholder=>"Mobile Number" %></p>
-<p><%= f.text_field :imei, :placeholder=>"IMEI Number" %></p>
+<p><%#= f.text_field :imei, :placeholder=>"IMEI Number" %></p>
   
 
 

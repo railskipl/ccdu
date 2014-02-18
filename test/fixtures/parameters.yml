@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ph: MyString
+  hardness: MyString
+  alkalinity: MyString
+  chloride: MyString
+  nitrate: MyString
+  fluroide: MyString
+  residual_chlorine: MyString
+  tds: MyString
+  bact: MyString
+  sanitary_survey: MyString
+  no_of_chemical_sample: MyString
+
+two:
+  ph: MyString
+  hardness: MyString
+  alkalinity: MyString
+  chloride: MyString
+  nitrate: MyString
+  fluroide: MyString
+  residual_chlorine: MyString
+  tds: MyString
+  bact: MyString
+  sanitary_survey: MyString
+  no_of_chemical_sample: MyString

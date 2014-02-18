@@ -1,6 +1,6 @@
 <br/><%= link_to "Back to dashboard", admin_root_path%><br/><br/>
 
-<h1>Listing admin_districts</h1>
+<h1>Listing Districts</h1>
 
 <table>
   <tr>
@@ -13,8 +13,8 @@
 
 <% @admin_districts.each do |admin_district| %>
   <tr>
-    <td><%= admin_district.district_name %></td>
-    <td><%= admin_district.zone_id %></td>
+    <td><%= admin_district.district_name rescue nil%></td>
+    <td><%= admin_district.zone_id rescue nil%></td>
     <td><%= link_to 'Show', admin_district %></td>
     <td><%= link_to 'Edit', edit_admin_district_path(admin_district) %></td>
     <td><%= link_to 'Destroy', admin_district, method: :delete, data: { confirm: 'Are you sure?' } %></td>

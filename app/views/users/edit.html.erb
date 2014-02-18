@@ -7,9 +7,10 @@
 <p><%= f.email_field :email, :placeholder=>"Email" %></p>
 <p><%= f.password_field :password, :placeholder=>"Password" %></p>
 <p><%= f.password_field :password_confirmation, :placeholder=>"Confirm Password" %></p>
+<!-- Mobile Surveyor Role -->
 <%= hidden_field_tag "user[role_ids][]", 6 %>
 <p><%= f.text_field :mobile_no, :placeholder=>"Mobile Number" %></p>
-  
+<p><%#= f.text_field :imei, :placeholder=>"IMEI Number" %></p>  
 
 
 <p><%= f.submit "Update"  %></p>

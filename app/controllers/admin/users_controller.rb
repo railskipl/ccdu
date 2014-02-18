@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_filter :authenticate_user!
   def index
-  	@users = User.find(:all, :conditions => ['email not in (?)', 'admin@gmail.com'])
+  	@users = User.find(:all, :conditions => ['email not in (?)', 'admin@example.com'])
     #raise @user.inspect
   end
 

@@ -13,8 +13,8 @@
 
 <% @admin_blocks.each do |admin_block| %>
   <tr>
-    <td><%= admin_block.block_name %></td>
-    <td><%= admin_block.district.district_name %></td>
+    <td><%= admin_block.block_name rescue nil%></td>
+    <td><%= admin_block.district.district_name rescue nil%></td>
     <td><%= link_to 'Show', admin_block %></td>
     <td><%= link_to 'Edit', edit_admin_block_path(admin_block) %></td>
     <td><%= link_to 'Destroy', admin_block, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,5 +1,11 @@
 Ccdu::Application.routes.draw do
 
+  resources :block_laboratories
+
+
+  resources :parameters
+  resources :mobile_devices
+  resources :mobile_users
   devise_for :users
 
   devise_scope :user do

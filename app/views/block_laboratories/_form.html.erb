@@ -1,0 +1,25 @@
+<%= form_for(@block_laboratory) do |f| %>
+  <% if @block_laboratory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@block_laboratory.errors.count, "error") %> prohibited this block_laboratory from being saved:</h2>
+
+      <ul>
+      <% @block_laboratory.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :labname %><br />
+    <%= f.text_field :labname %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_area :address , :rows => 10%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -2,27 +2,27 @@
 
 <p>
   <b>District name:</b>
-  <%= @admin_district.district_name %>
+  <%= @admin_district.district_name rescue nil%>
 </p>
 
 <p>
   <b>Code:</b>
-  <%= @admin_district.code %>
+  <%= @admin_district.code rescue nil%>
 </p>
 
 <p>
   <b>Zone:</b>
-  <%= @admin_district.zone.zone_name %>
+  <%= @admin_district.zone.zone_name rescue nil%>
 </p>
 
 <p>
   <b>Is Laboratory Present ?:</b>
-  <%= @admin_district.lab_present %>
+  <%= @admin_district.lab_present rescue nil%>
 </p>
 
 <p>
   <b>Laboratory Name:</b>
-  <%= @admin_district.lab_name %>
+  <%= @admin_district.lab_name rescue nil%>
 </p>
 
 

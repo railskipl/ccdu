@@ -1,0 +1,45 @@
+<%= link_to "Back to dashboard", root_path%>
+
+<h1>Listing parameters</h1>
+
+<table>
+  <tr>
+    <th>Ph</th>
+    <th>Hardness</th>
+    <th>Alkalinity</th>
+    <th>Chloride</th>
+    <th>Nitrate</th>
+    <th>Fluroide</th>
+    <th>Residual chlorine</th>
+    <th>Tds</th>
+    <th>Bact</th>
+    <th>Sanitary survey</th>
+    <th>No of chemical sample</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @parameters.each do |parameter| %>
+  <tr>
+    <td><%= parameter.ph rescue nil%></td>
+    <td><%= parameter.hardness rescue nil%></td>
+    <td><%= parameter.alkalinity rescue nil%></td>
+    <td><%= parameter.chloride rescue nil%></td>
+    <td><%= parameter.nitrate rescue nil%></td>
+    <td><%= parameter.fluroide rescue nil%></td>
+    <td><%= parameter.residual_chlorine rescue nil%></td>
+    <td><%= parameter.tds rescue nil%></td>
+    <td><%= parameter.bact rescue nil%></td>
+    <td><%= parameter.sanitary_survey rescue nil%></td>
+    <td><%= parameter.no_of_chemical_sample rescue nil%></td>
+    <td><%= link_to 'Show', parameter %></td>
+    <td><%= link_to 'Edit', edit_parameter_path(parameter) %></td>
+    <td><%= link_to 'Destroy', parameter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Parameter', new_parameter_path %>

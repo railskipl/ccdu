@@ -14,4 +14,6 @@ class User < ActiveRecord::Base
   has_many :grampanchyats
   has_many :villages
   has_many :habitations
+  has_many :mobile_devices
+  has_many :mobile_users
 end

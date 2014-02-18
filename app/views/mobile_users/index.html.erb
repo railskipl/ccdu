@@ -1,0 +1,24 @@
+<%= link_to "Back to dashboard", root_path%>
+<h1>Listing Mobile User</h1>
+
+<table>
+  <tr>
+    <th>IMEI</th>
+    <th>User Name</th>
+   
+    
+  </tr>
+
+<% @mobile_users.each do |mobile_user| %>
+  <tr>
+    <td><%= mobile_user.imei rescue nil%></td>
+    <td><%= mobile_user.user.username rescue nil%></td>
+    <td><%= link_to 'Edit', edit_mobile_user_path(mobile_user) %></td>
+    <td><%= link_to 'Destroy', mobile_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New mobile user', new_mobile_user_path %>
