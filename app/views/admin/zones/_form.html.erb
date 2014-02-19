@@ -1,21 +1,75 @@
-<%= form_for(@admin_zone) do |f| %>
-  <% if @admin_zone.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@admin_zone.errors.count, "error") %> prohibited this admin_zone from being saved:</h2>
+<div class="main">
 
-      <ul>
-      <% @admin_zone.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <div class="container">
 
-  <div class="field">
-    <%= f.label :zone_name %><br />
-    <%= f.text_field :zone_name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+      <div class="row">
+        
+    <div class="span12">          
+          
+          <div class="widget stacked ">
+            
+            <div class="widget-header">
+              <i class="icon-pencil"></i>
+              <h3>New Zone</h3>
+          </div> <!-- /widget-header -->
+        
+        <div class="widget-content">
+        
+        <div style="margin-bottom:10px" class="row-fluid">
+          
+          
+          <div class="span12">
+          <a href="<%= admin_zones_path%>" class="btn btn-secondary">Back</a>          
+          </div>
+          
+          
+          
+          </div>
+          
+          
+        
+          <%= form_for @admin_zone, :html => {:class => "form-horizontal"} do |f| %>
+            <% if @admin_zone.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@admin_zone.errors.count, "error") %> prohibited this admin_zone from being saved:</h2>
+                <ul>
+                  <% @admin_zone.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <fieldset>
+                <div class="control-group">
+                  <label for="name" class="control-label">Zone Name</label>
+                  <div class="controls">
+                    <%= f.text_field :zone_name , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="controls">
+                    <%= f.submit "Submit", :class => "btn"%>
+                  </div>
+                </div>
+            </fieldset>
+          <%end%>
+        
+        
+        
+                
+            
+          
+          
+          
+        </div> <!-- /widget-content -->
+          
+      </div> <!-- /widget -->
+          
+      </div>
+        
+      </div> <!-- /row -->
+
+    </div> <!-- /container -->
+    
+</div> <!-- /main -->

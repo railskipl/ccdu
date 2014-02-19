@@ -6,7 +6,7 @@ Ccdu::Application.routes.draw do
   resources :parameters
   resources :mobile_devices
   resources :mobile_users
-  devise_for :users
+  devise_for :users , :controllers => { :sessions => "sessions", :passwords => "passwords"}
 
   devise_scope :user do
     authenticated :user do

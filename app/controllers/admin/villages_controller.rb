@@ -1,4 +1,6 @@
 class Admin::VillagesController < ApplicationController
+  before_filter :authenticate_user!
+  layout 'admin'
   # GET /admin/villages
   # GET /admin/villages.json
   def index

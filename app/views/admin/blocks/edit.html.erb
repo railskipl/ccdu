@@ -1,6 +1,102 @@
-<h1>Editing admin_block</h1>
+<div class="main">
 
-<%= render 'form' %>
+    <div class="container">
 
-<%= link_to 'Show', @admin_block %> |
-<%= link_to 'Back', admin_blocks_path %>
+      <div class="row">
+        
+    <div class="span12">          
+          
+          <div class="widget stacked ">
+            
+            <div class="widget-header">
+              <i class="icon-pencil"></i>
+              <h3>Edit Block</h3>
+          </div> <!-- /widget-header -->
+        
+        <div class="widget-content">
+        
+        <div style="margin-bottom:10px" class="row-fluid">
+          
+          
+          <div class="span12">
+          <a href="<%= admin_blocks_path%>" class="btn btn-secondary">Back</a>          
+          </div>
+          
+          
+          
+          </div>
+          
+      
+          <%= form_for  @admin_block, :html => {:class => "form-horizontal"}  do |f| %>
+            <% if @admin_block.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@admin_block.errors.count, "error") %> prohibited this admin_block from being saved:</h2>
+                <ul>
+                  <% @admin_block.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <fieldset>
+                <div class="control-group">
+                  <label for="name" class="control-label">Block Name</label>
+                  <div class="controls">
+                    <%= f.text_field :block_name , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Code</label>
+                  <div class="controls">
+                    <%= f.text_field :code , :maxlength => 3 , :size => 10 , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Select District</label>
+                  <div class="controls">
+                    <%= f.collection_select :district_id , Admin::District.all, :id, :district_name%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Is Laboratory Present ?</label>
+                  <div class="controls">
+                    Yes<%= f.radio_button :laboratory_present , "Yes" %>
+                    No <%= f.radio_button :laboratory_present , "No"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Laboratory Name</label>
+                  <div class="controls">
+                    <%= f.text_field :lab_name , :class => "input-large"%>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <div class="controls">
+                    <%= f.submit "Submit", :class => "btn"%>
+                  </div>
+                </div>
+            </fieldset>
+          <%end%>
+        
+        
+        
+                
+            
+          
+          
+          
+        </div> <!-- /widget-content -->
+          
+      </div> <!-- /widget -->
+          
+      </div>
+        
+      </div> <!-- /row -->
+
+    </div> <!-- /container -->
+    
+</div> <!-- /main -->
+
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CCDU</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" /> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+    
+    <%= stylesheet_link_tag    "application"%>
+    
+    <%= javascript_include_tag "application" %>
+   
+   <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" />
+  
+   <%= csrf_meta_tags %>
+ 
+  <%= yield :scripts %>
+
+    <style type="text/css">
+		.error{
+		background-color: #FCF8E3;
+		border: 1px solid #FBEED5;
+		border-radius: 4px;
+		margin-bottom: 20px;
+		padding: 8px 35px 8px 14px;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+		text-align: center;
+		color: #000;
+		}
+    </style>
+</head>
+<body>
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		
+			<div class="navbar-inner">
+				
+				<div class="container">
+					
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<i class="icon-cog"></i>
+					</a>
+					
+					<a class="brand" href="#">
+						<img src="/assets/logo.png" alt="">			
+					</a>		
+				</div> <!-- /container -->
+			</div> <!-- /navbar-inner -->
+		</div> <!-- /navbar -->
+        
+
+        <% flash.each do |key, value| %>
+          <div class="flash <%= key %>" style="color:#000;text-align:center"><%= value %></div>
+        <% end %>
+	    
+  <%= yield %>
+</body>
+</html>

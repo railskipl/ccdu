@@ -8,7 +8,7 @@
 <p><%= f.password_field :password, :placeholder=>"Password" %></p>
 <p><%= f.password_field :password_confirmation, :placeholder=>"Confirm Password" %></p>
 <!-- Mobile Surveyor Role -->
-<%= hidden_field_tag "user[role_ids][]", 6 %>
+<%= hidden_field_tag "user[role_ids][]", @role.id %>
 <p><%= f.text_field :mobile_no, :placeholder=>"Mobile Number" %></p>
 <p><%#= f.text_field :imei, :placeholder=>"IMEI Number" %></p>  
 

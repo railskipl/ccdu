@@ -2,9 +2,11 @@
 <html>
 <head>
   <title>Ccdu</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "application"%>
   <%= javascript_include_tag "application" %>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" />
   <%= csrf_meta_tags %>
+  <%= yield :scripts %>
 </head>
 <body>
 <p class="notice"><%= alert %></p>
@@ -12,7 +14,7 @@
 	            <% if user_signed_in? %> 
 					<%= link_to "Sign Out", destroy_user_session_path,:method => :delete %> 
 				<% else %> 
-					<%= link_to "Sign In", new_user_session_path %> &nbsp; 
+					
 				<% end %>
 		</div>
 

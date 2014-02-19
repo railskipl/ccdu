@@ -1,4 +1,6 @@
 class Admin::HabitationsController < ApplicationController
+  before_filter :authenticate_user!
+  layout 'admin'
   # GET /admin/habitations
   # GET /admin/habitations.json
   def index

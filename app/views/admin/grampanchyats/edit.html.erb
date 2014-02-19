@@ -1,6 +1,83 @@
-<h1>Editing Grampanchyat</h1>
+<div class="main">
 
-<%= render 'form' %>
+    <div class="container">
 
-<%= link_to 'Show', @admin_grampanchyat %> |
-<%= link_to 'Back', admin_grampanchyats_path %>
+      <div class="row">
+        
+    <div class="span12">          
+          
+          <div class="widget stacked ">
+            
+            <div class="widget-header">
+              <i class="icon-pencil"></i>
+              <h3>Edit Grampanchyat</h3>
+          </div> <!-- /widget-header -->
+        
+        <div class="widget-content">
+        
+        <div style="margin-bottom:10px" class="row-fluid">
+          
+          
+          <div class="span12">
+          <a href="<%= admin_grampanchyats_path%>" class="btn btn-secondary">Back</a>          
+          </div>
+          
+          
+          
+          </div>
+          
+          
+        
+          <%= form_for @admin_grampanchyat, :html => {:class => "form-horizontal"} do |f| %>
+            <% if @admin_grampanchyat.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@admin_grampanchyat.errors.count, "error") %> prohibited this admin_grampanchyat from being saved:</h2>
+                <ul>
+                  <% @admin_grampanchyat.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <fieldset>
+                <div class="control-group">
+                  <label for="name" class="control-label">Grampanchyat Name</label>
+                  <div class="controls">
+                    <%= f.text_field :gram_name , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Select Block</label>
+                  <div class="controls">
+                    <%= f.collection_select :block_id , Admin::Block.all, :id, :block_name %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="controls">
+                    <%= f.submit "Submit", :class => "btn"%>
+                  </div>
+                </div>
+            </fieldset>
+          <%end%>
+        
+        
+        
+                
+            
+          
+          
+          
+        </div> <!-- /widget-content -->
+          
+      </div> <!-- /widget -->
+          
+      </div>
+        
+      </div> <!-- /row -->
+
+    </div> <!-- /container -->
+    
+</div> <!-- /main -->
+
+

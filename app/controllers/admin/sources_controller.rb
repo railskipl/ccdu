@@ -1,4 +1,6 @@
 class Admin::SourcesController < ApplicationController
+  before_filter :authenticate_user!
+  layout 'admin'
   # GET /admin/sources
   # GET /admin/sources.json
   def index

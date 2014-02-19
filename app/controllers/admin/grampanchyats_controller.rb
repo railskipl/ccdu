@@ -1,4 +1,6 @@
 class Admin::GrampanchyatsController < ApplicationController
+  before_filter :authenticate_user!
+  layout 'admin'
   # GET /admin/grampanchyats
   # GET /admin/grampanchyats.json
   def index

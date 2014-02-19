@@ -1,5 +1,6 @@
 class Admin::ZonesController < ApplicationController
   before_filter :authenticate_user!
+  layout 'admin'
   # GET /admin/zones
   # GET /admin/zones.json
   def index

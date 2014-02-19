@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 
   def edit
      @user = User.find(params[:id])
+     @role = Role.find_by_name("mobile")
   end
 
   def update

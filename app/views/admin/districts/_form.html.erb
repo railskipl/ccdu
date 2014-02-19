@@ -1,43 +1,101 @@
-<%= form_for(@admin_district) do |f| %>
-  <% if @admin_district.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@admin_district.errors.count, "error") %> prohibited this admin_district from being saved:</h2>
+<div class="main">
 
-      <ul>
-      <% @admin_district.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <div class="container">
 
-  <div class="field">
-    <%= f.label :district_name %><br />
-    <%= f.text_field :district_name %>
-  </div>
+      <div class="row">
+        
+    <div class="span12">          
+          
+          <div class="widget stacked ">
+            
+            <div class="widget-header">
+              <i class="icon-pencil"></i>
+              <h3>New District</h3>
+          </div> <!-- /widget-header -->
+        
+        <div class="widget-content">
+        
+        <div style="margin-bottom:10px" class="row-fluid">
+          
+          
+          <div class="span12">
+          <a href="<%= admin_districts_path%>" class="btn btn-secondary">Back</a>          
+          </div>
+          
+          
+          
+          </div>
+          
+      
+          <%= form_for  @admin_district, :html => {:class => "form-horizontal"}  do |f| %>
+            <% if @admin_district.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@admin_district.errors.count, "error") %> prohibited this admin_district from being saved:</h2>
+                <ul>
+                  <% @admin_district.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
 
-  <div class="field">
-    <%= f.label :code %><br />
-    <%= f.text_field :code %>
-  </div>
+            <fieldset>
+                <div class="control-group">
+                  <label for="name" class="control-label">District Name</label>
+                  <div class="controls">
+                    <%= f.text_field :district_name , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Code</label>
+                  <div class="controls">
+                    <%= f.text_field :code , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Select Zone</label>
+                  <div class="controls">
+                    <%= f.collection_select :zone_id , Admin::Zone.all, :id, :zone_name %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Is Laboratory Present ?</label>
+                  <div class="controls">
+                    Yes<%= f.radio_button :lab_present, "Yes" %>
+                    No <%= f.radio_button :lab_present, "No" %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Laboratory Name</label>
+                  <div class="controls">
+                    <%= f.text_field :lab_name , :class => "input-large"%>
+                  </div>
+                </div>
 
-  <div class="field">
-    <%= f.label :zone %><br />
-    <%= f.collection_select :zone_id , Admin::Zone.all, :id, :zone_name %>
-  </div>
+                <div class="control-group">
+                  <div class="controls">
+                    <%= f.submit "Submit", :class => "btn"%>
+                  </div>
+                </div>
+            </fieldset>
+          <%end%>
+        
+        
+        
+                
+            
+          
+          
+          
+        </div> <!-- /widget-content -->
+          
+      </div> <!-- /widget -->
+          
+      </div>
+        
+      </div> <!-- /row -->
 
-  <div class="field">
-    <%= f.label "Is Laboratory Present ?" %><br />
-    Yes<%= f.radio_button :lab_present, "Yes" %>
-    No <%= f.radio_button :lab_present, "No" %>
-  </div>
+    </div> <!-- /container -->
+    
+</div> <!-- /main -->
 
-  <div class="field">
-    <%= f.label  "Laboratory Name" %><br />
-    <%= f.text_field :lab_name %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

@@ -1,4 +1,6 @@
 class Admin::BlocksController < ApplicationController
+  before_filter :authenticate_user!
+  layout 'admin'
   # GET /admin/blocks
   # GET /admin/blocks.json
   def index
