@@ -73,13 +73,6 @@ ActiveRecord::Schema.define(:version => 20140220132616) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "blocks", :force => true do |t|
-    t.string   "block_name"
-    t.integer  "district_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
   create_table "mobile_devices", :force => true do |t|
     t.string   "imei"
     t.string   "manufacturer_name"
