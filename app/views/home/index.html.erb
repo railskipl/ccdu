@@ -1,9 +1,2 @@
 <h1>Home index</h1>
 
-<% if current_user.has_role? :block %>
-<%= link_to "All users", users_path%>&nbsp;&nbsp;
-<%= link_to "Add Mobile Devices", mobile_devices_path%>&nbsp;&nbsp;
-<%= link_to "Add Mobile Users", mobile_users_path%>&nbsp;&nbsp;
-<%= link_to "Add Parameters", mobile_users_path%>&nbsp;&nbsp;
-<%= link_to "Add Laboratory", block_laboratories_path%>&nbsp;&nbsp;
-<%end%>

@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Source name:</b>
+  <%= @survey_report.source_name %>
+</p>
+
+<p>
+  <b>Source code:</b>
+  <%= @survey_report.source_code %>
+</p>
+
+<p>
+  <b>Source location:</b>
+  <%= @survey_report.source_location %>
+</p>
+
+<p>
+  <b>Habitation:</b>
+  <%= @survey_report.habitation %>
+</p>
+
+<p>
+  <b>Village:</b>
+  <%= @survey_report.village %>
+</p>
+
+<p>
+  <b>Grampanchayat:</b>
+  <%= @survey_report.grampanchayat %>
+</p>
+
+<p>
+  <b>Water source type:</b>
+  <%= @survey_report.water_source_type %>
+</p>
+
+<p>
+  <b>Date time:</b>
+  <%= @survey_report.date_time %>
+</p>
+
+<p>
+  <b>Surveyor name:</b>
+  <%= @survey_report.surveyor_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_survey_report_path(@survey_report) %> |
+<%= link_to 'Back', survey_reports_path %>

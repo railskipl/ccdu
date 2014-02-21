@@ -9,9 +9,10 @@
 			</a>
 
 			<div class="subnav-collapse collapse">
+				<% if current_user.has_role? :admin %>
 				<ul class="mainnav">
 				
-					<li class="active">
+					<li class="dropdown">
 						<a href="<%= admin_users_path%>">
 							
 							<span>All Users</span>
@@ -76,9 +77,10 @@
 					</li>
 					
 					
+					
 						
-				
 				</ul>
+				<%end%>
 			</div> <!-- /.subnav-collapse -->
 
 		</div> <!-- /container -->

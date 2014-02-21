@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   layout 'admin'
   def index
   	@users = User.find(:all, :conditions => ['email not in (?)', 'admin@example.com'])

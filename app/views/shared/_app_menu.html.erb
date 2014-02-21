@@ -1,0 +1,62 @@
+<div class="subnavbar">
+
+	<div class="subnavbar-inner">
+	
+		<div class="container">
+			
+			<a class="btn-subnavbar collapsed" data-toggle="collapse" data-target=".subnav-collapse">
+				<i class="icon-reorder"></i>
+			</a>
+
+			<div class="subnav-collapse collapse">
+				<ul class="mainnav">
+				    <% if current_user.has_role? :block %>
+					<li class="dropdown">
+						<a href="<%= users_path%>">
+							
+							<span>All Users</span>
+						</a>	    				
+					</li>
+					
+					<li class="dropdown">					
+						<a href="<%= mobile_devices_path%>" >
+							
+							<span>Mobile Devices</span>
+							
+						</a>	    
+					
+						 				
+					</li>
+					
+					<li class="dropdown">					
+						<a href="<%= mobile_users_path%>" >
+							
+							<span>Mobile Users</span>
+							
+						</a>	    
+					
+					</li>
+					
+					<li class="dropdown">					
+						<a href="<%= block_laboratories_path%>">
+							
+							<span>Add Laboratory</span>
+						</a>	
+					</li>
+
+					<li class="dropdown">					
+						<a href="<%= survey_reports_path%>">
+							
+							<span>Surveyor Report</span>
+						</a>	
+					</li>
+					<%end%>
+				</ul>
+			</div> <!-- /.subnav-collapse -->
+
+		</div> <!-- /container -->
+	
+	</div> <!-- /subnavbar-inner -->
+
+</div> <!-- /subnavbar -->
+    

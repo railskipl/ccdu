@@ -1,45 +1,95 @@
-<%= link_to "Back to dashboard", root_path%>
+<div class="main">
 
-<h1>Listing parameters</h1>
+  <div class="container">
 
-<table>
-  <tr>
-    <th>Ph</th>
-    <th>Hardness</th>
-    <th>Alkalinity</th>
-    <th>Chloride</th>
-    <th>Nitrate</th>
-    <th>Fluroide</th>
-    <th>Residual chlorine</th>
-    <th>Tds</th>
-    <th>Bact</th>
-    <th>Sanitary survey</th>
-    <th>No of chemical sample</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+      <div class="row">
+        
+        <div class="span12">          
+          
+          <div class="widget stacked ">
+            
+            <div class="widget-header">
+              <i class="icon-pencil"></i>
+              <h3>All Parameters</h3>
+            </div> <!-- /widget-header -->
+        
+              <div class="widget-content">
+              
+                <div class="row-fluid">
+                  <div class="span12">
+                  
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                          <%= link_to "Back", root_path, :class => "btn"%>
+                          <%= link_to "Add parameters", new_parameter_path, :class=>"btn", :type=>"reset"%>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                </br>
+                <section id="tables">
+                  
+                    <table class="table table-bordered table-striped">
+                      
+                              <thead>
+                                <tr>
+                                  <th>Sr. No. </th>
+                                  <th>Name</th>
+                                </tr>
+                              </thead>
+                            <% @parameters.each_with_index.each do |parameter,i |  %> 
+                              <tbody>
+                                <tr>
+                                  <td><%= i+1 %></td>
+                                  <td><%= parameter.name rescue nil%></td>
+                                  <% if current_user.has_role? :admin %>
+                                    <td><%= link_to "View", parameter%></td>
+                                    <td><%= link_to (image_tag "image.jpg" ,:height => "22", :width => "20"), edit_parameter_path(parameter) %></td>
+                                    <td><%= link_to (image_tag "delete.png" ,:height => "22", :width => "20"), parameter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                  <% end %>
+                                </tr>
+                              </tbody>
+                      <% end %> 
+                    </table>
+                         
+                          
+                         
+                  <section id="paginations">
+                    
+                    
+                    <div class="pagination">
+                      <ul>
+                        <li><a href="javascript:;">Prev</a></li>
+                        <li class="active">
+                          <a href="javascript:;">1</a>
+                        </li>
+                        <li><a href="javascript:;">2</a></li>
+                        <li><a href="javascript:;">3</a></li>
+                        <li><a href="javascript:;">4</a></li>
+                        <li><a href="javascript:;">Next</a></li>
+                      </ul>
+                    </div>
+                            
+                  </section>
+                </section>
+              </div> <!-- /widget-content -->
+          </div> <!-- /widget -->
+        </div>
+      </div> <!-- /row -->
+  </div> <!-- /container -->
+</div> <!-- /main -->
+    
 
-<% @parameters.each do |parameter| %>
-  <tr>
-    <td><%= parameter.ph rescue nil%></td>
-    <td><%= parameter.hardness rescue nil%></td>
-    <td><%= parameter.alkalinity rescue nil%></td>
-    <td><%= parameter.chloride rescue nil%></td>
-    <td><%= parameter.nitrate rescue nil%></td>
-    <td><%= parameter.fluroide rescue nil%></td>
-    <td><%= parameter.residual_chlorine rescue nil%></td>
-    <td><%= parameter.tds rescue nil%></td>
-    <td><%= parameter.bact rescue nil%></td>
-    <td><%= parameter.sanitary_survey rescue nil%></td>
-    <td><%= parameter.no_of_chemical_sample rescue nil%></td>
-    <td><%= link_to 'Show', parameter %></td>
-    <td><%= link_to 'Edit', edit_parameter_path(parameter) %></td>
-    <td><%= link_to 'Destroy', parameter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
 
-<%= link_to 'New Parameter', new_parameter_path %>
+
+
+

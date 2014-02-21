@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  source_name: MyString
+  source_code: MyString
+  source_location: MyString
+  habitation: MyString
+  village: MyString
+  grampanchayat: MyString
+  water_source_type: MyString
+  date_time: 2014-02-20 18:48:16
+  surveyor_name: MyString
+
+two:
+  source_name: MyString
+  source_code: MyString
+  source_location: MyString
+  habitation: MyString
+  village: MyString
+  grampanchayat: MyString
+  water_source_type: MyString
+  date_time: 2014-02-20 18:48:16
+  surveyor_name: MyString

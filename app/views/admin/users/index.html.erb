@@ -1,8 +1,6 @@
 <div class="main">
-
-    <div class="container">
-
-      <div class="row">
+  <div class="container">
+    <div class="row">
         
     <div class="span12">          
           
@@ -25,10 +23,12 @@
   
   <tr>
     <td>&nbsp;</td>
+    <% if current_user.has_role? :admin %>
     <td>
       <%= link_to "Back", admin_root_path, :class => "btn"%>
       <%= link_to "New User", new_admin_user_path, :class=>"btn", :type=>"reset"%>
     </td>
+    <%end%>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -49,30 +49,8 @@
         </br>
         
         
-        
-        
-        
-      
-      
-        
-        
-
         <section id="tables">
           
-          
-          
-          <!-- <div class="row-fluid">
-          <div class="span6">
-          <h3>LABORATORY REPORT</h3>
-          </div>
-          
-          <div class="span6" style="text-align:right">
-          <a href="#" class="btn btn-secondary"><img src="img/excel.png" alt=""> Excel</a> <a href="#" class="btn btn-secondary"><i class="icon"><img src="img/pdf.png" alt=""></i> PDF</a>
-          </div>
-          
-          
-          
-          </div> -->
           
             <table class="table table-bordered table-striped">
               
@@ -81,8 +59,10 @@
                           <th>Sr. No. </th>
                           <th>User Name</th>
                           <th>User Role</th>
+                          <% if current_user.has_role? :admin %>
                           <th>Edit User</th>
                           <th>Delete User</th>
+                          <% end %>
                         </tr>
                       </thead>
                     <% @users.each_with_index.each do |user,i |  %> 

@@ -1,5 +1,6 @@
 class Admin::DistrictsController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   layout 'admin'
   # GET /admin/districts
   # GET /admin/districts.json

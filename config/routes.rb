@@ -1,5 +1,8 @@
 Ccdu::Application.routes.draw do
 
+  resources :survey_reports
+
+
   resources :block_laboratories
 
 

@@ -1,5 +1,6 @@
 class Admin::GrampanchyatsController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   layout 'admin'
   # GET /admin/grampanchyats
   # GET /admin/grampanchyats.json

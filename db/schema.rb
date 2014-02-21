@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140218094654) do
+ActiveRecord::Schema.define(:version => 20140220132616) do
 
   create_table "admin_blocks", :force => true do |t|
     t.string   "block_name"
@@ -90,19 +90,9 @@ ActiveRecord::Schema.define(:version => 20140218094654) do
   end
 
   create_table "parameters", :force => true do |t|
-    t.string   "ph"
-    t.string   "hardness"
-    t.string   "alkalinity"
-    t.string   "chloride"
-    t.string   "nitrate"
-    t.string   "fluroide"
-    t.string   "residual_chlorine"
-    t.string   "tds"
-    t.string   "bact"
-    t.string   "sanitary_survey"
-    t.string   "no_of_chemical_sample"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "roles", :force => true do |t|
@@ -116,6 +106,28 @@ ActiveRecord::Schema.define(:version => 20140218094654) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "survey_reports", :force => true do |t|
+    t.string   "source_name"
+    t.string   "source_code"
+    t.string   "source_location"
+    t.string   "habitation"
+    t.string   "village"
+    t.string   "grampanchayat"
+    t.string   "water_source_type"
+    t.datetime "date_time"
+    t.string   "surveyor_name"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "photo1_file_name"
+    t.string   "photo1_content_type"
+    t.integer  "photo1_file_size"
+    t.datetime "photo1_updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

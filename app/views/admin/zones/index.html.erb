@@ -43,9 +43,11 @@
                                 <tr>
                                   <th>Sr. No. </th>
                                   <th>Zone</th>
+                                  <% if current_user.has_role? :admin %>
                                   <th>View</th>
                                   <th>Edit User</th>
                                   <th>Delete User</th>
+                                  <% end %>
                                 </tr>
                               </thead>
                             <% @admin_zones.each_with_index.each do |admin_zone,i |  %> 

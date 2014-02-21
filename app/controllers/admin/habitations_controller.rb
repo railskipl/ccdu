@@ -1,5 +1,6 @@
 class Admin::HabitationsController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   layout 'admin'
   # GET /admin/habitations
   # GET /admin/habitations.json

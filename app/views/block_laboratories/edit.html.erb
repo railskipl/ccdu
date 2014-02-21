@@ -1,6 +1,72 @@
-<h1>Editing block_laboratory</h1>
+<div class="main">
 
-<%= render 'form' %>
+    <div class="container">
 
-<%= link_to 'Show', @block_laboratory %> |
-<%= link_to 'Back', block_laboratories_path %>
+      <div class="row">
+        
+    <div class="span12">          
+          
+          <div class="widget stacked ">
+            
+            <div class="widget-header">
+              <i class="icon-pencil"></i>
+              <h3>Edit Block Laboratory</h3>
+          </div> <!-- /widget-header -->
+        
+        <div class="widget-content">
+        
+          <div style="margin-bottom:10px" class="row-fluid">
+          
+          
+              <div class="span12">
+              <a href="<%= block_laboratories_path%>" class="btn btn-secondary">Back</a>          
+              </div>
+         </div>
+          
+      
+          <%= form_for  @block_laboratory, :html => {:class => "form-horizontal"}  do |f| %>
+            <% if @block_laboratory.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@block_laboratory.errors.count, "error") %> prohibited this block_laboratory from being saved:</h2>
+                <ul>
+                  <% @block_laboratory.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <fieldset>
+                <div class="control-group">
+                  <label for="name" class="control-label">Laboratory Name</label>
+                  <div class="controls">
+                    <%= f.text_field :labname , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Laboratory Address</label>
+                  <div class="controls">
+                    <%= f.text_field :address ,:rows => 10, :class => "input-large"%>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <div class="controls">
+                    <%= f.submit "Submit", :class => "btn"%>
+                  </div>
+                </div>
+            </fieldset>
+          <%end%>
+        </div> <!-- /widget-content -->
+          
+      </div> <!-- /widget -->
+          
+      </div>
+        
+      </div> <!-- /row -->
+
+    </div> <!-- /container -->
+    
+</div> <!-- /main -->
+
+

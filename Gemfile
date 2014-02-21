@@ -24,6 +24,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'rolify'
 gem 'cancan'
+gem 'paperclip'
 #gem 'pg'
 
 # To use ActiveModel has_secure_password

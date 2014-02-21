@@ -1,5 +1,6 @@
 class Admin::ZonesController < ApplicationController
-  before_filter :authenticate_user!
+   before_filter :authenticate_user!
+   load_and_authorize_resource
   layout 'admin'
   # GET /admin/zones
   # GET /admin/zones.json
@@ -82,4 +83,9 @@ class Admin::ZonesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  
+     
+
+
 end

@@ -1,0 +1,61 @@
+<%= form_for(@survey_report) do |f| %>
+  <% if @survey_report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@survey_report.errors.count, "error") %> prohibited this survey_report from being saved:</h2>
+
+      <ul>
+      <% @survey_report.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Image1 %><br />
+    <%= f.file_field :photo %>
+  </div>
+  <div class="field">
+    <%= f.label :Image2 %><br />
+    <%= f.file_field :photo1 %>
+  </div>
+  <div class="field">
+    <%= f.label :source_name %><br />
+    <%= f.text_field :source_name %>
+  </div>
+  <div class="field">
+    <%= f.label :source_code %><br />
+    <%= f.text_field :source_code %>
+  </div>
+  <div class="field">
+    <%= f.label :source_location %><br />
+    <%= f.text_field :source_location %>
+  </div>
+  <div class="field">
+    <%= f.label :habitation %><br />
+    <%= f.text_field :habitation %>
+  </div>
+  <div class="field">
+    <%= f.label :village %><br />
+    <%= f.text_field :village %>
+  </div>
+  <div class="field">
+    <%= f.label :grampanchayat %><br />
+    <%= f.text_field :grampanchayat %>
+  </div>
+  <div class="field">
+    <%= f.label :water_source_type %><br />
+    <%= f.text_field :water_source_type %>
+  </div>
+  <div class="field">
+    <%= f.label :date_time %><br />
+    <%= f.datetime_select :date_time %>
+  </div>
+  <div class="field">
+    <%= f.label :surveyor_name %><br />
+    <%= f.text_field :surveyor_name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

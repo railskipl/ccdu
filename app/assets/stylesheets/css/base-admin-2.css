@@ -330,13 +330,15 @@ h6 {
 [ Footer/ .footer ]
 */
 .footer {
-  margin-top: 0;
-  border-top: 1px solid #05587e;
-  padding: 15px 0;
-  font-size: 12px;
-  background: #1075A1;
-  color: #fff;
-
+    background: none repeat scroll 0 0 #1075A1;
+    border-top: 1px solid #05587E;
+    bottom: 0;
+    color: #FFFFFF;
+    font-size: 12px;
+    margin-top: 0;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
 }
 .footer #footer-terms {
   text-align: right;

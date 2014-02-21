@@ -6,14 +6,13 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" /> 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <%= stylesheet_link_tag    "application"%>
+    <%= stylesheet_link_tag    "application","/assets/css/bootstrap-responsive.min.css","/assets/css/font-awesome.min.css","http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600","/assets/css/ui-lightness/jquery-ui-1.10.0.custom.min.css", "/assets/css/base-admin-2.css"%>
     
     <%= javascript_include_tag "application" %>
-   
-   <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" />
-  
+
+    
    <%= csrf_meta_tags %>
  
   <%= yield :scripts %>

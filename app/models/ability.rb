@@ -5,12 +5,13 @@ class Ability
 
       user ||= User.new # guest user (not logged in)
 
+      entities = [User, MobileDevice, MobileUser, BlockLaboratory]
       
-
-      if user.role? :admin
+      if user.has_role? :admin
         can :manage, :all
-      elsif user.role? :block
-        can :manage, User
+      elsif user.has_role? :block
+        can :manage, entities
+       
       end
   end
 end

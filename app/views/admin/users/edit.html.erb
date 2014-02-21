@@ -1,18 +1,105 @@
-<br/><%= link_to "Back", admin_root_path%><br/><br/>
+<div class="main">
 
-<%= form_for([:admin, @user], :html => { :multipart => true }) do |f| %>
-<% for message in @user.errors.full_messages %>
-<%= message %>
-<% end %>
-<p><%= f.text_field :username, :placeholder=>"User Name" %></p>
-<p><%= f.text_field :user_ID, :placeholder=>"User ID" %></p>
-<p><%= f.email_field :email, :placeholder=>"Email" %></p>
-<p><%= f.password_field :password, :placeholder=>"Password" %></p>
-<p><%= f.password_field :password_confirmation, :placeholder=>"Confirm Password" %></p>
-<%= f.collection_select :role_ids, Role.find(:all, :conditions => ['name not in (?)', 'admin']) ,:id,:display_name, :prompt => "Select Role" %>
-<p><%= f.text_field :mobile_no, :placeholder=>"Mobile Number" %></p>
-  
+    <div class="container">
 
+      <div class="row">
+        
+    <div class="span12">          
+          
+          <div class="widget stacked ">
+            
+            <div class="widget-header">
+              <i class="icon-pencil"></i>
+              <h3>Edit User</h3>
+          </div> <!-- /widget-header -->
+        
+        <div class="widget-content">
+        
+        <div style="margin-bottom:10px" class="row-fluid">
+          
+          
+          <div class="span12">
+          <a href="<%= admin_users_path%>" class="btn btn-secondary">Back</a>          
+          </div>
+          
+          
+          
+          </div>
+          
+          
+        
+          <%= form_for [:admin, @user], :html => {:multipart => true,:class => "form-horizontal"} do |f| %>
+            <% for message in @user.errors.full_messages %>
+              <%= message %>
+            <% end %>
 
-<p><%= f.submit "Update" , :name => "admin_create" %></p>
-<% end %>
+            <fieldset>
+                <div class="control-group">
+                  <label for="name" class="control-label">User Name</label>
+                  <div class="controls">
+                    <%= f.text_field :username ,:placeholder=>"User Name" , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">User ID</label>
+                  <div class="controls">
+                    <%= f.text_field :user_ID ,:placeholder=>"User ID" , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Email</label>
+                  <div class="controls">
+                    <%= f.email_field :email ,:placeholder=>"Email" , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Password</label>
+                  <div class="controls">
+                    <%= f.password_field :password ,:placeholder=>"Password" , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Confirm Password</label>
+                  <div class="controls">
+                    <%= f.password_field :password_confirmation ,:placeholder=>"Confirm Password" , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Select Role</label>
+                  <div class="controls">
+                    <%= f.collection_select :role_ids, Role.find(:all, :conditions => ['name not in (?)', 'admin']) ,:id,:display_name, :prompt => "Select Role" %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Mobile Number</label>
+                  <div class="controls">
+                    <%= f.text_field :mobile_no ,:placeholder=>"Mobile Number" , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="controls">
+                    <%= f.submit "Submit",:name => "admin_create", :class => "btn"%>
+                  </div>
+                </div>
+            </fieldset>
+          <%end%>
+        
+        
+        
+                
+            
+          
+          
+          
+        </div> <!-- /widget-content -->
+          
+      </div> <!-- /widget -->
+          
+      </div>
+        
+      </div> <!-- /row -->
+
+    </div> <!-- /container -->
+    
+</div> <!-- /main -->
+

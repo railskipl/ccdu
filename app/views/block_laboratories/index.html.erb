@@ -1,28 +1,100 @@
-<%= link_to "Back to dashboard", root_path%><br/>
+<div class="main">
+
+  <div class="container">
+
+      <div class="row">
+        
+        <div class="span12">          
+          
+          <div class="widget stacked ">
+            
+            <div class="widget-header">
+              <i class="icon-pencil"></i>
+              <h3>All Laboratories</h3>
+            </div> <!-- /widget-header -->
+        
+              <div class="widget-content">
+              
+                <div class="row-fluid">
+                  <div class="span12">
+                  
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                          <%= link_to "Back", root_path, :class => "btn"%>
+                          <%= link_to "Add Laboratory User", new_block_laboratory_path, :class=>"btn", :type=>"reset"%>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                </br>
+                <section id="tables">
+                  
+                    <table class="table table-bordered table-striped">
+                      
+                              <thead>
+                                <tr>
+                                  <th>Sr. No. </th>
+                                  <th>Labname</th>
+                                  <th>Address</th>
+                                  <th>View</th>
+                                  <th>Edit User</th>
+                                  <th>Delete User</th>
+                                </tr>
+                              </thead>
+                            <% @block_laboratories.each_with_index.each do |block_laboratory,i |  %> 
+                              <tbody>
+                                <tr>
+                                  <td><%= i+1 %></td>
+                                  <td><%= block_laboratory.labname rescue nil%></td>
+                                  <td><%= block_laboratory.address rescue nil%></td>
+                                  <% if current_user.has_role? :block %>
+                                    <td><%= link_to 'View', block_laboratory %></td>
+                                    <td><%= link_to (image_tag "image.jpg" ,:height => "22", :width => "20"), edit_block_laboratory_path(block_laboratory) %></td>
+                                    <td><%= link_to (image_tag "delete.png" ,:height => "22", :width => "20"), block_laboratory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                  <% end %>
+                                </tr>
+                              </tbody>
+                            <% end %> 
+                    </table>
+                         
+                          
+                         
+                  <section id="paginations">
+                    
+                    
+                    <div class="pagination">
+                      <ul>
+                        <li><a href="javascript:;">Prev</a></li>
+                        <li class="active">
+                          <a href="javascript:;">1</a>
+                        </li>
+                        <li><a href="javascript:;">2</a></li>
+                        <li><a href="javascript:;">3</a></li>
+                        <li><a href="javascript:;">4</a></li>
+                        <li><a href="javascript:;">Next</a></li>
+                      </ul>
+                    </div>
+                            
+                  </section>
+                </section>
+              </div> <!-- /widget-content -->
+          </div> <!-- /widget -->
+        </div>
+      </div> <!-- /row -->
+  </div> <!-- /container -->
+</div> <!-- /main -->
+    
 
 
-<h1>Listing block_laboratories</h1>
 
-<table>
-  <tr>
-    <th>Labname</th>
-    <th>Address</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @block_laboratories.each do |block_laboratory| %>
-  <tr>
-    <td><%= block_laboratory.labname %></td>
-    <td><%= block_laboratory.address %></td>
-    <td><%= link_to 'Show', block_laboratory %></td>
-    <td><%= link_to 'Edit', edit_block_laboratory_path(block_laboratory) %></td>
-    <td><%= link_to 'Destroy', block_laboratory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
 
-<%= link_to 'New Block laboratory', new_block_laboratory_path %>

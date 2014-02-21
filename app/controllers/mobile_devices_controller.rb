@@ -26,8 +26,8 @@ class MobileDevicesController < ApplicationController
 
    def update
     @mobile_device = MobileDevice.find(params[:id])
-
-   	if @mobile_device = MobileDevice.update_attributes(params[:mobile_device])
+    #raise @mobile_device.inspect
+   	if @mobile_device.update_attributes(params[:mobile_device])
    		flash[:notice] = "Mobile Device Updated Successfully"
         redirect_to mobile_devices_path
     else

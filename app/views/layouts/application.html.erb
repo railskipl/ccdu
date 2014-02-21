@@ -1,24 +1,124 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ccdu</title>
-  <%= stylesheet_link_tag    "application"%>
+  <title>CCDU</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />    
+  <%= stylesheet_link_tag  "application", "/assets/css/bootstrap.min.css", "/assets/css/bootstrap-responsive.min.css","http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600", "/assets/css/font-awesome.min.css" ,"/assets/css/ui-lightness/jquery-ui-1.10.0.custom.min.css","/assets/css/base-admin-2.css","/assets/css/base-admin-2-responsive.css","/assets/css/pages/dashboard.css","/assets/css/custom.css" %>
   <%= javascript_include_tag "application" %>
-  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" />
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   <%= csrf_meta_tags %>
   <%= yield :scripts %>
 </head>
 <body>
-<p class="notice"><%= alert %></p>
-	    <div>
-	            <% if user_signed_in? %> 
-					<%= link_to "Sign Out", destroy_user_session_path,:method => :delete %> 
-				<% else %> 
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		
+		<div class="navbar-inner">
+			
+			<div class="container">
+				
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<i class="icon-cog"></i>
+				</a>
+				
+				<a class="brand" href="./index.html">
+					<img src="/assets/logo.png" alt="">
+				</a>		
+				
+				<div class="nav-collapse collapse">
+					<ul class="nav pull-right">
+						<li class="dropdown">
+							
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<i class="icon-cog"></i>
+								Settings
+								<b class="caret"></b>
+							</a>
+							
+							<ul class="dropdown-menu">
+								<li><a href="#">Profile</a></li>
+								
+								
+								
+							</ul>
+							
+						</li>
+				
+						<li class="dropdown">
+							
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<i class="icon-user"></i> 
+								Usename
+								<b class="caret"></b>
+							</a>
+							
+							<ul class="dropdown-menu">
+								<!-- <li><a href="#">My Profile</a></li> -->
+								
+								<li class="divider"></li>
+						
+							    <li><% if user_signed_in? %> 
+				                    <%= link_to "Sign Out", destroy_user_session_path,:method => :delete %> 
+			                       <% else %> 
+				
+			                       <% end %>
+			                    </li>
+							
+							</ul>
+							
+						</li>
+					</ul>
+				
+					<form class="navbar-search pull-right" />
+						<input type="text" class="search-query" placeholder="Search" />
+					</form>
 					
-				<% end %>
-		</div>
+				</div><!--/.nav-collapse -->	
+		
+			</div> <!-- /container -->
+			
+		</div> <!-- /navbar-inner -->
+		
+	</div> <!-- /navbar -->
+    
+    <%= render 'shared/app_menu'%>
 
-<%= yield %>
+    <!-- /subnavbar -->
+    <div class="main">
 
+        <div class="container" style="width:auto;">
+                <% flash.each do |key, value| %>
+           <div class="flash <%= key %>"><%= value %></div>
+        <% end %>
+                  <%= yield %>
+                  
+        </div>
+    </div> 
+
+    <%= render 'shared/footer'%>
+     <!-- /footer -->
+    <!--Container-->
+
+    <!--jquery init-->
+    <script>
+        $('document').ready(function () {
+            Dashboard.init();
+        });
+
+        //Live Tooltip
+        $('body').tooltip({
+            selector: '[rel=tooltip]'
+        });
+
+        function ShowHelp() {
+            window.open('help.html', '', 'height=600,width=800,scrollbars=1,resizable=1');
+        }
+    </script>
+	   
 </body>
 </html>

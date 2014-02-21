@@ -1,5 +1,6 @@
 class ParametersController < ApplicationController
   before_filter :authenticate_user!
+  layout 'admin'
   # GET /parameters
   # GET /parameters.json
   def index
