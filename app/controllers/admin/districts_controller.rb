@@ -45,13 +45,18 @@ class Admin::DistrictsController < ApplicationController
   def create
     @admin_district = Admin::District.new(params[:admin_district])
 
-    respond_to do |format|
-      if @admin_district.save
-        format.html { redirect_to @admin_district, notice: 'District was successfully created.' }
-        format.json { render json: @admin_district, status: :created, location: @admin_district }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @admin_district.errors, status: :unprocessable_entity }
+    if params[:toggler] == "Yes" && @admin_district.lab_name.blank? 
+       flash[:notice] = "Please enter laboratory name."
+       render :new
+    else
+      respond_to do |format|
+        if @admin_district.save
+          format.html { redirect_to admin_districts_url, notice: 'District was successfully created.' }
+          format.json { render json: @admin_district, status: :created, location: @admin_district }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @admin_district.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -60,16 +65,18 @@ class Admin::DistrictsController < ApplicationController
   # PUT /admin/districts/1.json
   def update
     @admin_district = Admin::District.find(params[:id])
-
+    #raise @admin_district.lab_name.inspect
+    
     respond_to do |format|
       if @admin_district.update_attributes(params[:admin_district])
-        format.html { redirect_to @admin_district, notice: 'District was successfully updated.' }
+        format.html { redirect_to admin_districts_url, notice: 'District was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
         format.json { render json: @admin_district.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
   # DELETE /admin/districts/1

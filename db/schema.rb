@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140220132616) do
+ActiveRecord::Schema.define(:version => 20140224135430) do
 
   create_table "admin_blocks", :force => true do |t|
     t.string   "block_name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20140220132616) do
     t.string   "source_name"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "code"
   end
 
   create_table "admin_villages", :force => true do |t|
@@ -71,6 +72,14 @@ ActiveRecord::Schema.define(:version => 20140220132616) do
     t.text     "address"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
+  create_table "blocks", :force => true do |t|
+    t.string   "block_name"
+    t.integer  "district_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "mobile_devices", :force => true do |t|
@@ -80,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20140220132616) do
     t.date     "purchase_date"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.integer  "user_id"
   end
 
   create_table "mobile_users", :force => true do |t|

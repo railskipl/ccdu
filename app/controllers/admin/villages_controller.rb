@@ -47,7 +47,7 @@ class Admin::VillagesController < ApplicationController
 
     respond_to do |format|
       if @admin_village.save
-        format.html { redirect_to @admin_village, notice: 'Village was successfully created.' }
+        format.html { redirect_to admin_villages_url, notice: 'Village was successfully created.' }
         format.json { render json: @admin_village, status: :created, location: @admin_village }
       else
         format.html { render action: "new" }
@@ -63,7 +63,7 @@ class Admin::VillagesController < ApplicationController
 
     respond_to do |format|
       if @admin_village.update_attributes(params[:admin_village])
-        format.html { redirect_to @admin_village, notice: 'Village was successfully updated.' }
+        format.html { redirect_to admin_villages_url, notice: 'Village was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

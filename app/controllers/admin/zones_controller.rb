@@ -47,7 +47,7 @@ class Admin::ZonesController < ApplicationController
 
     respond_to do |format|
       if @admin_zone.save
-        format.html { redirect_to @admin_zone, notice: 'Zone was successfully created.' }
+        format.html { redirect_to admin_zones_url, notice: 'Zone was successfully created.' }
         format.json { render json: @admin_zone, status: :created, location: @admin_zone }
       else
         format.html { render action: "new" }
@@ -63,7 +63,7 @@ class Admin::ZonesController < ApplicationController
 
     respond_to do |format|
       if @admin_zone.update_attributes(params[:admin_zone])
-        format.html { redirect_to @admin_zone, notice: 'Zone was successfully updated.' }
+        format.html { redirect_to admin_zones_url, notice: 'Zone was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

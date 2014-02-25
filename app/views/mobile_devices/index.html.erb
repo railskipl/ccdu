@@ -23,7 +23,7 @@
                       <tr>
                         <td>&nbsp;</td>
                         <td>
-                          <%= link_to "Back", root_path, :class => "btn"%>
+                          <%#= link_to "Back", root_path, :class => "btn"%>
                           <%= link_to "Add mobile device", new_mobile_device_path, :class=>"btn", :type=>"reset"%>
                         </td>
                         <td>&nbsp;</td>
@@ -46,9 +46,10 @@
                                   <th>Manufacturer Name</th>
                                   <th>Phone Number</th>
                                   <th>Purchase Date</th>
-                                  <th>View</th>
-                                  <th>Edit User</th>
-                                  <th>Delete User</th>
+                                  <% if current_user.has_role? :block %>
+                                    <th>Edit User</th>
+                                    <th>Delete User</th>
+                                  <% end %>
                                 </tr>
                               </thead>
                             <% @mobile_devices.each_with_index.each do |mobile_device,i |  %> 
@@ -60,9 +61,8 @@
                                   <td><%= mobile_device.phone_no rescue nil%></td>
                                   <td><%= mobile_device.purchase_date rescue nil%></td>
                                   <% if current_user.has_role? :block %>
-                                    <td><%= link_to "View", mobile_device_path(mobile_device)%></td>
-                                    <td><%= link_to (image_tag "image.jpg" ,:height => "22", :width => "20"), edit_mobile_device_path(mobile_device) %></td>
-                                    <td><%= link_to (image_tag "delete.png" ,:height => "22", :width => "20"), mobile_device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                    <td><%= link_to "Edit", edit_mobile_device_path(mobile_device) %></td>
+                                    <td><%= link_to "Delete", mobile_device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                                   <% end %>
                                 </tr>
                               </tbody>
@@ -71,7 +71,7 @@
                          
                           
                          
-                  <section id="paginations">
+                  <!-- <section id="paginations">
                     
                     
                     <div class="pagination">
@@ -87,7 +87,7 @@
                       </ul>
                     </div>
                             
-                  </section>
+                  </section> -->
                 </section>
               </div> <!-- /widget-content -->
           </div> <!-- /widget -->

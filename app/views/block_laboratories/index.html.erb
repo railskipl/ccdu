@@ -23,7 +23,7 @@
                       <tr>
                         <td>&nbsp;</td>
                         <td>
-                          <%= link_to "Back", root_path, :class => "btn"%>
+                          <%#= link_to "Back", root_path, :class => "btn"%>
                           <%= link_to "Add Laboratory User", new_block_laboratory_path, :class=>"btn", :type=>"reset"%>
                         </td>
                         <td>&nbsp;</td>
@@ -44,9 +44,10 @@
                                   <th>Sr. No. </th>
                                   <th>Labname</th>
                                   <th>Address</th>
-                                  <th>View</th>
-                                  <th>Edit User</th>
-                                  <th>Delete User</th>
+                                  <% if current_user.has_role? :block %>
+                                  <th>Edit</th>
+                                  <th>Delete</th>
+                                  <% end %>
                                 </tr>
                               </thead>
                             <% @block_laboratories.each_with_index.each do |block_laboratory,i |  %> 
@@ -56,9 +57,8 @@
                                   <td><%= block_laboratory.labname rescue nil%></td>
                                   <td><%= block_laboratory.address rescue nil%></td>
                                   <% if current_user.has_role? :block %>
-                                    <td><%= link_to 'View', block_laboratory %></td>
-                                    <td><%= link_to (image_tag "image.jpg" ,:height => "22", :width => "20"), edit_block_laboratory_path(block_laboratory) %></td>
-                                    <td><%= link_to (image_tag "delete.png" ,:height => "22", :width => "20"), block_laboratory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                    <td><%= link_to "Edit", edit_block_laboratory_path(block_laboratory) %></td>
+                                    <td><%= link_to "Delete", block_laboratory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                                   <% end %>
                                 </tr>
                               </tbody>
@@ -70,7 +70,7 @@
                   <section id="paginations">
                     
                     
-                    <div class="pagination">
+                    <!-- <div class="pagination">
                       <ul>
                         <li><a href="javascript:;">Prev</a></li>
                         <li class="active">
@@ -83,7 +83,7 @@
                       </ul>
                     </div>
                             
-                  </section>
+                  </section> -->
                 </section>
               </div> <!-- /widget-content -->
           </div> <!-- /widget -->

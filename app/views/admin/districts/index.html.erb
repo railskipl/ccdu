@@ -23,7 +23,7 @@
                       <tr>
                         <td>&nbsp;</td>
                         <td>
-                          <%= link_to "Back", admin_root_path, :class => "btn"%>
+                          <%#= link_to "Back", admin_root_path, :class => "btn"%>
                           <%= link_to "New District", new_admin_district_path, :class=>"btn", :type=>"reset"%>
                         </td>
                         <td>&nbsp;</td>
@@ -43,10 +43,14 @@
                                 <tr>
                                   <th>Sr. No. </th>
                                   <th>District name</th>
-                                  <th>Zone</th>
-                                  <th>View</th>
-                                  <th>Edit User</th>
-                                  <th>Delete User</th>
+                                  <th>Code</th>
+                                  <th>Is Laboratory Present ?</th>
+                                  <th>Laboratory Name</th>
+                                  <th>Zone Name</th>
+                                  <% if current_user.has_role? :admin %>
+                                    <th>Edit </th>
+                                    <th>Delete </th>
+                                  <% end %>
                                 </tr>
                               </thead>
                             <% @admin_districts.each_with_index.each do |admin_district,i |  %> 
@@ -54,11 +58,13 @@
                                 <tr>
                                   <td><%= i+1 %></td>
                                   <td><%= admin_district.district_name rescue nil%></td>
+                                  <td><%= admin_district.code rescue nil%></td>
+                                  <td><%= admin_district.lab_present rescue nil%></td>
+                                  <td><%= admin_district.lab_name rescue nil%></td>
                                   <td><%= admin_district.zone.zone_name rescue nil%></td>
                                   <% if current_user.has_role? :admin %>
-                                    <td><%= link_to "View", admin_district %></td>
-                                    <td><%= link_to (image_tag "image.jpg" ,:height => "22", :width => "20"), edit_admin_district_path(admin_district) %></td>
-                                    <td><%= link_to (image_tag "delete.png" ,:height => "22", :width => "20"), admin_district, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                    <td><%= link_to "Edit", edit_admin_district_path(admin_district) %></td>
+                                    <td><%= link_to "Delete", admin_district, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                                   <% end %>
                                 </tr>
                               </tbody>
@@ -67,7 +73,7 @@
                          
                           
                          
-                  <section id="paginations">
+                  <!-- <section id="paginations">
                     
                     
                     <div class="pagination">
@@ -83,7 +89,7 @@
                       </ul>
                     </div>
                             
-                  </section>
+                  </section> -->
                 </section>
               </div> <!-- /widget-content -->
           </div> <!-- /widget -->

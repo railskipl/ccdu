@@ -23,7 +23,7 @@
                       <tr>
                         <td>&nbsp;</td>
                         <td>
-                          <%= link_to "Back", admin_root_path, :class => "btn"%>
+                          <%#= link_to "Back", admin_root_path, :class => "btn"%>
                           <%= link_to "New Source", new_admin_source_path, :class=>"btn", :type=>"reset"%>
                         </td>
                         <td>&nbsp;</td>
@@ -43,9 +43,11 @@
                                 <tr>
                                   <th>Sr. No. </th>
                                   <th>Source name</th>
-                                  <th>View</th>
-                                  <th>Edit User</th>
-                                  <th>Delete User</th>
+                                  <th>Code</th>
+                                  <% if current_user.has_role? :admin %>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                  <% end %>
                                 </tr>
                               </thead>
                             <% @admin_sources.each_with_index.each do |admin_source,i |  %> 
@@ -53,10 +55,10 @@
                                 <tr>
                                   <td><%= i+1 %></td>
                                   <td><%= admin_source.source_name rescue nil%></td>
+                                  <td><%= admin_source.code rescue nil%></td>
                                   <% if current_user.has_role? :admin %>
-                                    <td><%= link_to "View", admin_source%></td>
-                                    <td><%= link_to (image_tag "image.jpg" ,:height => "22", :width => "20"), edit_admin_source_path(admin_source) %></td>
-                                    <td><%= link_to (image_tag "delete.png" ,:height => "22", :width => "20"), admin_source, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                    <td><%= link_to "Edit", edit_admin_source_path(admin_source) %></td>
+                                    <td><%= link_to "Delete", admin_source, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                                   <% end %>
                                 </tr>
                               </tbody>
@@ -65,7 +67,7 @@
                          
                           
                          
-                  <section id="paginations">
+                  <!-- <section id="paginations">
                     
                     
                     <div class="pagination">
@@ -81,7 +83,7 @@
                       </ul>
                     </div>
                             
-                  </section>
+                  </section> -->
                 </section>
               </div> <!-- /widget-content -->
           </div> <!-- /widget -->

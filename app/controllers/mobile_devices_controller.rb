@@ -2,7 +2,7 @@ class MobileDevicesController < ApplicationController
    before_filter :authenticate_user!
    
    def index
-   	@mobile_devices = MobileDevice.all
+   	@mobile_devices = current_user.mobile_devices
    end
 
    def new

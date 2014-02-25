@@ -23,7 +23,7 @@
                       <tr>
                         <td>&nbsp;</td>
                         <td>
-                          <%= link_to "Back", admin_root_path, :class => "btn"%>
+                          <%#= link_to "Back", admin_root_path, :class => "btn"%>
                           <%= link_to "New Village", new_admin_village_path, :class=>"btn", :type=>"reset"%>
                         </td>
                         <td>&nbsp;</td>
@@ -44,9 +44,10 @@
                                   <th>Sr. No. </th>
                                   <th>Village name</th>
                                   <th>Grampanchyat</th>
-                                  <th>View</th>
-                                  <th>Edit User</th>
-                                  <th>Delete User</th>
+                                  <% if current_user.has_role? :admin %>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                  <% end %>
                                 </tr>
                               </thead>
                             <% @admin_villages.each_with_index.each do |admin_village,i |  %> 
@@ -56,9 +57,8 @@
                                   <td><%= admin_village.village_name rescue nil%></td>
                                   <td><%= admin_village.grampanchyat.gram_name rescue nil%></td>
                                   <% if current_user.has_role? :admin %>
-                                    <td><%= link_to "View", admin_village%></td>
-                                    <td><%= link_to (image_tag "image.jpg" ,:height => "22", :width => "20"), edit_admin_village_path(admin_village) %></td>
-                                    <td><%= link_to (image_tag "delete.png" ,:height => "22", :width => "20"), admin_village, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                    <td><%= link_to "Edit", edit_admin_village_path(admin_village) %></td>
+                                    <td><%= link_to "Delete", admin_village, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                                   <% end %>
                                 </tr>
                               </tbody>
@@ -67,7 +67,7 @@
                          
                           
                          
-                  <section id="paginations">
+                  <!-- <section id="paginations">
                     
                     
                     <div class="pagination">
@@ -83,7 +83,7 @@
                       </ul>
                     </div>
                             
-                  </section>
+                  </section> -->
                 </section>
               </div> <!-- /widget-content -->
           </div> <!-- /widget -->

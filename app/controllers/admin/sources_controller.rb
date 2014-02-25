@@ -47,8 +47,8 @@ class Admin::SourcesController < ApplicationController
 
     respond_to do |format|
       if @admin_source.save
-        format.html { redirect_to @admin_source, notice: 'Source was successfully created.' }
-        format.json { render json: @admin_source, status: :created, location: @admin_source }
+        format.html { redirect_to admin_sources_url, notice: 'Source was successfully created.' }
+        format.json { render json: admin_sources_url, status: :created, location: @admin_source }
       else
         format.html { render action: "new" }
         format.json { render json: @admin_source.errors, status: :unprocessable_entity }
@@ -63,7 +63,7 @@ class Admin::SourcesController < ApplicationController
 
     respond_to do |format|
       if @admin_source.update_attributes(params[:admin_source])
-        format.html { redirect_to @admin_source, notice: 'Source was successfully updated.' }
+        format.html { redirect_to admin_sources_url, notice: 'Source was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
