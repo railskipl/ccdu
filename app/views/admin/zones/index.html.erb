@@ -23,7 +23,7 @@
                       <tr>
                         <td>&nbsp;</td>
                         <td>
-                          <%= link_to "Back", admin_root_path, :class => "btn"%>
+                          <%#= link_to "Back", admin_root_path, :class => "btn"%>
                           <%= link_to "New Zone", new_admin_zone_path, :class=>"btn", :type=>"reset"%>
                         </td>
                         <td>&nbsp;</td>
@@ -44,9 +44,8 @@
                                   <th>Sr. No. </th>
                                   <th>Zone</th>
                                   <% if current_user.has_role? :admin %>
-                                  <th>View</th>
-                                  <th>Edit User</th>
-                                  <th>Delete User</th>
+                                  <th>Edit</th>
+                                  <th>Delete</th>
                                   <% end %>
                                 </tr>
                               </thead>
@@ -56,9 +55,8 @@
                                   <td><%= i+1 %></td>
                                   <td><%= admin_zone.zone_name rescue nil%></td>
                                   <% if current_user.has_role? :admin %>
-                                    <td><%= link_to "View", admin_zone %></td>
-                                    <td><%= link_to (image_tag "image.jpg" ,:height => "22", :width => "20"), edit_admin_zone_path(admin_zone) %></td>
-                                    <td><%= link_to (image_tag "delete.png" ,:height => "22", :width => "20"), admin_zone, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                    <td><%= link_to "Edit", edit_admin_zone_path(admin_zone) %></td>
+                                    <td><%= link_to "Delete", admin_zone, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                                   <% end %>
                                 </tr>
                               </tbody>
@@ -67,7 +65,7 @@
                          
                           
                          
-                  <section id="paginations">
+                  <!-- <section id="paginations">
                     
                     
                     <div class="pagination">
@@ -83,7 +81,7 @@
                       </ul>
                     </div>
                             
-                  </section>
+                  </section> -->
                 </section>
               </div> <!-- /widget-content -->
           </div> <!-- /widget -->

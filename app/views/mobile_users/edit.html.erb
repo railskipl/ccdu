@@ -1,42 +1,30 @@
 <div class="main">
-
-    <div class="container">
-
-      <div class="row">
-        
-    <div class="span12">          
-          
-          <div class="widget stacked ">
-            
-            <div class="widget-header">
-              <i class="icon-pencil"></i>
-              <h3>Edit Mobile User</h3>
+  <div class="container">
+    <div class="row">
+      <div class="span12">          
+        <div class="widget stacked ">
+          <div class="widget-header">
+            <i class="icon-pencil"></i>
+            <h3>Edit Mobile User</h3>
           </div> <!-- /widget-header -->
-        
-        <div class="widget-content">
-        
-          <div style="margin-bottom:10px" class="row-fluid">
-          
-          
+          <div class="widget-content">
+            <div style="margin-bottom:10px" class="row-fluid">
               <div class="span12">
-              <a href="<%= mobile_users_path%>" class="btn btn-secondary">Back</a>          
+                <a href="<%= mobile_users_path%>" class="btn">Back</a>          
               </div>
-         </div>
-          
-      
-          <%= form_for  @mobile_user, :html => {:class => "form-horizontal"}  do |f| %>
-            <% if @mobile_user.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(@mobile_user.errors.count, "error") %> prohibited this mobile_user from being saved:</h2>
-                <ul>
-                  <% @mobile_user.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                  <% end %>
-                </ul>
-              </div>
-            <% end %>
-
-            <fieldset>
+            </div>
+            <%= form_for  @mobile_user, :html => {:class => "form-horizontal"}  do |f| %>
+              <% if @mobile_user.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@mobile_user.errors.count, "error") %> prohibited this mobile_user from being saved:</h2>
+                  <ul>
+                    <% @mobile_user.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <fieldset>
                 <div class="control-group">
                   <label for="name" class="control-label">Select User Name</label>
                   <div class="controls">
@@ -48,23 +36,19 @@
                   <div class="controls">
                     <%= f.collection_select :imei , MobileDevice.all, :imei, :imei ,:class => "input-large", :prompt => "Select IMEI" rescue nil%>
                   </div>
+                  <%= f.hidden_field :mobile_user_id,:value => current_user.id %>
                 </div>
                 <div class="control-group">
                   <div class="controls">
                     <%= f.submit "Submit", :class => "btn"%>
                   </div>
                 </div>
-            </fieldset>
-          <%end%>
-        </div> <!-- /widget-content -->
-          
-      </div> <!-- /widget -->
-          
+              </fieldset>
+            <%end%>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
       </div>
-        
-      </div> <!-- /row -->
-
-    </div> <!-- /container -->
-    
+    </div> <!-- /row -->
+  </div> <!-- /container -->
 </div> <!-- /main -->
 

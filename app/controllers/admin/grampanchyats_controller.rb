@@ -47,7 +47,7 @@ class Admin::GrampanchyatsController < ApplicationController
 
     respond_to do |format|
       if @admin_grampanchyat.save
-        format.html { redirect_to @admin_grampanchyat, notice: 'Grampanchyat was successfully created.' }
+        format.html { redirect_to admin_grampanchyats_url, notice: 'Grampanchyat was successfully created.' }
         format.json { render json: @admin_grampanchyat, status: :created, location: @admin_grampanchyat }
       else
         format.html { render action: "new" }
@@ -63,7 +63,7 @@ class Admin::GrampanchyatsController < ApplicationController
 
     respond_to do |format|
       if @admin_grampanchyat.update_attributes(params[:admin_grampanchyat])
-        format.html { redirect_to @admin_grampanchyat, notice: 'Grampanchyat was successfully updated.' }
+        format.html { redirect_to admin_grampanchyats_url, notice: 'Grampanchyat was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

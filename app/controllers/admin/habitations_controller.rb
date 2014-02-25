@@ -47,7 +47,7 @@ class Admin::HabitationsController < ApplicationController
 
     respond_to do |format|
       if @admin_habitation.save
-        format.html { redirect_to @admin_habitation, notice: 'Habitation was successfully created.' }
+        format.html { redirect_to admin_habitations_url, notice: 'Habitation was successfully created.' }
         format.json { render json: @admin_habitation, status: :created, location: @admin_habitation }
       else
         format.html { render action: "new" }
@@ -63,7 +63,7 @@ class Admin::HabitationsController < ApplicationController
 
     respond_to do |format|
       if @admin_habitation.update_attributes(params[:admin_habitation])
-        format.html { redirect_to @admin_habitation, notice: 'Habitation was successfully updated.' }
+        format.html { redirect_to admin_habitations_url, notice: 'Habitation was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140220132616) do
+ActiveRecord::Schema.define(:version => 20140224135430) do
 
   create_table "admin_blocks", :force => true do |t|
     t.string   "block_name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20140220132616) do
     t.string   "source_name"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "code"
   end
 
   create_table "admin_villages", :force => true do |t|
@@ -71,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20140220132616) do
     t.text     "address"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "mobile_devices", :force => true do |t|
@@ -80,13 +82,15 @@ ActiveRecord::Schema.define(:version => 20140220132616) do
     t.date     "purchase_date"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.integer  "user_id"
   end
 
   create_table "mobile_users", :force => true do |t|
     t.integer  "user_id"
     t.string   "imei"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "mobile_user_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "parameters", :force => true do |t|
@@ -117,16 +121,9 @@ ActiveRecord::Schema.define(:version => 20140220132616) do
     t.string   "water_source_type"
     t.datetime "date_time"
     t.string   "surveyor_name"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
-    t.string   "photo1_file_name"
-    t.string   "photo1_content_type"
-    t.integer  "photo1_file_size"
-    t.datetime "photo1_updated_at"
+    t.integer  "user_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "users", :force => true do |t|

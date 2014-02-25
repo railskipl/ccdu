@@ -43,14 +43,20 @@ class Admin::BlocksController < ApplicationController
   # POST /admin/blocks.json
   def create
     @admin_block = Admin::Block.new(params[:admin_block])
+    #raise params[:toggler].inspect
 
-    respond_to do |format|
-      if @admin_block.save
-        format.html { redirect_to @admin_block, notice: 'Block was successfully created.' }
-        format.json { render json: @admin_block, status: :created, location: @admin_block }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @admin_block.errors, status: :unprocessable_entity }
+    if params[:toggler] == "Yes" && @admin_block.lab_name.blank? 
+       flash[:notice] = "Please enter laboratory name."
+       render :new
+    else
+      respond_to do |format|
+        if @admin_block.save
+          format.html { redirect_to admin_blocks_url, notice: 'Block was successfully created.' }
+          format.json { render json: @admin_block, status: :created, location: @admin_block }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @admin_block.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -62,7 +68,7 @@ class Admin::BlocksController < ApplicationController
 
     respond_to do |format|
       if @admin_block.update_attributes(params[:admin_block])
-        format.html { redirect_to @admin_block, notice: 'Block was successfully updated.' }
+        format.html { redirect_to admin_blocks_url, notice: 'Block was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

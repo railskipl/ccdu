@@ -2,8 +2,8 @@ class BlockLaboratoriesController < ApplicationController
   # GET /block_laboratories
   # GET /block_laboratories.json
   def index
-    @block_laboratories = BlockLaboratory.all
-
+    @block_laboratories = current_user.block_laboratories
+     #raise @block_laboratories.inspect
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @block_laboratories }
@@ -44,7 +44,7 @@ class BlockLaboratoriesController < ApplicationController
 
     respond_to do |format|
       if @block_laboratory.save
-        format.html { redirect_to @block_laboratory, notice: 'Block laboratory was successfully created.' }
+        format.html { redirect_to block_laboratories_url, notice: 'Block laboratory was successfully created.' }
         format.json { render json: @block_laboratory, status: :created, location: @block_laboratory }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class BlockLaboratoriesController < ApplicationController
 
     respond_to do |format|
       if @block_laboratory.update_attributes(params[:block_laboratory])
-        format.html { redirect_to @block_laboratory, notice: 'Block laboratory was successfully updated.' }
+        format.html { redirect_to block_laboratories_url, notice: 'Block laboratory was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

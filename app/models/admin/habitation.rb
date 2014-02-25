@@ -3,4 +3,12 @@ class Admin::Habitation < ActiveRecord::Base
 
   belongs_to :village
   belongs_to :user
+
+  validates_presence_of :habitation_name, :village_id
+
+  before_save :upname
+
+  def upname
+  	self.habitation_name = self.habitation_name.upcase
+  end
 end
