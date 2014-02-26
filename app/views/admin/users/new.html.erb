@@ -53,6 +53,7 @@
                   <div class="controls">
                     <%= f.collection_select :role_ids, Role.find(:all, :conditions => ['name not in (?)', 'admin']) ,:id,:display_name, :prompt => "Select Role" %>
                   </div>
+                  
                 </div>
                 <div class="control-group">
                   <label for="name" class="control-label">Mobile Number</label>

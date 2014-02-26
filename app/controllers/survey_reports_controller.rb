@@ -1,4 +1,7 @@
 class SurveyReportsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:create]
+  skip_before_filter :verify_authenticity_token, :only => [:new, :create]
+  respond_to :json
   # GET /survey_reports
   # GET /survey_reports.json
   def index
@@ -40,12 +43,18 @@ class SurveyReportsController < ApplicationController
   # POST /survey_reports
   # POST /survey_reports.json
   def create
-    @survey_report = SurveyReport.new(params[:survey_report])
-
+    #raise params.inspect
+    @survey_report = SurveyReport.create(
+      :image=> params[:Image1],
+      :image1=> params[:Image2],
+      :source_name=> params[:WaterSourceCode],
+      :water_source_type=> params[:WaterSourceType],
+      :source_location=> params[:NearestSourceLocation])
+    
     respond_to do |format|
       if @survey_report.save
-        format.html { redirect_to @survey_report, notice: 'Survey report was successfully created.' }
-        format.json { render json: @survey_report, status: :created, location: @survey_report }
+        format.html { redirect_to survey_reports_url, notice: 'Survey report was successfully created.' }
+        format.json { render :status =>200,:json => { :error => "valid" } }
       else
         format.html { render action: "new" }
         format.json { render json: @survey_report.errors, status: :unprocessable_entity }

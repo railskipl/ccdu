@@ -19,7 +19,7 @@ Ccdu::Application.routes.draw do
       root :to => 'devise/sessions#new'
     end
   end
-
+  match "/users/update_area", :to => "users#update_area"
   namespace :admin do 
     match '/dashboard' => "dashboard#index", :as => :root
     resources :users
