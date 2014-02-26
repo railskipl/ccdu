@@ -25,6 +25,8 @@ gem 'devise'
 gem 'rolify'
 gem 'cancan'
 gem 'paperclip'
+gem 'aws-s3'
+gem 'aws-sdk'
 #gem 'pg'
 
 # To use ActiveModel has_secure_password
