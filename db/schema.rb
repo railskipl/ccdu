@@ -127,9 +127,16 @@ ActiveRecord::Schema.define(:version => 20140225112015) do
     t.string   "water_source_type"
     t.datetime "date_time"
     t.string   "surveyor_name"
-    t.integer  "user_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "photo1_file_name"
+    t.string   "photo1_content_type"
+    t.integer  "photo1_file_size"
+    t.datetime "photo1_updated_at"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -138,7 +145,6 @@ ActiveRecord::Schema.define(:version => 20140225112015) do
     t.string   "image1_content_type"
     t.integer  "image1_file_size"
     t.datetime "image1_updated_at"
-
   end
 
   create_table "users", :force => true do |t|
