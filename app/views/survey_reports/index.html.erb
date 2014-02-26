@@ -102,8 +102,8 @@
                       <td><%= survey_report.water_source_type rescue nil%></td>
                       <td><%= survey_report.date_time rescue nil%></td>
                       <td><%= survey_report.surveyor_name rescue nil%></td>
-                      <td><%= image_tag survey_report.photo.url, :height=> 100, :width=>100 rescue nil%></td>
-                      <td><%= image_tag survey_report.photo1.url, :height=> 100, :width=>100 rescue nil%></td>
+                      <td><%= image_tag survey_report.image.url, :height=> 100, :width=>100 rescue nil%></td>
+                      <td><%= image_tag survey_report.image1.url, :height=> 100, :width=>100 rescue nil%></td>
                     </tr>
                   </tbody>
                 <% end %> 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140224135430) do
+ActiveRecord::Schema.define(:version => 20140225112015) do
 
   create_table "admin_blocks", :force => true do |t|
     t.string   "block_name"
@@ -127,16 +127,18 @@ ActiveRecord::Schema.define(:version => 20140224135430) do
     t.string   "water_source_type"
     t.datetime "date_time"
     t.string   "surveyor_name"
+    t.integer  "user_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
-    t.string   "photo1_file_name"
-    t.string   "photo1_content_type"
-    t.integer  "photo1_file_size"
-    t.datetime "photo1_updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "image1_file_name"
+    t.string   "image1_content_type"
+    t.integer  "image1_file_size"
+    t.datetime "image1_updated_at"
+
   end
 
   create_table "users", :force => true do |t|
@@ -156,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20140224135430) do
     t.string   "user_ID"
     t.string   "mobile_no"
     t.string   "imei"
+    t.string   "full_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

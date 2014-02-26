@@ -41,6 +41,10 @@ class Admin::UsersController < ApplicationController
      end
   end
 
+  def update_area
+    raise "hi"
+  end
+
 
   def destroy
      @user = User.find(params[:id])
