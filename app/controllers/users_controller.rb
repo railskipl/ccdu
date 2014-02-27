@@ -41,6 +41,10 @@ class UsersController < ApplicationController
      end
   end
 
+  def update_model
+    raise "hi"
+  end
+
 
   def destroy
      @user = User.find(params[:id])

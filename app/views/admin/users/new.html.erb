@@ -18,18 +18,21 @@
                 <%= message %>
               <% end %>
               <fieldset>
+                
+                <div class="control-group">
+                  <label for="name" class="control-label">Full Name</label>
+                  <div class="controls">
+                    <%= f.text_field :user_fullname ,:placeholder=>"Full Name" , :class => "input-large"%>
+                  </div>
+                </div>
+
                 <div class="control-group">
                   <label for="name" class="control-label">User Name</label>
                   <div class="controls">
                     <%= f.text_field :username ,:placeholder=>"User Name" , :class => "input-large"%>
                   </div>
                 </div>
-                <div class="control-group">
-                  <label for="name" class="control-label">User ID</label>
-                  <div class="controls">
-                    <%= f.text_field :user_ID ,:placeholder=>"User ID" , :class => "input-large"%>
-                  </div>
-                </div>
+
                 <div class="control-group">
                   <label for="name" class="control-label">Email</label>
                   <div class="controls">
@@ -51,15 +54,26 @@
                 <div class="control-group">
                   <label for="name" class="control-label">Select Role</label>
                   <div class="controls">
-                    <%= f.collection_select :role_ids, Role.find(:all, :conditions => ['name not in (?)', 'admin']) ,:id,:display_name, :prompt => "Select Role" %>
+                    <%= f.collection_select :role_ids, Role.find(:all, :conditions => ['name not in (?, ?)', 'admin', 'mobile']) ,:id,:display_name, :prompt => "Select Role" %>
                   </div>
-                  
+                </div>
+                
+                <div class="control-group">
+                  <label for="name" class="control-label">Select Zone</label>
+                  <div class="controls">
+
+                    <%= f.collection_select :zone_name, Admin::Zone.all ,:zone_name,:zone_name, :prompt => "Select Zone" %>
+                    <%= f.collection_select :district_name, Admin::District.all ,:district_name,:district_name, :prompt => "Select District" %>
+                    <%= f.collection_select :block_name, Admin::Block.all ,:block_name,:block_name, :prompt => "Select Block" %><br/>
+                    please enter area according to role belongs
+                  </div>
                 </div>
                 <div class="control-group">
                   <label for="name" class="control-label">Mobile Number</label>
                   <div class="controls">
                     <%= f.text_field :mobile_no ,:placeholder=>"Mobile Number" , :class => "input-large"%>
                   </div>
+                  <%= f.hidden_field :status , :value => true%>
                 </div>
                 <div class="control-group">
                   <div class="controls">

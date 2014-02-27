@@ -3,12 +3,13 @@ class Admin::UsersController < ApplicationController
   load_and_authorize_resource
   layout 'admin'
   def index
-  	@users = User.find(:all, :conditions => ['email not in (?)', 'admin@example.com'])
+  	@users = User.where(:status => true)
     #raise @user.inspect
   end
 
   def new
   	@user = User.new
+    
   end
 
   def create
@@ -40,11 +41,6 @@ class Admin::UsersController < ApplicationController
        end
      end
   end
-
-  def update_area
-    raise "hi"
-  end
-
 
   def destroy
      @user = User.find(params[:id])

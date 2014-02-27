@@ -47,9 +47,10 @@
                               <th>Sr. No. </th>
                               <th>User Name</th>
                               <th>User Role</th>
+                              <th>User Area</th>
                               <% if current_user.has_role? :admin %>
-                              <th>Edit User</th>
-                              <th>Delete User</th>
+                                <th>Edit User</th>
+                                <th>Delete User</th>
                               <% end %>
                             </tr>
                           </thead>
@@ -59,6 +60,15 @@
                               <td><%= i+1 %></td>
                               <td><%= user.username rescue nil%></td>
                               <td><%= user.roles.map { |e| e.display_name  } rescue nil%></td>
+                              <%unless user.zone_name.blank?%>
+                                <td>Zone :<%= user.zone_name%></td>
+                              <%end%>
+                              <%unless user.district_name.blank?%>
+                                <td>District :<%= user.district_name%></td>
+                              <%end%>
+                              <%unless user.block_name.blank?%>
+                                <td>Block :<%= user.block_name%></td>
+                              <%end%>
                               <% if current_user.has_role? :admin %>
                                 <td><%= link_to "Edit", edit_admin_user_path(user) %></td>
                                 <td><%= link_to "Delete", admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
