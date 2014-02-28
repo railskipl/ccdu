@@ -5,7 +5,7 @@ gem 'rails', '3.2.14'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+#gem 'sqlite3'
 
 
 # Gems used only for assets and not required
@@ -25,15 +25,12 @@ gem 'devise'
 gem 'rolify'
 gem 'cancan'
 gem 'paperclip'
-
-#gem 'pg'
-
 gem 'aws-s3'
 gem 'aws-sdk'
 gem 'prototype-rails'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
-#gem 'pg'
+gem 'pg'
 
 
 # To use ActiveModel has_secure_password
