@@ -11,7 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140228113636) do
+
+
+ActiveRecord::Schema.define(:version => 20140228061120) do
 
   create_table "admin_blocks", :force => true do |t|
     t.string   "block_name"
@@ -122,8 +124,8 @@ ActiveRecord::Schema.define(:version => 20140228113636) do
     t.datetime "date_time"
     t.string   "surveyor_name"
     t.integer  "user_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -132,11 +134,27 @@ ActiveRecord::Schema.define(:version => 20140228113636) do
     t.string   "image1_content_type"
     t.integer  "image1_file_size"
     t.datetime "image1_updated_at"
+    t.integer  "actions",              :default => 0
+    t.string   "ph"
+    t.string   "tds"
+    t.string   "residual_chlorine"
+    t.string   "fluoride"
+    t.string   "chloride"
+    t.string   "nitrate"
+    t.string   "alkaliniy"
+    t.string   "total_hardness"
+    t.string   "bacteriological"
+    t.text     "reason_for_rejecting"
+    t.boolean  "is_tested",            :default => false
     t.string   "district_name"
     t.string   "block_name"
     t.integer  "survey_no"
     t.string   "remarks"
+<<<<<<< HEAD
     t.string   "water_source_code"
+=======
+
+>>>>>>> c94a6e168a60f1a4487aaa2db1bc784987bb75fc
   end
 
   create_table "users", :force => true do |t|
