@@ -13,7 +13,6 @@ class SurveyReportsController < ApplicationController
       format.pdf do
          render :pdf => "survey_reports"
       end
-      
     end
   end
 

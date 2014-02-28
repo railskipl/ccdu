@@ -46,7 +46,7 @@
                                   <th>Manufacturer Name</th>
                                   <th>Phone Number</th>
                                   <th>Purchase Date</th>
-                                  <% if current_user.has_role? :block %>
+                                  <% if current_user.has_role? :admin %>
                                     <th>Edit User</th>
                                     <th>Delete User</th>
                                   <% end %>
@@ -60,7 +60,7 @@
                                   <td><%= mobile_device.manufacturer_name rescue nil%></td>
                                   <td><%= mobile_device.phone_no rescue nil%></td>
                                   <td><%= mobile_device.purchase_date rescue nil%></td>
-                                  <% if current_user.has_role? :block %>
+                                  <% if current_user.has_role? :admin %>
                                     <td><%= link_to "Edit", edit_mobile_device_path(mobile_device) %></td>
                                     <td><%= link_to "Delete", mobile_device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                                   <% end %>

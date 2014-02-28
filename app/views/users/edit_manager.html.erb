@@ -1,0 +1,12 @@
+
+<%= form_for :user, :url => update_manager_user_path(@user.id) do |f| %>
+  
+  <div class="field">
+    <%= f.select :block_manager_id, User.with_role(:block).map {|d| [d.block_name, d.id]},{:prompt => "Select Block" }  %>
+    
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Save" %>
+  </div>
+<% end %>

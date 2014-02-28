@@ -10,9 +10,9 @@
           </div> <!-- /widget-header -->
           <div class="widget-content">
             <div style="margin-bottom:10px" class="row-fluid">
-              <div class="span12">
+              <!-- <div class="span12">
                 <a href="<%= users_path%>" class="btn">Back</a>          
-              </div>
+              </div> -->
             </div>
             <%= form_for @user, :html => {:multipart => true,:class => "form-horizontal"} do |f| %>
               <% for message in @user.errors.full_messages %>
@@ -26,9 +26,9 @@
                   </div>
                 </div>
                 <div class="control-group">
-                  <label for="name" class="control-label">User ID</label>
+                  <label for="name" class="control-label">Full Name</label>
                   <div class="controls">
-                    <%= f.text_field :user_ID ,:placeholder=>"User ID" , :class => "input-large"%>
+                    <%= f.text_field :user_fullname ,:placeholder=>"Full Name" , :class => "input-large"%>
                   </div>
                 </div>
                 <div class="control-group">
@@ -50,7 +50,7 @@
                   </div>
                 </div>
                 <%= hidden_field_tag "user[role_ids][]", @role.id %>
-                
+                <%= f.hidden_field :block_manager_id , :value => current_user.id%>
               
                 <div class="control-group">
                   <label for="name" class="control-label">Mobile Number</label>

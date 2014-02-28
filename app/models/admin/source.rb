@@ -5,6 +5,7 @@ class Admin::Source < ActiveRecord::Base
 
   before_save :upname
 
+  #upcase the source name
   def upname
   	self.source_name = self.source_name.upcase
   end

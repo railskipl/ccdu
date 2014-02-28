@@ -7,7 +7,7 @@ class Admin::District < ActiveRecord::Base
   validates_presence_of :district_name, :zone_id, :code, :lab_present
 
   before_save :name_district, :labname
-
+  #upcase the district_name,code 
   def name_district
   	self.district_name = self.district_name.upcase
   	self.code = self.code.upcase

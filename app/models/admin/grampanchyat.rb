@@ -8,7 +8,7 @@ class Admin::Grampanchyat < ActiveRecord::Base
   validates_presence_of :block_id, :gram_name
 
   before_save :upname
-
+  #upcase the grampanchyat name
   def upname
   	self.gram_name = self.gram_name.upcase
   end
