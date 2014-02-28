@@ -1,11 +1,11 @@
 class SurveyReportsController < ApplicationController
   before_filter :authenticate_user!, :except => [:create]
   skip_before_filter :verify_authenticity_token, :only => [:new, :create]
-  respond_to :json
+  respond_to :html, :js, :json
   # GET /survey_reports
   # GET /survey_reports.json
   def index
-    @survey_reports = SurveyReport.all
+    @survey_reports = SurveyReport.find(:all, :conditions=>"actions != 1", :order=>"id desc")
     
     respond_to do |format|
       format.html # index.html.erb
@@ -81,6 +81,19 @@ class SurveyReportsController < ApplicationController
       end
     end
   end
+  
+  
+  def accept
+    @survey_report = SurveyReport.find(params[:id])
+    @survey_report.actions = 1
+    @survey_report.save!
+    respond_with(@survey_report, location: survey_reports_path)
+  end
+  
+  def reject
+  end
+  
+  
 
   # DELETE /survey_reports/1
   # DELETE /survey_reports/1.json

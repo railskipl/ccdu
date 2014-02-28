@@ -1,0 +1,78 @@
+      <h4>Test</h4>
+          <!-- /widget-header -->
+          <div class="widget-content">
+            <div class="row-fluid" style="margin-bottom:10px">
+              <!-- <div class="span12">
+                <a href="/mobile_users" class="btn">Back</a>          
+              </div> -->
+            </div>
+           
+            <%= form_for :survey_report, :url => submit_test_laboratory_report_path(@survey_report.id), :remote=>true do |f| %>
+              <fieldset>
+                <div class="control-group">
+                  <label class="control-label" for="name">pH</label>
+                  <div class="controls">
+                    <%= f.text_field :ph %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="name">TDS</label>
+                  <div class="controls">
+                    <%= f.text_field :tds %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="name">Residual Chlorine</label>
+                  <div class="controls">
+                    <%= f.text_field :residual_chlorine %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="name">Fluoride</label>
+                  <div class="controls">
+                    <%= f.text_field :fluoride %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="name">Chloride</label>
+                  <div class="controls">
+                    <%= f.text_field :chloride %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="name">Nitrate</label>
+                  <div class="controls">
+                    <%= f.text_field :nitrate %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="name">Alkaliniy</label>
+                  <div class="controls">
+                    <%= f.text_field :alkaliniy %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="name">Total Hardness</label>
+                  <div class="controls">
+                    <%= f.text_field :total_hardness %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="name">Bacteriological Test</label>
+                  <div class="controls">
+                    <%= f.text_field :bacteriological %>
+                    <%= f.hidden_field :is_tested, :value=>true %>
+                  </div>
+                </div>
+                
+                <div class="control-group">
+                  <div class="controls">
+                    <%= f.submit "Save", :class=>"btn" %>
+                  </div>
+                </div>
+              </fieldset>
+			      <% end %>
+			</div> <!-- /widget-content -->
+			
+			
+	

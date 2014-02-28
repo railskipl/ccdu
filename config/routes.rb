@@ -1,8 +1,15 @@
 Ccdu::Application.routes.draw do
 
-  resources :survey_reports
-
-
+  resources :survey_reports do
+    get 'accept',:on => :member
+    get 'reject',:on => :member
+  end
+  
+  resources :laboratory_reports do
+    get 'send_for_testing',:on => :member
+    post 'submit_test',:on => :member
+  end
+  
   resources :block_laboratories
 
 

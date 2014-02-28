@@ -37,7 +37,7 @@
 
 <p>
   <b>Date time:</b>
-  <%= @survey_report.date_time %>
+  <%= @survey_report.created_at.strftime("%d-%m-%Y %I:%M %p") %>
 </p>
 
 <p>
@@ -46,5 +46,6 @@
 </p>
 
 
-<%= link_to 'Edit', edit_survey_report_path(@survey_report) %> |
+
+
 <%= link_to 'Back', survey_reports_path %>
