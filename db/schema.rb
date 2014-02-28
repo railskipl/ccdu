@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140228094313) do
+
+ActiveRecord::Schema.define(:version => 20140228061120) do
 
   create_table "admin_blocks", :force => true do |t|
     t.string   "block_name"
@@ -144,6 +145,11 @@ ActiveRecord::Schema.define(:version => 20140228094313) do
     t.string   "bacteriological"
     t.text     "reason_for_rejecting"
     t.boolean  "is_tested",            :default => false
+    t.string   "district_name"
+    t.string   "block_name"
+    t.integer  "survey_no"
+    t.string   "remarks"
+
   end
 
   create_table "users", :force => true do |t|

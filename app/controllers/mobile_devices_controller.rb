@@ -4,7 +4,7 @@ class MobileDevicesController < ApplicationController
    layout 'admin'
    
    def index
-   	@mobile_devices = current_user.mobile_devices
+   	@mobile_devices = MobileDevice.all
    end
 
    def new

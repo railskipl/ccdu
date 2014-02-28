@@ -1,46 +1,27 @@
 <div class="main">
-
-    <div class="container">
-
-      <div class="row">
-        
-    <div class="span12">          
-          
+  <div class="container">
+    <div class="row">
+        <div class="span12">          
           <div class="widget stacked ">
-            
             <div class="widget-header">
               <i class="icon-pencil"></i>
               <h3>Edit Village</h3>
-          </div> <!-- /widget-header -->
-        
-        <div class="widget-content">
-        
-        <div style="margin-bottom:10px" class="row-fluid">
-          
-          
-          <!-- <div class="span12">
-          <a href="<%= admin_villages_path%>" class="btn">Back</a>          
-          </div> -->
-          
-          
-          
-          </div>
-          
-          
-        
-          <%= form_for @admin_village, :html => {:class => "form-horizontal"} do |f| %>
-            <% if @admin_village.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(@admin_village.errors.count, "error") %> prohibited this admin_village from being saved:</h2>
-                <ul>
-                  <% @admin_village.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                  <% end %>
-                </ul>
-              </div>
-            <% end %>
-
-            <fieldset>
+            </div> <!-- /widget-header -->
+            <div class="widget-content">
+              <div style="margin-bottom:10px" class="row-fluid">
+            </div>
+            <%= form_for @admin_village, :html => {:id => "village",:class => "form-horizontal"} do |f| %>
+              <% if @admin_village.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@admin_village.errors.count, "error") %> prohibited this admin_village from being saved:</h2>
+                  <ul>
+                    <% @admin_village.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <fieldset>
                 <div class="control-group">
                   <label for="name" class="control-label">Village Name</label>
                   <div class="controls">
@@ -58,26 +39,13 @@
                     <%= f.submit "Submit", :class => "btn"%>
                   </div>
                 </div>
-            </fieldset>
-          <%end%>
-        
-        
-        
-                
-            
-          
-          
-          
-        </div> <!-- /widget-content -->
-          
-      </div> <!-- /widget -->
-          
+              </fieldset>
+            <%end%>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
       </div>
-        
-      </div> <!-- /row -->
-
-    </div> <!-- /container -->
-    
+    </div> <!-- /row -->
+  </div> <!-- /container -->
 </div> <!-- /main -->
 
 

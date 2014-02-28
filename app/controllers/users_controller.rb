@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   def update_manager
     @user = User.find(params[:id])
     @user.update_column(:block_manager_id, params[:user][:block_manager_id])
-    redirect_to users_path, notice: 'Manager was successfully transferred.'
+    redirect_to users_path, notice: 'Mobile surveyor was successfully transferred.'
   end
 
 

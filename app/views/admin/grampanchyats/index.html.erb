@@ -55,8 +55,8 @@
                                   <td><%= admin_grampanchyat.gram_name rescue nil%></td>
                                   <td><%= admin_grampanchyat.block.block_name rescue nil%></td>
                                   <% if current_user.has_role? :admin %>
-                                    <td><%= link_to "Edit", edit_admin_grampanchyat_path(admin_grampanchyat) %></td>
-                                    <td><%= link_to "Delete", admin_grampanchyat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                    <td><%= link_to "Edit", edit_admin_grampanchyat_path(admin_grampanchyat),:class => "btn" %></td>
+                                    <td><%= link_to "Delete", admin_grampanchyat, method: :delete, data: { confirm: 'Are you sure?' },:class => "btn" %></td>
                                   <% end %>
                                 </tr>
                               </tbody>

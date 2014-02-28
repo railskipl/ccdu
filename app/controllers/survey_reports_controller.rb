@@ -53,7 +53,15 @@ class SurveyReportsController < ApplicationController
       :image1=> params[:Image2],
       :source_name=> params[:WaterSourceCode],
       :water_source_type=> params[:WaterSourceType],
-      :source_location=> params[:NearestSourceLocation])
+      :source_location=> params[:NearestSourceLocation],
+      :district_name => params[:District],
+      :block_name => params[:Block],
+      :grampanchayat => params[:GramPanchyat],
+      :village => params[:Village],
+      :survey_no => params[:SurveyNo],
+      :remarks => params[:Remark]
+
+    )
     
     respond_to do |format|
       if @survey_report.save
@@ -65,7 +73,8 @@ class SurveyReportsController < ApplicationController
       end
     end
   end
-
+ # :date_time, :grampanchayat, :habitation, :source_code, :source_location, :source_name, 
+ # :surveyor_name, :village, :water_source_type, :image, :image1
   # PUT /survey_reports/1
   # PUT /survey_reports/1.json
   def update

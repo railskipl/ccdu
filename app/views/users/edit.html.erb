@@ -14,7 +14,7 @@
                 <a href="<%= users_path%>" class="btn">Back</a>          
               </div> -->
             </div>
-            <%= form_for @user, :html => {:multipart => true,:class => "form-horizontal"} do |f| %>
+            <%= form_for @user, :html => {:id => "user",:multipart => true,:class => "form-horizontal"} do |f| %>
               <% for message in @user.errors.full_messages %>
                 <%= message %>
               <% end %>
@@ -49,8 +49,8 @@
                     <%= f.password_field :password_confirmation ,:placeholder=>"Confirm Password" , :class => "input-large"%>
                   </div>
                 </div>
-                <%= hidden_field_tag "user[role_ids][]", @role.id %>
-                <%= f.hidden_field :block_manager_id , :value => current_user.id%>
+                <%= hidden_field_tag "user[role_ids][]", @role.id rescue nil%>
+                <%= f.hidden_field :block_manager_id , :value => current_user.id rescue nil%>
               
                 <div class="control-group">
                   <label for="name" class="control-label">Mobile Number</label>

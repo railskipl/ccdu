@@ -57,8 +57,8 @@
                                   <td><%= block_laboratory.labname rescue nil%></td>
                                   <td><%= block_laboratory.address rescue nil%></td>
                                   <% if current_user.has_role? :block %>
-                                    <td><%= link_to "Edit", edit_block_laboratory_path(block_laboratory) %></td>
-                                    <td><%= link_to "Delete", block_laboratory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                    <td><%= link_to "Edit", edit_block_laboratory_path(block_laboratory),:class => "btn" %></td>
+                                    <td><%= link_to "Delete", block_laboratory, method: :delete, data: { confirm: 'Are you sure?' },:class => "btn" %></td>
                                   <% end %>
                                 </tr>
                               </tbody>
