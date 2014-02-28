@@ -51,7 +51,7 @@ class SurveyReportsController < ApplicationController
     @survey_report = SurveyReport.create(
       :image=> params[:Image1],
       :image1=> params[:Image2],
-      :source_name=> params[:WaterSourceCode],
+      :source_name=> params[:WaterCode],
       :water_source_type=> params[:WaterSourceType],
       :source_location=> params[:NearestSourceLocation],
       :district_name => params[:District],
@@ -59,22 +59,15 @@ class SurveyReportsController < ApplicationController
       :grampanchayat => params[:GramPanchyat],
       :village => params[:Village],
       :survey_no => params[:SurveyNo],
-      :remarks => params[:Remark]
+      :remarks => params[:Remark],
+      :water_source_code => params[:WaterSourceCode]
 
     )
-    
-    respond_to do |format|
-      if @survey_report.save
-        format.html { redirect_to survey_reports_url, notice: 'Survey report was successfully created.' }
-        format.json { render :status =>200,:json => { :error => "valid" } }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @survey_report.errors, status: :unprocessable_entity }
-      end
-    end
+    @surveycode = @survey_report.water_source_code
+    #render water source code to json 
+    render :status =>200,:json => @surveycode.to_json 
   end
- # :date_time, :grampanchayat, :habitation, :source_code, :source_location, :source_name, 
- # :surveyor_name, :village, :water_source_type, :image, :image1
+
   # PUT /survey_reports/1
   # PUT /survey_reports/1.json
   def update

@@ -1,4 +1,5 @@
 class BlockLaboratoriesController < ApplicationController
+  before_filter :authenticate_user!
   # GET /block_laboratories
   # GET /block_laboratories.json
   def index

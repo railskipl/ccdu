@@ -3,12 +3,12 @@ Ccdu::Application.routes.draw do
   resources :survey_reports
 
 
-  resources :block_laboratories
+  #resources :block_laboratories
 
 
-  resources :parameters
+  #resources :parameters
   resources :mobile_devices
-  resources :mobile_users
+  #resources :mobile_users
   devise_for :users , :controllers => { :sessions => "sessions", :passwords => "passwords"}
 
   devise_scope :user do
