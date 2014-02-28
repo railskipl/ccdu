@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140227112817) do
+ActiveRecord::Schema.define(:version => 20140228061120) do
 
   create_table "admin_blocks", :force => true do |t|
     t.string   "block_name"
@@ -132,6 +132,10 @@ ActiveRecord::Schema.define(:version => 20140227112817) do
     t.string   "image1_content_type"
     t.integer  "image1_file_size"
     t.datetime "image1_updated_at"
+    t.string   "district_name"
+    t.string   "block_name"
+    t.integer  "survey_no"
+    t.string   "remarks"
   end
 
   create_table "users", :force => true do |t|

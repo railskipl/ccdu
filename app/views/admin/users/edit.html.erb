@@ -13,7 +13,7 @@
                 <a href="<%= admin_users_path%>" class="btn">Back</a>          
               </div> -->
             </div>
-            <%= form_for [:admin, @user], :html => {:multipart => true,:class => "form-horizontal"} do |f| %>
+            <%= form_for [:admin, @user], :html => {:id => "user",:multipart => true,:class => "form-horizontal"} do |f| %>
               <% for message in @user.errors.full_messages %>
                 <%= message %>
               <% end %>

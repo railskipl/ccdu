@@ -51,9 +51,9 @@
                             <td><%= user.username rescue nil%></td>
                             <td><%= user.roles.map { |e| e.display_name  } rescue nil%></td>
                             <% if current_user.has_role? :block %>
-                              <td><%= link_to "Edit", edit_user_path(user) %></td>
-                              <td><%= link_to "Transfer user", edit_manager_user_path(user) %></td> 
-                              <td><%= link_to "Delete", user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                              <td><%= link_to "Edit", edit_user_path(user) , :class => "btn"%></td>
+                              <td><%= link_to "Transfer user", edit_manager_user_path(user),:class => "btn" %></td> 
+                              <td><%= link_to "Delete", user_path(user), method: :delete, data: { confirm: 'Are you sure?' } ,:class => "btn"%></td>
                             <% end %>
                           </tr>
                         </tbody>

@@ -63,8 +63,8 @@
                                   <td><%= admin_district.lab_name rescue nil%></td>
                                   <td><%= admin_district.zone.zone_name rescue nil%></td>
                                   <% if current_user.has_role? :admin %>
-                                    <td><%= link_to "Edit", edit_admin_district_path(admin_district) %></td>
-                                    <td><%= link_to "Delete", admin_district, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                    <td><%= link_to "Edit", edit_admin_district_path(admin_district),:class => "btn" %></td>
+                                    <td><%= link_to "Delete", admin_district, method: :delete, data: { confirm: 'Are you sure?' },:class => "btn" %></td>
                                   <% end %>
                                 </tr>
                               </tbody>

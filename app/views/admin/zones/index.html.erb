@@ -55,8 +55,8 @@
                                   <td><%= i+1 %></td>
                                   <td><%= admin_zone.zone_name rescue nil%></td>
                                   <% if current_user.has_role? :admin %>
-                                    <td><%= link_to "Edit", edit_admin_zone_path(admin_zone) %></td>
-                                    <td><%= link_to "Delete", admin_zone, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                    <td><%= link_to "Edit", edit_admin_zone_path(admin_zone),:class => "btn" %></td>
+                                    <td><%= link_to "Delete", admin_zone, method: :delete, data: { confirm: 'Are you sure?' },:class => "btn" %></td>
                                   <% end %>
                                 </tr>
                               </tbody>

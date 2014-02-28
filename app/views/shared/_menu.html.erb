@@ -10,86 +10,97 @@
 
 			<div class="subnav-collapse collapse">
 				<% if current_user.has_role? :admin %>
-				<ul class="mainnav">
-				
-					<li class="dropdown">
-						<a href="<%= admin_users_path%>">
-							
-							<span>All Users</span>
-						</a>	    				
-					</li>
-
-					<li class="dropdown">					
-						<a href="<%= mobile_devices_path%>" >
-							
-							<span>Mobile Devices</span>
-							
-						</a>	    
-					
-						 				
-					</li>
-					
-					<li class="dropdown">					
-						<a href="<%= admin_zones_path%>" >
-							
-							<span>Zones</span>
-							
-						</a>	    
-					
-						 				
-					</li>
-					
-					<li class="dropdown">					
-						<a href="<%= admin_districts_path%>" >
-							
-							<span>Districts</span>
-							
-						</a>	    
-					
-						 				
-					</li>
-					
-					<li class="dropdown">					
-						<a href="<%= admin_blocks_path%>">
-							
-							<span>Blocks</span>
-						</a>	
-					</li>
-					
-					
-					<li class="dropdown">					
-						<a href="<%= admin_grampanchyats_path%>">
-							
-							<span>Grampanchyats</span>
-						</a>	
-					</li>
-					
-					<li class="dropdown">					
-						<a href="<%= admin_villages_path%>">
-							
-							<span>Villages</span>
-						</a>	
-					</li>
-					
-					
-						<li class="dropdown">					
-						<a href="<%= admin_habitations_path%>">
-							
-							<span>Habitations</span>
-						</a>	
-					</li>
-					
-					<li class="dropdown">					
-						<a href="<%= admin_sources_path%>">
-							
-							<span>Add Water Source</span>
-						</a>	
-					</li>
-					
-					
+					<ul class="mainnav">
 					
 						
-				</ul>
+
+					    <li class="dropdown">
+							
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								
+								All Menu
+								<b class="caret"></b>
+							</a>
+							
+							<ul class="dropdown-menu">
+								<!-- <li><a href="#">My Profile</a></li> -->
+								
+								
+						
+							    
+                                <li class="divider"></li>
+						 		<li class="dropdown">					
+									<a href="<%= admin_zones_path%>" >
+										
+										<span>Zones</span>
+										
+									</a>	    
+					
+						 		</li>
+                                <li class="divider"></li>
+						 		<li class="dropdown">					
+									<a href="<%= admin_districts_path%>" >
+										
+										<span>Districts</span>
+										
+									</a>	    
+					
+						 		</li>
+                                <li class="divider"></li>
+						 		<li class="dropdown">					
+									<a href="<%= admin_blocks_path%>">
+										
+										<span>Blocks</span>
+									</a>	
+					            </li>
+                               <li class="divider"></li>
+					           <li class="dropdown">					
+									<a href="<%= admin_grampanchyats_path%>">
+										
+										<span>Grampanchyats</span>
+									</a>	
+					           </li> 
+                               <li class="divider"></li>
+					           <li class="dropdown">					
+									<a href="<%= admin_villages_path%>">
+										
+										<span>Villages</span>
+									</a>	
+					           </li>
+					
+					           <li class="divider"></li>
+								<li class="dropdown">					
+									<a href="<%= admin_habitations_path%>">
+										
+										<span>Habitations</span>
+									</a>	
+							   </li>
+					            <li class="divider"></li>
+								<li class="dropdown">					
+									<a href="<%= admin_sources_path%>">
+										
+										<span>Add Water Source</span>
+									</a>	
+								</li>
+                                <li class="divider"></li>
+								<li class="dropdown">					
+									<a href="<%= mobile_devices_path%>" >
+										
+										<span>Mobile Devices</span>
+										
+									</a>	    
+					
+						 		</li>
+							</ul>
+						</li>
+
+						<li class="dropdown">
+							<a href="<%= admin_users_path%>">
+								
+								<span>All Users</span>
+							</a>	    				
+						</li>
+				    </ul>
 				<%end%>
 			</div> <!-- /.subnav-collapse -->
 

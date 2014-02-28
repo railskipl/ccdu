@@ -13,7 +13,7 @@
                 <a href="<%= admin_grampanchyats_path%>" class="btn">Back</a>          
               </div> -->
             </div>
-            <%= form_for @admin_grampanchyat, :html => {:class => "form-horizontal"} do |f| %>
+            <%= form_for @admin_grampanchyat, :html => {:id => "grampanchyat",:class => "form-horizontal"} do |f| %>
               <% if @admin_grampanchyat.errors.any? %>
                 <div id="error_explanation">
                   <h2><%= pluralize(@admin_grampanchyat.errors.count, "error") %> prohibited this admin_grampanchyat from being saved:</h2>

@@ -1,5 +1,7 @@
 class SurveyReport < ActiveRecord::Base
-  attr_accessible :date_time, :grampanchayat, :habitation, :source_code, :source_location, :source_name, :surveyor_name, :village, :water_source_type, :image, :image1
+  attr_accessible :date_time, :grampanchayat, :habitation, :source_code, 
+                  :source_location, :source_name, :surveyor_name, :village, :water_source_type, 
+                  :image, :image1,:district_name,:block_name,:survey_no,:remarks
 
   has_attached_file :image, 
   					:styles => { :small => "150x150>" },
