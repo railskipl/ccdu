@@ -52,7 +52,7 @@
                     <td>
                       <button class="btn btn btn-primary" type="reset">Show</button>
                       <button class="btn btn btn-primary" type="reset">Clear</button>
-                      <button class="btn btn btn-primary" type="reset">Close</button>
+                      
                     </td>
                       <td>&nbsp;</td>
                       <td>&nbsp;</td>
@@ -69,7 +69,10 @@
                   <h3>SURVEYOR REPORT</h3>
                 </div>
                 <div class="span6" style="text-align:right">
-                  <a href="#" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a> <a href="#" class="btn btn-secondary"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a>
+              
+                  <%= link_to image_tag('/assets/excel.png', :border=>"0", :align=>"absmiddle") + " Excel", survey_reports_path(params.merge(format: "xls")), :method=> :get, :class=>"btn btn-secondary" %>
+                  <%= link_to image_tag('/assets/pdf.png', :border=>"0", :align=>"absmiddle") + " PDF", survey_reports_path(params.merge(format: "pdf")), :method=> :get, :class=>"btn btn-secondary" %>
+                   
                 </div>
               </div>
               <table class="table table-bordered table-striped">
@@ -100,7 +103,7 @@
                       <td><%= survey_report.village rescue nil%></td>
                       <td><%= survey_report.grampanchayat rescue nil%></td>
                       <td><%= survey_report.water_source_type rescue nil%></td>
-                      <td><%= survey_report.date_time rescue nil%></td>
+                      <td><%= survey_report.created_at.strftime("%d-%m-%Y %I:%M %p") rescue nil%></td>
                       <td><%= survey_report.surveyor_name rescue nil%></td>
                       <td><%= image_tag survey_report.image.url, :height=> 100, :width=>100 rescue nil%></td>
                       <td><%= image_tag survey_report.image1.url, :height=> 100, :width=>100 rescue nil%></td>

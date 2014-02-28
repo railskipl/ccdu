@@ -17,7 +17,7 @@ class SessionsController < Devise::SessionsController
 		      set_flash_message(:notice, :signed_in) if is_navigational_format?
 		      sign_in(:user, user)
 		      @user = current_user.id
-		      render :status =>200,:json => @user.to_json
+		      render :status =>200,:json => current_user.to_json
 		    else
 		      flash[:alert] = "Invalid password"
 		      render :status =>401,:json => { :error => "Invalid" }

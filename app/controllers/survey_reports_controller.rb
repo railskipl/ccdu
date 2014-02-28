@@ -6,12 +6,17 @@ class SurveyReportsController < ApplicationController
   # GET /survey_reports.json
   def index
     @survey_reports = SurveyReport.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @survey_reports }
+      format.xls
+      format.pdf do
+         render :pdf => "survey_reports"
+      end
+      
     end
   end
+
 
   # GET /survey_reports/1
   # GET /survey_reports/1.json
