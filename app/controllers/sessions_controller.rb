@@ -27,6 +27,7 @@ class SessionsController < Devise::SessionsController
 			      flash[:alert] = "Invalid password"
 			      render :status =>401,:json => { :error => "Invalid" }
 			    end
+
 		    else
 		    	flash[:alert] = "Invalid access"
 			    render :status =>401,:json => { :error => "Invalid" }
