@@ -8,7 +8,7 @@ class Admin::Village < ActiveRecord::Base
   validates_presence_of :grampanchyat_id, :village_name
 
   before_save :upname
-
+  #upcase the village name
   def upname
   	self.village_name = self.village_name.upcase
   end

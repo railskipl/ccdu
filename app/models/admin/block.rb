@@ -8,13 +8,14 @@ class Admin::Block < ActiveRecord::Base
 
   before_save :name_code, :labname
 
+  #upcase the block_name, limit code to 3 charactors
   def name_code
   	 
   	self.block_name = self.block_name.upcase
   	
   	self.code = self.block_name[0..2]
   end
-
+  #change laboratory name to nil if laboratory name is nil
   def labname
     if self.lab_name.blank?
       self.lab_name = "NIL"

@@ -61,13 +61,13 @@
                               <td><%= user.username rescue nil%></td>
                               <td><%= user.roles.map { |e| e.display_name  } rescue nil%></td>
                               <%unless user.zone_name.blank?%>
-                                <td>Zone :<%= user.zone_name%></td>
+                                <td>Zone :<%= user.zone_name rescue nil%></td>
                               <%end%>
                               <%unless user.district_name.blank?%>
-                                <td>District :<%= user.district_name%></td>
+                                <td>District :<%= user.district_name rescue nil%></td>
                               <%end%>
                               <%unless user.block_name.blank?%>
-                                <td>Block :<%= user.block_name%></td>
+                                <td>Block :<%= user.block_name rescue nil%></td>
                               <%end%>
                               <% if current_user.has_role? :admin %>
                                 <td><%= link_to "Edit", edit_admin_user_path(user) %></td>

@@ -19,7 +19,7 @@ Ccdu::Application.routes.draw do
       root :to => 'devise/sessions#new'
     end
   end
-  match "admin/users/update_model", :to => "admin/users#update_model"
+  match "/users/update_user", :to => "users#update_user"
   
   namespace :admin do 
     match '/dashboard' => "dashboard#index", :as => :root
@@ -33,7 +33,10 @@ Ccdu::Application.routes.draw do
     resources :sources
   end
 
-  resources :users
+  resources :users do
+    get 'edit_manager',:on => :member
+    post 'update_manager',:on => :member
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

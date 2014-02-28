@@ -30,20 +30,28 @@ class UsersController < ApplicationController
   end
 
   def update
-     @user = User.find(params[:id])
+   @user = User.find(params[:id])
 
-     respond_to do |format|
-       if @user.update_attributes(params[:user])
-         format.html { redirect_to users_path, notice: 'User was successfully updated.' }
-       else
-         format.html { render :action => "edit" }
-       end
+   respond_to do |format|
+     if @user.update_attributes(params[:user])
+       format.html { redirect_to users_path, notice: 'User was successfully updated.' }
+     else
+       format.html { render :action => "edit" }
      end
+   end
   end
 
-  def update_model
-    raise "hi"
+  # find user, for changing block manager id
+  def edit_manager 
+    @user = User.find(params[:id])
   end
+  #update block manager id and transfer the mobile surveyor 
+  def update_manager
+    @user = User.find(params[:id])
+    @user.update_column(:block_manager_id, params[:user][:block_manager_id])
+    redirect_to users_path, notice: 'Manager was successfully transferred.'
+  end
+
 
 
   def destroy

@@ -8,6 +8,8 @@ class Admin::Habitation < ActiveRecord::Base
 
   before_save :upname
 
+  #upcase the habitation name
+
   def upname
   	self.habitation_name = self.habitation_name.upcase
   end

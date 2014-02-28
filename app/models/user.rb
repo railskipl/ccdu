@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username ,:role_ids, :mobile_no,
-  :user_fullname, :zone_name, :district_name, :block_name,:status
+  :user_fullname, :zone_name, :district_name, :block_name,:status,:block_manager_id
   # attr_accessible :title, :body
   has_many :zones
   has_many :district
@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
   has_many :block_laboratories
 
   before_save :check_area
-
-  def check_area
+  #check role & than save area of user
+  def check_area 
     role = Role.find_by_id(self.role_ids)
     if role.name == "zone"
        self.zone_name = self.zone_name

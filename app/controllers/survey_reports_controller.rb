@@ -9,9 +9,14 @@ class SurveyReportsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.xls
+      format.pdf do
+         render :pdf => "survey_reports"
+      end
       format.json { render json: @survey_reports }
     end
   end
+
 
   # GET /survey_reports/1
   # GET /survey_reports/1.json

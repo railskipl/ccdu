@@ -38,22 +38,26 @@
                     <th>User Role</th>
                     <% if current_user.has_role? :block %>
                     <th>Edit User</th>
+                    <th>Transfer User</th>
                     <th>Delete User</th>
                     <% end %>
                   </tr>
                 </thead>
-                    <% @users.each_with_index.each do |user,i |  %> 
-                      <tbody>
-                        <tr>
-                          <td><%= i+1 %></td>
-                          <td><%= user.username rescue nil%></td>
-                          <td><%= user.roles.map { |e| e.display_name  } rescue nil%></td>
-                          <% if current_user.has_role? :block %>
-                            <td><%= link_to "Edit", edit_user_path(user) %></td>
-                            <td><%= link_to "Delete", user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                          <% end %>
-                        </tr>
-                      </tbody>
+                    <% @users.each_with_index.each do |user,i |  %>
+                      <%if current_user.id == user.block_manager_id%> 
+                        <tbody>
+                          <tr>
+                            <td><%= i+1 %></td>
+                            <td><%= user.username rescue nil%></td>
+                            <td><%= user.roles.map { |e| e.display_name  } rescue nil%></td>
+                            <% if current_user.has_role? :block %>
+                              <td><%= link_to "Edit", edit_user_path(user) %></td>
+                              <td><%= link_to "Transfer user", edit_manager_user_path(user) %></td> 
+                              <td><%= link_to "Delete", user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                            <% end %>
+                          </tr>
+                        </tbody>
+                      <%end%>
                     <% end %> 
               </table>
                  

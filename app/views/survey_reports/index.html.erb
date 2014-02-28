@@ -69,7 +69,9 @@
                   <h3>SURVEYOR REPORT</h3>
                 </div>
                 <div class="span6" style="text-align:right">
-                  <a href="#" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a> <a href="#" class="btn btn-secondary"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a>
+                  <a href="#" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a>
+                  <%= link_to image_tag('/assets/excel.png', :border=>"0", :align=>"absmiddle") + " Excel", survey_reports_path(params.merge(format: "xls")), :method=> :post %>
+                   <a href="#" class="btn btn-secondary"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a>
                 </div>
               </div>
               <table class="table table-bordered table-striped">

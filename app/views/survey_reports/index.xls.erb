@@ -1,0 +1,51 @@
+
+
+<div class="page-header-custom">
+            <h3 align = "center">
+               Old consumers Readings</h3>
+            <!--subnav-->
+          
+        </div>
+
+<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered">
+  
+    <tr>
+      <th>Sr. No. </th>
+      <th>Source name</th>
+      <th>Source code</th>
+      <th>Source location</th>
+      <th>Habitation</th>
+      <th>Village</th>
+      <th>Grampanchayat</th>
+      <th>Water source type</th>
+      <th>Date time</th>
+      <th>Surveyor name</th>
+      
+    </tr>
+  
+
+ 
+    <% @survey_reports.each_with_index.each do |survey_report,i |  %> 
+      <tbody>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= survey_report.source_name rescue nil%></td>
+          <td><%= survey_report.source_code rescue nil%></td>
+          <td><%= survey_report.source_location rescue nil%></td>
+          <td><%= survey_report.habitation rescue nil%></td>
+          <td><%= survey_report.village rescue nil%></td>
+          <td><%= survey_report.grampanchayat rescue nil%></td>
+          <td><%= survey_report.water_source_type rescue nil%></td>
+          <td><%= survey_report.date_time rescue nil%></td>
+          <td><%= survey_report.surveyor_name rescue nil%></td>
+          
+        </tr>
+      </tbody>
+    <% end %> 
+    
+
+
+
+
+
+

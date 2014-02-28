@@ -1,5 +1,7 @@
 class MobileDevicesController < ApplicationController
    before_filter :authenticate_user!
+   load_and_authorize_resource
+   layout 'admin'
    
    def index
    	@mobile_devices = current_user.mobile_devices
