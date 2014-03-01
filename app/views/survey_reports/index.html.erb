@@ -99,7 +99,7 @@
                     <tr id="<%= dom_id(survey_report) %>">
                       <td><%= i+1 %></td>
                       <td><%= survey_report.source_name rescue nil%></td>
-                      <td><%= survey_report.source_code rescue nil%></td>
+                      <td><%= survey_report.water_source_code rescue nil%></td>
                       <td><%= survey_report.source_location rescue nil%></td>
                       <td><%= survey_report.water_source_type rescue nil%></td>
                       <td><%= survey_report.created_at.strftime("%d-%m-%Y %I:%M %p") rescue nil%></td>
