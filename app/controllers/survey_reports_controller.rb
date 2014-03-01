@@ -48,7 +48,11 @@ class SurveyReportsController < ApplicationController
   # POST /survey_reports.json
   def create
     #raise params.inspect
+    location = params["location"].split("%")
+    #raise location.inspect
     @survey_report = SurveyReport.create(
+      :latitude => location[0],
+      :longitude => location[1],
       :image=> params[:Image1],
       :image1=> params[:Image2],
       :source_name=> params[:WaterCode],

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140228113636) do
+ActiveRecord::Schema.define(:version => 20140301051836) do
 
   create_table "admin_blocks", :force => true do |t|
     t.string   "block_name"
@@ -149,6 +149,8 @@ ActiveRecord::Schema.define(:version => 20140228113636) do
     t.string   "bacteriological"
     t.text     "reason_for_rejecting"
     t.boolean  "is_tested",            :default => false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "users", :force => true do |t|
