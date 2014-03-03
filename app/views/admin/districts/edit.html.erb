@@ -1,11 +1,3 @@
-<script type='text/javascript'>//<![CDATA[ 
-    jQuery(function() {
-      jQuery("[name=toggler]").click(function(){
-              jQuery('.toHide').hide();
-              jQuery("#blk-"+jQuery(this).val()).show('slow');
-      });
-    });
-</script>
 <div class="main">
   <div class="container">
     <div class="row">
@@ -24,7 +16,7 @@
             <%= form_for  @admin_district, :html => {:id => "district",:class => "form-horizontal"}  do |f| %>
               <% if @admin_district.errors.any? %>
                 <div id="error_explanation">
-                  <h2><%= pluralize(@admin_district.errors.count, "error") %> prohibited this admin_district from being saved:</h2>
+                  
                   <ul>
                     <% @admin_district.errors.full_messages.each do |msg| %>
                       <li><%= msg %></li>
@@ -54,32 +46,24 @@
                 <div class="control-group">
                   <label for="name" class="control-label">Is Laboratory Present ?</label>
                   <div class="controls">
-                    Yes <input id="admin_district_lab_present_yes" type="radio" value="Yes" name="toggler">
-                    <div>
-                      No <input id="admin_district_lab_present_no" type="radio" value="No" name="toggler" checked="checked">
-                    </div>
+                    Yes<%= f.radio_button :lab_present, "Yes" %>
+                    No <%= f.radio_button :lab_present, "No", :checked => true %>
                   </div>
                 </div>
                 
-                <div id="blk-Yes" class="toHide" style="display:none">
-                  <div class="control-group">
-                    <label for="name" class="control-label">Laboratory Name</label>
-                    <div class="controls">
-                      <%= f.text_field :lab_name , :class => "input-large"%>
-                      
-                    </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Laboratory Name</label>
+                  <div class="controls">
+                    <%= f.text_field :lab_name , :class => "input-large"%>
+                    
                   </div>
                 </div>
-                <% if params[:toggler] == "No"%>
-                  <%= f.hidden_field :lab_present, :value => "NO"%>
-                <%else%>
-                  <%= f.hidden_field :lab_present, :value => "YES"%>
-                <%end%>
                 <div class="control-group">
                   <div class="controls">
                     <%= f.submit "Submit", :class => "btn"%>
                   </div>
                 </div>
+                
               </fieldset>
             <%end%>
           </div> <!-- /widget-content -->

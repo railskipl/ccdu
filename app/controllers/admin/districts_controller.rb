@@ -43,9 +43,10 @@ class Admin::DistrictsController < ApplicationController
   # POST /admin/districts
   # POST /admin/districts.json
   def create
+    #raise params.inspect
     @admin_district = Admin::District.new(params[:admin_district])
-
-    if params[:toggler] == "Yes" && @admin_district.lab_name.blank? 
+    #raise params[:toggler].inspect
+    if @admin_district.lab_present == "Yes" and @admin_district.lab_name.blank? 
        flash[:notice] = "Please enter laboratory name."
        render :new
     else

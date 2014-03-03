@@ -16,11 +16,15 @@ class Admin::Block < ActiveRecord::Base
   	self.code = self.block_name[0..2]
   end
   #change laboratory name to nil if laboratory name is nil
-  def labname
-    if self.lab_name.blank?
+  def labname #lab name blank replace with nil else to upcase
+    if self.laboratory_present == "No"
       self.lab_name = "NIL"
     else
-      self.lab_name = self.lab_name.upcase
+      if self.lab_name.blank?
+         self.lab_name = "NIL"
+      else
+         self.lab_name = self.lab_name.upcase
+      end
     end
   end
 end
