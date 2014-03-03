@@ -4,8 +4,14 @@ class LaboratoryReportsController < ApplicationController
   respond_to :html, :js, :json
   require 'will_paginate/array'
   def index
-    @survey_report = SurveyReport.find(:all, :conditions=>"actions = 1", :order=>"id desc")
-    @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+    
+    if current_user.has_role?:district
+      @survey_report = SurveyReport.find(:all, :conditions=>"is_tested = 't'", :order=>"id desc")
+      @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+    else
+      @survey_report = SurveyReport.find(:all, :conditions=>"actions = 1", :order=>"id desc")
+      @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xls

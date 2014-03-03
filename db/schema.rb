@@ -122,8 +122,8 @@ ActiveRecord::Schema.define(:version => 20140301051836) do
     t.datetime "date_time"
     t.string   "surveyor_name"
     t.integer  "user_id"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -133,6 +133,13 @@ ActiveRecord::Schema.define(:version => 20140301051836) do
     t.integer  "image1_file_size"
     t.datetime "image1_updated_at"
     t.integer  "actions",              :default => 0
+    t.string   "district_name"
+    t.string   "block_name"
+    t.integer  "survey_no"
+    t.string   "remarks"
+    t.string   "water_source_code"
+    t.float    "latitude"
+    t.float    "longitude"
     t.string   "ph"
     t.string   "tds"
     t.string   "residual_chlorine"
@@ -143,14 +150,7 @@ ActiveRecord::Schema.define(:version => 20140301051836) do
     t.string   "total_hardness"
     t.string   "bacteriological"
     t.text     "reason_for_rejecting"
-    t.boolean  "is_tested",            :default => false
-    t.string   "district_name"
-    t.string   "block_name"
-    t.integer  "survey_no"
-    t.string   "remarks"
-    t.string   "water_source_code"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.integer  "is_tested",            :default => 0
   end
 
   create_table "users", :force => true do |t|

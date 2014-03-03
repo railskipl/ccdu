@@ -3,6 +3,7 @@ class SurveyReportsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:new, :create]
   respond_to :html, :js, :json
   require 'will_paginate/array'
+  
   # GET /survey_reports
   # GET /survey_reports.json
   def index

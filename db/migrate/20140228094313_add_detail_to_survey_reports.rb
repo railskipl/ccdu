@@ -10,6 +10,6 @@ class AddDetailToSurveyReports < ActiveRecord::Migration
     add_column :survey_reports, :total_hardness, :string
     add_column :survey_reports, :bacteriological, :string
     add_column :survey_reports, :reason_for_rejecting, :text
-    add_column :survey_reports, :is_tested, :boolean, :default=>false
+    add_column :survey_reports, :is_tested, :integer, :default=>0
   end
 end
