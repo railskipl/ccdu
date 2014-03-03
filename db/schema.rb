@@ -132,11 +132,6 @@ ActiveRecord::Schema.define(:version => 20140301051836) do
     t.string   "image1_content_type"
     t.integer  "image1_file_size"
     t.datetime "image1_updated_at"
-    t.string   "district_name"
-    t.string   "block_name"
-    t.integer  "survey_no"
-    t.string   "remarks"
-    t.string   "water_source_code"
     t.integer  "actions",              :default => 0
     t.string   "ph"
     t.string   "tds"
@@ -149,6 +144,11 @@ ActiveRecord::Schema.define(:version => 20140301051836) do
     t.string   "bacteriological"
     t.text     "reason_for_rejecting"
     t.boolean  "is_tested",            :default => false
+    t.string   "district_name"
+    t.string   "block_name"
+    t.integer  "survey_no"
+    t.string   "remarks"
+    t.string   "water_source_code"
     t.float    "latitude"
     t.float    "longitude"
   end
