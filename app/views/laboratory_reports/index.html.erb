@@ -107,7 +107,7 @@
                       <td><%= image_tag survey_report.image.url, :height=> 100, :width=>100 rescue nil%></td>
                       <td><%= image_tag survey_report.image1.url, :height=> 100, :width=>100 rescue nil%></td>
                       <td><%= link_to "View", laboratory_report_path(survey_report), :class=>"btn" %> 
-                          <% if survey_report.is_tested == false %>
+                          <% if survey_report.is_tested == 0 %>
                           <div id="action<%= survey_report.id %>">|
                           <%= link_to "Send for Testing", send_for_testing_laboratory_report_path(survey_report), remote: true, :class=>"btn" %>
                           </div>

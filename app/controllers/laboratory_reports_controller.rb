@@ -6,7 +6,7 @@ class LaboratoryReportsController < ApplicationController
   def index
     
     if current_user.has_role?:district
-      @survey_report = SurveyReport.find(:all, :conditions=>"is_tested = 't'", :order=>"id desc")
+      @survey_report = SurveyReport.find(:all, :conditions=>"is_tested = 1", :order=>"id desc")
       @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
     else
       @survey_report = SurveyReport.find(:all, :conditions=>"actions = 1", :order=>"id desc")
