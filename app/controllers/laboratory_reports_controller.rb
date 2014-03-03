@@ -33,6 +33,7 @@ class LaboratoryReportsController < ApplicationController
   end
   
   def submit_test
+
     @survey_report = SurveyReport.find(params[:id])
     if @survey_report.update_attributes(params[:survey_report])
       respond_with(@survey_report, location: survey_reports_path)

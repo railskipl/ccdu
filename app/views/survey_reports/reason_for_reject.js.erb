@@ -1,0 +1,5 @@
+jQuery('#action<%= @survey_report.id %>')
+  .html("Rejected")
+	.hide()
+	.fadeIn()
+jQuery(document).trigger('close.facebox');

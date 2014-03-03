@@ -1,1 +1,29 @@
-Amol
+<%#raise params[:id].inspect%>
+<h4>Reason for rejecting</h4>
+          <!-- /widget-header -->
+          <div class="widget-content">
+            <div class="row-fluid" style="margin-bottom:10px">
+              <!-- <div class="span12">
+                <a href="/mobile_users" class="btn">Back</a>          
+              </div> -->
+            </div>
+           
+            <%= form_for :survey_report, :url => reason_for_reject_survey_report_path(params[:id]),:remote=>true do |f| %>
+              <fieldset>
+                <div class="control-group">
+                  <label class="control-label" for="name">Reason for rejecting sample</label>
+                  <div class="controls">
+                    <%= f.text_area :reason_for_rejecting, :rows =>"12",:style => "width:560px ; overflow-y: scroll; height: 200px; ",:maxlength => 1000 %>
+                    <%= f.hidden_field :actions, :value=>2 %>
+                  </div>
+                </div>
+                
+                
+                <div class="control-group">
+                  <div class="controls">
+                    <%= f.submit "Save", :class=>"btn" %>
+                  </div>
+                </div>
+              </fieldset>
+			      <% end %>
+			</div> <!-- /widget-content --> 

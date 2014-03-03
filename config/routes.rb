@@ -4,6 +4,7 @@ Ccdu::Application.routes.draw do
   resources :survey_reports do
     get 'accept',:on => :member
     get 'reject',:on => :member
+    post 'reason_for_reject' , :on => :member
   end
   
   resources :laboratory_reports do

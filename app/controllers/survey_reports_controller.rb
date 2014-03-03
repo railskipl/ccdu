@@ -97,6 +97,18 @@ class SurveyReportsController < ApplicationController
   end
   
   def reject
+    #raise "hi"
+  end
+
+  def reason_for_reject
+    #raise params.inspect
+    @survey_report = SurveyReport.find(params[:id])
+    if @survey_report.update_attributes(params[:survey_report])
+      respond_with(@survey_report, location: survey_reports_path)
+    else
+      render 'reject'
+    end
+
   end
   
   
