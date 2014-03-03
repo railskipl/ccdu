@@ -4,7 +4,7 @@ class Admin::District < ActiveRecord::Base
   belongs_to :user
   attr_accessible :district_name, :zone_id, :code, :lab_name, :lab_present
 
-  validates_presence_of :district_name, :zone_id, :code, :lab_present
+  validates_presence_of :district_name, :zone_id, :code,:lab_present
 
   before_save :name_district, :labname
   #upcase the district_name,code 
@@ -12,7 +12,6 @@ class Admin::District < ActiveRecord::Base
   	self.district_name = self.district_name.upcase
   	self.code = self.code.upcase
   end
-
 
   def labname #lab name blank replace with nil else to upcase
   	if self.lab_present == "No"
@@ -23,6 +22,6 @@ class Admin::District < ActiveRecord::Base
 	    else
 	   	   self.lab_name = self.lab_name.upcase
 	   	end
-	end
+	  end
   end
 end

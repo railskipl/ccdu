@@ -60,7 +60,8 @@
                 <div class="control-group">
                   <label class="control-label" for="name">Bacteriological Test</label>
                   <div class="controls">
-                    <%= f.text_field :bacteriological %>
+                   PRE MONSOON   <%= f.radio_button :bacteriological, "PRE MONSOON" %>
+                   POST MONSOON  <%= f.radio_button :bacteriological, "POST MONSOON" %>
                     <%= f.hidden_field :is_tested, :value=>true %>
                   </div>
                 </div>

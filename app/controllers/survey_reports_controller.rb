@@ -2,10 +2,12 @@ class SurveyReportsController < ApplicationController
   before_filter :authenticate_user!, :except => [:create]
   skip_before_filter :verify_authenticity_token, :only => [:new, :create]
   respond_to :html, :js, :json
+  require 'will_paginate/array'
   # GET /survey_reports
   # GET /survey_reports.json
   def index
-    @survey_reports = SurveyReport.find(:all, :conditions=>"actions != 1", :order=>"id desc")
+    @survey_report = SurveyReport.find(:all, :conditions=>"actions != 1", :order=>"id desc")
+    @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
     
     respond_to do |format|
       format.html # index.html.erb

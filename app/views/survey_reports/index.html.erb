@@ -94,10 +94,10 @@
                   </tr>
                 </thead>
                  <tbody>
-                <% @survey_reports.each_with_index.each do |survey_report,i |  %> 
+                <% @survey_reports.each.with_index(1) do |survey_report,index |  %> 
                  
                     <tr id="<%= dom_id(survey_report) %>">
-                      <td><%= i+1 %></td>
+                      <td><%= index%></td>
                       <td><%= survey_report.source_name rescue nil%></td>
                       <td><%= survey_report.water_source_code rescue nil%></td>
                       <td><%= survey_report.source_location rescue nil%></td>
@@ -119,17 +119,8 @@
                 </tbody>
               </table>
               <section id="paginations">
-                <div class="pagination">
-                  <ul>
-                    <li><a href="javascript:;">Prev</a></li>
-                    <li class="active">
-                      <a href="javascript:;">1</a>
-                    </li>
-                    <li><a href="javascript:;">2</a></li>
-                    <li><a href="javascript:;">3</a></li>
-                    <li><a href="javascript:;">4</a></li>
-                    <li><a href="javascript:;">Next</a></li>
-                  </ul>
+                <div class="digg_pagination">
+                  <%= will_paginate @survey_reports %>
                 </div>
               </section>
             </section>
