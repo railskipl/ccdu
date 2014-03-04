@@ -17,8 +17,8 @@
                   <%= link_to "Generate Invoice", new_invoice_path, :class=>"btn" %>
                 </div>
                 <div class="span6" style="text-align:right">
-                  <%= link_to image_tag('/assets/excel.png', :border=>"0", :align=>"absmiddle") + " Excel", survey_reports_path(params.merge(format: "xls")), :method=> :get, :class=>"btn btn-secondary" %>
-                  <%= link_to image_tag('/assets/pdf.png', :border=>"0", :align=>"absmiddle") + " PDF", survey_reports_path(params.merge(format: "pdf")), :method=> :get, :class=>"btn btn-secondary" %>
+                  <%= link_to image_tag('/assets/excel.png', :border=>"0", :align=>"absmiddle") + " Excel", invoices_path(params.merge(format: "xls")), :method=> :get, :class=>"btn btn-secondary" %>
+                  <%= link_to image_tag('/assets/pdf.png', :border=>"0", :align=>"absmiddle") + " PDF", invoices_path(params.merge(format: "pdf")), :method=> :get, :class=>"btn btn-secondary" %>
                    
                 </div>
               </div>

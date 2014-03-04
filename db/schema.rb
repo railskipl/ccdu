@@ -146,12 +146,12 @@ ActiveRecord::Schema.define(:version => 20140304074654) do
     t.string   "image1_content_type"
     t.integer  "image1_file_size"
     t.datetime "image1_updated_at"
-    t.integer  "actions",                  :default => 0
     t.string   "district_name"
     t.string   "block_name"
     t.integer  "survey_no"
     t.string   "remarks"
     t.string   "water_source_code"
+    t.integer  "actions",                  :default => 0
     t.float    "latitude"
     t.float    "longitude"
     t.string   "ph"

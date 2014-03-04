@@ -8,16 +8,16 @@ class SurveyReportsController < ApplicationController
   # GET /survey_reports.json
   def index
     
-    start_from = "#{params['start_date']}" rescue ""
-    start_to = "#{params['end_date']}" rescue ""
-    source_name = params[:source_name][:source_name_eq] rescue ""
-    water_source_type = params[:water_source_type][:water_source_type_eq] rescue ""
-    habitation = params[:habitation][:habitation_eq] rescue ""
-
     # @survey_report = SurveyReport.find(:all, :conditions=>"actions != 1", :order=>"id desc")
     # @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
 
-    if params[:subaction] == "update"
+    if params[:survey].nil?
+      
+      start_from = params[:survey][:start_date] rescue "1"
+      start_to   =   params[:survey][:end_date] rescue "1"
+      source_name = params[:survey][:source_name_eq] rescue ""
+      water_source_type = params[:survey][:water_source_type_eq] rescue ""
+      habitation = params[:survey][:habitation_eq] rescue ""
       
         if start_from > start_to 
          flash[:notice] = "Start date cannot be greater than end date"
@@ -40,7 +40,7 @@ class SurveyReportsController < ApplicationController
         
         @survey_report = SurveyReport.find(:all, :conditions=>"actions != 1", :order=>"id desc")
         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
-      end
+    end
     
     respond_to do |format|
       format.html # index.html.erb

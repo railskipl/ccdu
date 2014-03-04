@@ -1,7 +1,35 @@
 <%= stylesheet_link_tag "facebox.css" %>
 
 <%= javascript_include_tag "facebox.js", "jquery.validate.min" %>
+<script>
+(function() {
 
+  jQuery(function() {
+  jQuery('#start_date').datepicker( 
+    { altField  : '#start_date',  // selector of the hidden input field you want sent to the server
+      dateFormat: 'yy-mm-dd',
+      altFormat : 'yy-mm-dd' } );
+    });
+
+
+}).call(this);
+
+</script>
+
+<script>
+(function() {
+
+  jQuery(function() {
+  jQuery('#end_date').datepicker( 
+    { altField  : '#end_date',  // selector of the hidden input field you want sent to the server
+      dateFormat: 'yy-mm-dd',
+      altFormat : 'yy-mm-dd' } );
+    });
+
+
+}).call(this);
+
+</script>
 <div class="main">
   <div class="container">
     <div class="row">
@@ -15,7 +43,7 @@
             <div class="row-fluid">
               <div class="span12">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <%= form_tag laboratory_reports_path ,:method => :get do %>
+                  <%= form_tag rejected_sample_laboratory_reports_path ,:method => :get do %>
                   <tr>
                     <td>From Date </td>
                     <td><span class="controls">
@@ -26,32 +54,11 @@
                       <%= text_field_tag :end_date %>
                        </span>
                     </td>
-                    <td>Water Source </td>
-                    <td><span class="controls">
-                      <%= collection_select :source_name, :source_name_eq, SurveyReport.all, :source_name, :source_name ,{:prompt => "Select Source Name"}%>
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Types</td>
-                    <td><span class="controls">
-                      <%= collection_select :water_source_type, :water_source_type_eq, SurveyReport.all, :water_source_type, :water_source_type, {:prompt => "Select Source Type"} %>
-                      </span>
-                    </td>
-                    <td>Habitation</td>
-                    <td><span class="controls">
-                      <!-- <select name="select">
-                        <option>Bedal</option>
-                            </select> -->
-                      </span>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                   </tr>
                   <tr>
                     <td>&nbsp;</td>
                     <td>
-                      <%= submit_tag "Search" %>
+                      <%= button_tag  :submit , name: "subaction",value: "update", :class => "btn btn btn-primary" %>
                       <!-- <button class="btn btn btn-primary" type="reset">Show</button> -->
                       <!-- <button class="btn btn btn-primary" type="reset">Clear</button> -->
                       

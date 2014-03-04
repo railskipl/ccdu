@@ -6,13 +6,15 @@ class LaboratoryReportsController < ApplicationController
   
   def index
     #raise params.inspect
-    start_from = "#{params['start_date']}" rescue ""
-    start_to = "#{params['end_date']}" rescue ""
-    source_name = params[:source_name][:source_name_eq] rescue ""
-    water_source_type = params[:water_source_type][:water_source_type_eq] rescue ""
-    habitation = params[:habitation][:habitation_eq] rescue ""
+    
     #raise (start_from != nil || start_to != nil).inspect
       if params[:subaction] == "update"
+        @start_from = params[:start_date] rescue ""
+        @start_to   = params[:end_date] rescue ""
+        source_name = params[:source_name][:source_name_eq] rescue ""
+        water_source_type = params[:water_source_type][:water_source_type_eq] rescue ""
+        habitation = params[:habitation][:habitation_eq] rescue ""
+        
         if start_from > start_to 
          flash[:notice] = "Start date cannot be greater than end date"
          @survey_report = SurveyReport.find(:all, :conditions=>"actions = 1", :order=>"id desc")
@@ -23,11 +25,11 @@ class LaboratoryReportsController < ApplicationController
             @survey_report = SurveyReport.where("source_name = ? or water_source_type = ? or habitation = ?", source_name,water_source_type,habitation)
             @survey_reports = @survey_report.find(:all,:conditions=>"actions = 1", :order=>"id desc").paginate(page: params[:page], per_page: 10) 
           else
-            @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
+            @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ?", @start_from,@start_to)
             @survey_reports = @survey_report.find(:all,:conditions=>"actions = 1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
           end
         else
-          @survey_report = @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ? and source_name = ? and water_source_type = ? and habitation = ?",start_from,start_to, source_name,water_source_type,habitation)
+          @survey_report = @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ? and source_name = ? and water_source_type = ? and habitation = ?",@start_from,@start_to, source_name,water_source_type,habitation)
           @survey_reports = @survey_report.find(:all,:conditions=>"actions = 1", :order=>"id desc").paginate(page: params[:page], per_page: 10) 
         end
       else
@@ -90,13 +92,62 @@ class LaboratoryReportsController < ApplicationController
   end 
   
   def accepted_sample
-     @survey_report = SurveyReport.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
-     @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+     
+      if params[:subaction] == "update"
+        start_from = params[:start_date] rescue ""
+        start_to   = params[:end_date] rescue ""
+        
+        if start_from > start_to 
+         flash[:notice] = "Start date cannot be greater than end date"
+         @survey_report = SurveyReport.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
+         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+        else start_from <= start_to
+
+          if start_from.blank?
+            @survey_report = SurveyReport.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
+            @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+          else
+            @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
+            @survey_reports = @survey_report.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+          end
+        end
+      else
+
+        @survey_report = SurveyReport.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
+        @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+      end
+     
+     # @survey_report = SurveyReport.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
+     # @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
   end
   
   def rejected_sample
-    @survey_report = SurveyReport.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc")
-    @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+
+    if params[:subaction] == "update"
+        start_from = params[:start_date] rescue ""
+        start_to   = params[:end_date] rescue ""
+        
+        if start_from > start_to 
+         flash[:notice] = "Start date cannot be greater than end date"
+         @survey_report = SurveyReport.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc")
+         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+        else start_from <= start_to
+
+          if start_from.blank?
+            flash[:notice] = "Start date can not be blank."
+            @survey_report = SurveyReport.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc")
+            @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+          else
+            @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
+            @survey_reports = @survey_report.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+          end
+        end
+      else
+        @survey_report = SurveyReport.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc")
+        @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+      end
+    # @survey_report = SurveyReport.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc")
+    # @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
   end
   
   
