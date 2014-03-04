@@ -4,8 +4,39 @@ class LaboratoryReportsController < ApplicationController
   respond_to :html, :js, :json
   require 'will_paginate/array'
   def index
-    @survey_report = SurveyReport.find(:all, :conditions=>"actions = 1", :order=>"id desc")
-    @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+    #raise params.inspect
+    start_from = "#{params['start_date']}" rescue ""
+    start_to = "#{params['end_date']}" rescue ""
+    source_name = params[:source_name][:source_name_eq] rescue ""
+    water_source_type = params[:water_source_type][:water_source_type_eq] rescue ""
+    habitation = params[:habitation][:habitation_eq] rescue ""
+    #raise (start_from != nil || start_to != nil).inspect
+      if params[:subaction] == "update"
+        if start_from > start_to 
+         flash[:notice] = "Start date cannot be greater than end date"
+         @survey_report = SurveyReport.find(:all, :conditions=>"actions = 1", :order=>"id desc")
+         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10) 
+        elsif start_from <= start_to
+
+          if start_from.blank?
+            @survey_report = SurveyReport.where("source_name = ? or water_source_type = ? or habitation = ?", source_name,water_source_type,habitation)
+            @survey_reports = @survey_report.find(:all,:conditions=>"actions = 1", :order=>"id desc").paginate(page: params[:page], per_page: 10) 
+          else
+            @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
+            @survey_reports = @survey_report.find(:all,:conditions=>"actions = 1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+          end
+        else
+          @survey_report = @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ? and source_name = ? and water_source_type = ? and habitation = ?",start_from,start_to, source_name,water_source_type,habitation)
+          @survey_reports = @survey_report.find(:all,:conditions=>"actions = 1", :order=>"id desc").paginate(page: params[:page], per_page: 10) 
+        end
+      else
+
+        @survey_report = SurveyReport.find(:all, :conditions=>"actions = 1", :order=>"id desc")
+        @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+      end
+      
+
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xls

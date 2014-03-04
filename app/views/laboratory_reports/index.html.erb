@@ -40,9 +40,7 @@
                     </td>
                     <td>Habitation</td>
                     <td><span class="controls">
-                      <!-- <select name="select">
-                        <option>Bedal</option>
-                            </select> -->
+                      <%= collection_select :habitation , :habitation_eq, SurveyReport.all, :habitation, :habitation, {:prompt => "Select Habitation"}%>
                       </span>
                     </td>
                     <td>&nbsp;</td>
@@ -51,7 +49,7 @@
                   <tr>
                     <td>&nbsp;</td>
                     <td>
-                      <%= submit_tag "Search" %>
+                      <%= button_tag  :submit , name: "subaction",value: "update", :class => "btn btn btn-primary" %>
                       <!-- <button class="btn btn btn-primary" type="reset">Show</button> -->
                       <!-- <button class="btn btn btn-primary" type="reset">Clear</button> -->
                       
@@ -119,7 +117,7 @@
               </table>
               <section id="paginations">
                 <div class="digg_pagination">
-                  <%#= will_paginate @survey_reports %>
+                  <%= will_paginate @survey_reports %>
                 </div>
               </section>
             </section>

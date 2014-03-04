@@ -14,37 +14,32 @@
             <div class="row-fluid">
               <div class="span12">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <%= form_tag survey_reports_path, :method => :get do %>
                   <tr>
                     <td>From Date </td>
                     <td><span class="controls">
-                      <input type="text" id="name2" name="name2" class="input-large">
+                      <%= text_field_tag :start_date %>
                     </span></td>
                     <td>To Date </td>
                     <td><span class="controls">
-                      <input type="text" id="name22" name="name22" class="input-large">
+                      <%= text_field_tag :end_date %>
                        </span>
                     </td>
                     <td>Water Source </td>
                     <td><span class="controls">
-                      <select name="select2">
-                        <option>All</option>
-                      </select>
+                      <%= collection_select :source_name, :source_name_eq, SurveyReport.find(:all,:conditions=>"actions != 1", :order=>"id desc"), :source_name, :source_name ,{:prompt => "Select Source Name"}%>
                       </span>
                     </td>
                   </tr>
                   <tr>
                     <td>Types</td>
                     <td><span class="controls">
-                      <select>
-                        <option>All</option>
-                      </select>
+                      <%= collection_select :water_source_type, :water_source_type_eq, SurveyReport.find(:all,:conditions=>"actions != 1", :order=>"id desc"), :water_source_type, :water_source_type, {:prompt => "Select Source Type"} %>
                       </span>
                     </td>
                     <td>Habitation</td>
                     <td><span class="controls">
-                      <select name="select">
-                        <option>Bedal</option>
-                            </select>
+                      <%= collection_select :habitation , :habitation_eq, SurveyReport.find(:all,:conditions=>"actions != 1", :order=>"id desc"), :habitation, :habitation, {:prompt => "Select Habitation"}%>
                       </span>
                     </td>
                     <td>&nbsp;</td>
@@ -53,8 +48,9 @@
                   <tr>
                     <td>&nbsp;</td>
                     <td>
-                      <button class="btn btn btn-primary" type="reset">Show</button>
-                      <button class="btn btn btn-primary" type="reset">Clear</button>
+                      <%= button_tag  :submit , name: "subaction",value: "update", :class => "btn btn btn-primary" %>
+                      <!-- <button class="btn btn btn-primary" type="reset">Show</button> -->
+                      <!-- <button class="btn btn btn-primary" type="reset">Clear</button> -->
                       
                     </td>
                       <td>&nbsp;</td>
@@ -62,6 +58,7 @@
                       <td>&nbsp;</td>
                       <td>&nbsp;</td>
                   </tr>
+                 <% end %>
                 </table>
               </div>
             </div>
