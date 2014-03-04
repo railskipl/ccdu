@@ -11,7 +11,7 @@ class SurveyReportsController < ApplicationController
     # @survey_report = SurveyReport.find(:all, :conditions=>"actions != 1", :order=>"id desc")
     # @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
 
-    if params[:survey].nil?
+    if params[:subaction] == "update"
       
       start_from = params[:survey][:start_date] rescue ""
       start_to   =   params[:survey][:end_date] rescue ""
