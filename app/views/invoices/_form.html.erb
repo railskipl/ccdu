@@ -1,0 +1,131 @@
+<script>
+(function() {
+
+  jQuery(function() {
+  jQuery('#invoice_invoice_date').datepicker( 
+    { altField  : '#invoice_invoice_date',  // selector of the hidden input field you want sent to the server
+      dateFormat: 'd-m-yy',
+      altFormat : 'd-m-yy' } );
+    });
+
+
+}).call(this);
+
+</script>
+
+<script>
+jQuery(document).ready(function() {
+	jQuery("#invoice").validate({
+		errorElement:'div',
+		rules: {
+		  "invoice[district_name]" : { required: true },
+		  "invoice[block_name]" : { required: true },
+		  "invoice[invoice_date]" : { required: true },
+		  "invoice[no_of_sample]" : { required: true, number: true },
+			"invoice[amount]" : { required: true, number: true },
+			"invoice[invoice_no]" : { required: true },
+			"invoice[remark]" : { required: true }
+			},
+		messages: {
+		    "invoice[district_name]" : { required: "Please enter district name" },
+		    "invoice[block_name]" : { required: "Please enter block name" },
+		    "invoice[invoice_date]" : { required: "Please enter date" },
+		    "invoice[no_of_sample]" : { required: "Please enter number of sample" },
+			  "invoice[amount]":{ required:  "Please enter amount", number: "Please enter valid number" },
+			  "invoice[invoice_no]" : { required: "Please enter invoice number" },
+			  "invoice[remark]" : { required: "Please enter remark" }
+			}
+       
+		});
+ });
+</script>
+
+<div class="main">
+  <div class="container">
+    <div class="row">
+      <div class="span12">          
+        <div class="widget stacked ">
+          <div class="widget-header">
+            <i class="icon-pencil"></i>
+            <h3>Generate Invoice</h3>
+          </div> <!-- /widget-header -->
+          <div class="widget-content">
+            <div style="margin-bottom:10px" class="row-fluid">
+              <!-- <div class="span12">
+                <a href="<%= admin_blocks_path%>" class="btn">Back</a>          
+              </div> -->
+            </div>
+            <%= form_for  @invoice, :html => {:id => "invoice",:class => "form-horizontal"}  do |f| %>
+              <% if @invoice.errors.any? %>
+                <div id="error_explanation">
+                  <ul>
+                    <% @invoice.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <fieldset>
+                <div class="control-group">
+                  <label for="name" class="control-label">District Name</label>
+                  <div class="controls">
+                    <%= f.text_field :district_name, :value=>current_user.district_name , :class => "input-large", :readonly=>true%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Block Name</label>
+                  <div class="controls">
+                    <%= f.text_field :block_name, :value=>current_user.block_name , :class => "input-large", :readonly=>true %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Invoice Date</label>
+                  <div class="controls">
+                    <%= f.text_field :invoice_date , :class => "input-large"%>
+                  </div>
+                </div>
+                
+                <div class="control-group">
+                  <label for="name" class="control-label">Number of Sample</label>
+                  <div class="controls">
+                    <%= f.text_field :no_of_sample , :class => "input-large"%>
+                  </div>
+                </div>
+                
+                <div class="control-group">
+                  <label for="name" class="control-label">Amount</label>
+                  <div class="controls">
+                    <%= f.text_field :amount , :class => "input-large"%>
+                  </div>
+                </div>
+                
+                <div class="control-group">
+                  <label for="name" class="control-label">Invoice Number</label>
+                  <div class="controls">
+                    <%= f.text_field :invoice_no , :class => "input-large"%>
+                  </div>
+                </div>
+                
+                <div class="control-group">
+                  <label for="name" class="control-label">Remark</label>
+                  <div class="controls">
+                    <%= f.text_area :remark, :cols=>2, :rows=>2, :class => "input-large"%>
+                  </div>
+                </div>
+                
+                <div class="control-group">
+                  <div class="controls">
+                    <%= f.submit "Submit", :class => "btn"%>
+                  </div>
+                </div>
+                
+              </fieldset>
+            <%end%>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
+      </div>
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</div> <!-- /main -->
+
+

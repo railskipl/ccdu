@@ -40,7 +40,9 @@
                     </td>
                     <td>Habitation</td>
                     <td><span class="controls">
-                      <%= collection_select :habitation , :habitation_eq, SurveyReport.all, :habitation, :habitation, {:prompt => "Select Habitation"}%>
+                      <!-- <select name="select">
+                        <option>Bedal</option>
+                            </select> -->
                       </span>
                     </td>
                     <td>&nbsp;</td>
@@ -49,7 +51,7 @@
                   <tr>
                     <td>&nbsp;</td>
                     <td>
-                      <%= button_tag  :submit , name: "subaction",value: "update", :class => "btn btn btn-primary" %>
+                      <%= submit_tag "Search" %>
                       <!-- <button class="btn btn btn-primary" type="reset">Show</button> -->
                       <!-- <button class="btn btn btn-primary" type="reset">Clear</button> -->
                       
@@ -80,14 +82,15 @@
                 <thead>
                   <tr>
                     <th>Sr. No. </th>
-                    <th>Source name</th>
-                    <th>Source code</th>
-                    <th>Source location</th>
-                    <th>Water source type</th>
-                    <th>Date time</th>
-                    <th>Surveyor name</th>
-                    <th>Source Image</th>
-                    <th>Source Location Image</th>
+                    <th>Sample Code</th>
+                    <th>pH</th>
+                    <th>TDS</th>
+                    <th>Residual Chlorine</th>
+                    <th>Fluoride</th>
+                    <th>Chloride</th>
+                    <th>Nitrate</th>
+                    <th>Alkaliniy</th>
+                    <th>Total Hardness</th>
                     <th style="width:20%">Action</th>
                   </tr>
                 </thead>
@@ -96,22 +99,20 @@
                  
                     <tr id="<%= dom_id(survey_report) %>">
                       <td><%= i+1 %></td>
-                      <td><%= survey_report.source_name rescue nil%></td>
                       <td><%= survey_report.water_source_code rescue nil%></td>
-                      <td><%= survey_report.source_location rescue nil%></td>
-                      <td><%= survey_report.water_source_type rescue nil%></td>
-                      <td><%= survey_report.created_at.strftime("%d-%m-%Y %I:%M %p") rescue nil%></td>
-                      <td><%= survey_report.surveyor_name rescue nil%></td>
-                      <td><%= image_tag survey_report.image.url, :height=> 100, :width=>100 rescue nil%></td>
-                      <td><%= image_tag survey_report.image1.url, :height=> 100, :width=>100 rescue nil%></td>
+                      <td><%= survey_report.ph rescue nil%></td>
+                      <td><%= survey_report.tds rescue nil%></td>
+                      <td><%= survey_report.residual_chlorine rescue nil%></td>
+                      <td><%= survey_report.fluoride rescue nil%></td>
+                      <td><%= survey_report.chloride rescue nil%></td>
+                      <td><%= survey_report.nitrate rescue nil%></td>
+                      <td><%= survey_report.alkaliniy rescue nil%></td>
+                      <td><%= survey_report.total_hardness rescue nil%></td>
                       <td><div style="float:left; margin-right:3px;"><%= link_to "View", laboratory_report_path(survey_report), :class=>"btn" %> </div>
-                          <% if survey_report.is_tested == 0 %>
-                          <div id="action<%= survey_report.id %>" style="float:left;">|
-                          <%= link_to "Send for Testing", send_for_testing_laboratory_report_path(survey_report), remote: true, :class=>"btn" %>
-                          <% else %>
-                           <b>| Waiting for Approval</b>
+                          <div style="float:left">
+                          <%= link_to "Accept", accept_laboratory_report_path(survey_report), remote: true, :class=>"btn" %>
+                          <%= link_to "Reject", reject_laboratory_report_path(survey_report), remote: true, :class=>"btn" %>
                           </div>
-                          <% end %>
                       </td>
                     </tr>
                 <% end %> 
@@ -119,7 +120,7 @@
               </table>
               <section id="paginations">
                 <div class="digg_pagination">
-                  <%= will_paginate @survey_reports %>
+                  <%#= will_paginate @survey_reports %>
                 </div>
               </section>
             </section>

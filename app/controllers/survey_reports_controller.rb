@@ -3,6 +3,7 @@ class SurveyReportsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:new, :create]
   respond_to :html, :js, :json
   require 'will_paginate/array'
+  
   # GET /survey_reports
   # GET /survey_reports.json
   def index
@@ -135,7 +136,6 @@ class SurveyReportsController < ApplicationController
   end
 
   def reason_for_reject
-    
     #raise params.inspect
     @survey_report = SurveyReport.find(params[:id])
     if @survey_report.update_attributes(params[:survey_report])

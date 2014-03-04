@@ -1,0 +1,6 @@
+
+ jQuery('#<%= dom_id(@survey_report) %>')
+    .fadeOut (function() {
+      jQuery(this).remove()
+  	});
+jQuery(document).trigger('close.facebox');
