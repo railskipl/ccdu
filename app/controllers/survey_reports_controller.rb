@@ -13,8 +13,8 @@ class SurveyReportsController < ApplicationController
 
     if params[:survey].nil?
       
-      start_from = params[:survey][:start_date] rescue "1"
-      start_to   =   params[:survey][:end_date] rescue "1"
+      start_from = params[:survey][:start_date] rescue ""
+      start_to   =   params[:survey][:end_date] rescue ""
       source_name = params[:survey][:source_name_eq] rescue ""
       water_source_type = params[:survey][:water_source_type_eq] rescue ""
       habitation = params[:survey][:habitation_eq] rescue ""
