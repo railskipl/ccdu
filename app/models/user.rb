@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     else 
       role.name == "block"
       self.zone_name = nil
-      self.district_name = nil
+      self.district_name = self.district_name
       self.block_name = self.block_name
     end
   end

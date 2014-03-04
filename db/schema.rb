@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140301051836) do
+ActiveRecord::Schema.define(:version => 20140304074654) do
 
   create_table "admin_blocks", :force => true do |t|
     t.string   "block_name"
@@ -75,6 +75,20 @@ ActiveRecord::Schema.define(:version => 20140301051836) do
     t.integer  "user_id"
   end
 
+  create_table "invoices", :force => true do |t|
+    t.string   "district_name"
+    t.string   "block_name"
+    t.date     "invoice_date"
+    t.integer  "no_of_sample"
+    t.float    "amount"
+    t.string   "invoice_no"
+    t.text     "remark"
+    t.integer  "is_invoice",    :default => 0
+    t.date     "approved_date"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
   create_table "mobile_devices", :force => true do |t|
     t.string   "imei"
     t.string   "manufacturer_name"
@@ -122,8 +136,8 @@ ActiveRecord::Schema.define(:version => 20140301051836) do
     t.datetime "date_time"
     t.string   "surveyor_name"
     t.integer  "user_id"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -132,7 +146,7 @@ ActiveRecord::Schema.define(:version => 20140301051836) do
     t.string   "image1_content_type"
     t.integer  "image1_file_size"
     t.datetime "image1_updated_at"
-    t.integer  "actions",              :default => 0
+    t.integer  "actions",                  :default => 0
     t.string   "district_name"
     t.string   "block_name"
     t.integer  "survey_no"
@@ -150,7 +164,10 @@ ActiveRecord::Schema.define(:version => 20140301051836) do
     t.string   "total_hardness"
     t.string   "bacteriological"
     t.text     "reason_for_rejecting"
-    t.integer  "is_tested",            :default => 0
+    t.integer  "is_tested",                :default => 0
+    t.integer  "is_dist_approved",         :default => 0
+    t.text     "reason_for_dist_rejected"
+    t.integer  "district_level_status"
   end
 
   create_table "users", :force => true do |t|

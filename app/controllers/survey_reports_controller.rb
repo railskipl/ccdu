@@ -104,7 +104,6 @@ class SurveyReportsController < ApplicationController
   end
 
   def reason_for_reject
-    
     #raise params.inspect
     @survey_report = SurveyReport.find(params[:id])
     if @survey_report.update_attributes(params[:survey_report])

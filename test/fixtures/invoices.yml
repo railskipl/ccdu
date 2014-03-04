@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  district_name: MyString
+  block_name: MyString
+  invoice_date: 2014-03-04
+  no_of_sample: 1
+  amount: 1.5
+  invoice_no: MyString
+  remark: MyText
+  is_invoice: 1
+
+two:
+  district_name: MyString
+  block_name: MyString
+  invoice_date: 2014-03-04
+  no_of_sample: 1
+  amount: 1.5
+  invoice_no: MyString
+  remark: MyText
+  is_invoice: 1
