@@ -33,7 +33,7 @@ class SurveyReportsController < ApplicationController
             @survey_reports = @survey_report.find(:all,:conditions=>"actions != 1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
           end
         else
-          @survey_report = @survey_report = current_user.survey_reports.where("created_at >= ? and Date(created_at) <= ? and source_name = ? and water_source_type = ? and habitation = ?",start_from,start_to, source_name,water_source_type,habitation)
+          @survey_report = current_user.survey_reports.where("created_at >= ? and Date(created_at) <= ? and source_name = ? and water_source_type = ? and habitation = ?",start_from,start_to, source_name,water_source_type,habitation)
           @survey_reports = @survey_report.find(:all,:conditions=>"actions != 1", :order=>"id desc").paginate(page: params[:page], per_page: 10) 
         end
     else
@@ -84,7 +84,8 @@ class SurveyReportsController < ApplicationController
   def create
     #raise params.inspect
     location = params["location"].split("%")
-    #raise location.inspect
+    @surveyor = User.find_by_block_manager_id(params[:CurrentUserId])
+    raise @surveyor.inspect
     @survey_report = SurveyReport.create(
       :latitude => location[0],
       :longitude => location[1],
@@ -100,7 +101,8 @@ class SurveyReportsController < ApplicationController
       :survey_no => params[:SurveyNo],
       :remarks => params[:Remark],
       :water_source_code => params[:WaterSourceCode],
-      :user_id => params[:CurrentUserId]
+      :user_id => params[:CurrentUserId],
+      :surveyor_name => @surveyor.user_fullname
 
     )
     @surveycode = @survey_report.water_source_code
