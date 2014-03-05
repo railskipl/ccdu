@@ -30,16 +30,23 @@ class User < ActiveRecord::Base
        self.zone_name = self.zone_name
        self.district_name = nil
        self.block_name = nil
-    elsif 
-      role.name == "district"
+    elsif role.name == "district"
       self.zone_name =  self.zone_name
       self.district_name = self.district_name
       self.block_name = nil
-    else 
-      role.name == "block"
+    elsif role.name == "block"
       self.zone_name = nil
       self.district_name = self.district_name
       self.block_name = self.block_name
+    elsif role.name == "mobile"
+      self.zone_name = nil
+      self.district_name = nil
+      self.block_name = nil
+    elsif role.name == "admin"
+      self.zone_name = nil
+      self.district_name = nil
+      self.block_name = nil
     end
+    
   end
 end
