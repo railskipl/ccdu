@@ -10,6 +10,8 @@ class CreateSurveyReports < ActiveRecord::Migration
       t.string :water_source_type
       t.datetime :date_time
       t.string :surveyor_name
+      t.integer :user_id
+      
       t.timestamps
     end
   end
