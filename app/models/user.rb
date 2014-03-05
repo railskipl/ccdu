@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :block_laboratories
   has_many :survey_reports
   has_many :invoices
+  validates :username, uniqueness: true
 
   before_save :check_area
   #check role & than save area of user
