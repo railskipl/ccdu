@@ -4,12 +4,12 @@ common: &common
 
 development:
     <<: *common
-    bucket: agraseva
+    bucket: ccdu
 
 test:
     <<: *common
-    bucket: agraseva
+    bucket: ccdu
 
 production:
     <<: *common
-    bucket: agraseva
+    bucket: ccdu

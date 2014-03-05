@@ -58,10 +58,11 @@
                           </thead>
                         <% @users.each_with_index.each do |user,i |  %> 
                           <tbody>
+                            <%#raise user.roles.inspect%>
                             <tr>
                               <td><%= i+1 %></td>
                               <td><%= user.username rescue nil%></td>
-                              <td><%= user.roles.map { |e| e.display_name  } rescue nil%></td>
+                              <td><%= (user.roles.map{ |e| e.display_name.to_s.html_safe  }) rescue nil%></td>
                               
                                 <td>Zone :<%= user.zone_name rescue nil%></td>
                              

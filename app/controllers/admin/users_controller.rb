@@ -3,8 +3,11 @@ class Admin::UsersController < ApplicationController
   load_and_authorize_resource
   layout 'admin'
   def index
-  	@users = User.where(:status => true)
+  	@users = User.all
     #raise @user.inspect
+    respond_to do |format|
+      format.html # index.html.erb
+    end
   end
 
   def new
