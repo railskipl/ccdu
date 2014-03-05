@@ -9,12 +9,12 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username ,:role_ids, :mobile_no,
   :user_fullname, :zone_name, :district_name, :block_name,:status,:block_manager_id
   # attr_accessible :title, :body
-  has_many :zones,dependent: :destroy
-  has_many :district,dependent: :destroy
-  has_many :blocks,dependent: :destroy
-  has_many :grampanchyats,dependent: :destroy
-  has_many :villages,dependent: :destroy
-  has_many :habitations,dependent: :destroy
+  # has_many :zones,dependent: :destroy
+  # has_many :district,dependent: :destroy
+  # has_many :blocks,dependent: :destroy
+  # has_many :grampanchyats,dependent: :destroy
+  # has_many :villages,dependent: :destroy
+  # has_many :habitations,dependent: :destroy
   has_many :mobile_devices,dependent: :destroy
   has_many :mobile_users,dependent: :destroy
   has_many :block_laboratories,dependent: :destroy
