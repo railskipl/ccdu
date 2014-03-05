@@ -21,24 +21,24 @@ class User < ActiveRecord::Base
   has_many :survey_reports
   has_many :invoices
 
-  before_save :check_area
-  #check role & than save area of user
-  def check_area 
-    role = Role.find_by_id(self.role_ids)
-    if role.name == "zone"
-       self.zone_name = self.zone_name
-       self.district_name = nil
-       self.block_name = nil
-    elsif 
-      role.name == "district"
-      self.zone_name =  self.zone_name
-      self.district_name = self.district_name
-      self.block_name = nil
-    else 
-      role.name == "block"
-      self.zone_name = nil
-      self.district_name = self.district_name
-      self.block_name = self.block_name
-    end
-  end
+  # before_save :check_area
+  #   #check role & than save area of user
+  #   def check_area 
+  #     role = Role.find_by_id(self.role_ids)
+  #     if role.name == "zone"
+  #        self.zone_name = self.zone_name
+  #        self.district_name = nil
+  #        self.block_name = nil
+  #     elsif 
+  #       role.name == "district"
+  #       self.zone_name =  self.zone_name
+  #       self.district_name = self.district_name
+  #       self.block_name = nil
+  #     else 
+  #       role.name == "block"
+  #       self.zone_name = nil
+  #       self.district_name = self.district_name
+  #       self.block_name = self.block_name
+  #     end
+  #   end
 end
