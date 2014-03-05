@@ -32,7 +32,7 @@ gem 'prototype-rails'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem "will_paginate", "~> 3.0.4" 
-gem 'pg'
+#gem 'pg'
 
 
 

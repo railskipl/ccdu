@@ -58,7 +58,10 @@ class InvoicesController < ApplicationController
   end
   
   def create
-    @invoice = Invoice.new(params[:invoice])
+
+    if params[:invoice][:invoice_date].to_date <= Time.now.to_date
+
+      @invoice = Invoice.new(params[:invoice])
     
       respond_to do |format|
         if @invoice.save
@@ -68,6 +71,10 @@ class InvoicesController < ApplicationController
           format.html { render action: "new" }
           format.json { render json: @invoice.errors, status: :unprocessable_entity }
         end
+      end
+    
+      else
+        redirect_to new_invoice_path, notice: 'select current date.'
       end
   end
   
