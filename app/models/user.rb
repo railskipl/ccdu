@@ -18,8 +18,8 @@ class User < ActiveRecord::Base
   has_many :mobile_devices,dependent: :destroy
   has_many :mobile_users,dependent: :destroy
   has_many :block_laboratories,dependent: :destroy
-  has_many :survey_reports, dependent: :destroy
-  has_many :invoices, dependent: :destroy
+  has_many :survey_reports
+  has_many :invoices
 
   before_save :check_area
   #check role & than save area of user
