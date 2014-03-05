@@ -107,6 +107,7 @@ jQuery(document).ready(function() {
                    PRE MONSOON   <%= f.radio_button :bacteriological, "PRE MONSOON" %>
                    POST MONSOON  <%= f.radio_button :bacteriological, "POST MONSOON" %>
                     <%= f.hidden_field :is_tested, :value=>1 %>
+                    <%= f.hidden_field :districtname, :value=> current_user.district_name %>
                   </div>
                 </div>
                 

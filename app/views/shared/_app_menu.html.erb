@@ -11,10 +11,17 @@
 			<div class="subnav-collapse collapse">
 				<ul class="mainnav">
 				  <% if current_user.has_role? :district %>
-				      <li class="dropdown">
+				        <li class="dropdown">
     						<a href="<%= district_laboratory_reports_path %>">
 
     							<span>Laboratory Report</span>
+    						</a>	    				
+    					</li>
+
+    					<li class="dropdown">
+    						<a href="<%= district_invoice_invoices_path %>">
+
+    							<span>Invoices</span>
     						</a>	    				
     					</li>
     					

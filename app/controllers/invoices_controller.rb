@@ -5,7 +5,7 @@ class InvoicesController < ApplicationController
   require 'will_paginate/array'
   
   def index
-    @invoice = Invoice.find(:all, :order=>"id desc")
+    @invoice = current_user.invoices.find(:all, :order=>"id desc")
     @invoices = @invoice.paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
@@ -18,15 +18,35 @@ class InvoicesController < ApplicationController
   end
   
   def payment
-    @invoice = Invoice.find(:all, :conditions=>"is_invoice = 1", :order=>"id desc")
+    @invoice = current_user.invoices.find(:all, :conditions=>"is_invoice = 1", :order=>"id desc")
     @invoices = @invoice.paginate(page: params[:page], per_page: 10)
   end
   
   def outstanding
-    @invoice = Invoice.find(:all, :conditions=>"is_invoice = 0", :order=>"id desc")
+    @invoice = current_user.invoices.find(:all, :conditions=>"is_invoice = 0", :order=>"id desc")
     @invoices = @invoice.paginate(page: params[:page], per_page: 10)
   end
-  
+
+  def district_invoice
+    @invoice = Invoice.find_all_by_district_name(current_user.district_name, :order=>"id desc")
+    @invoices = @invoice.paginate(page: params[:page], per_page: 10)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xls
+      format.pdf do
+         render :pdf => "district_invoice"
+      end
+    end
+  end
+
+  def approve_invoice
+    @invoice = Invoice.find(params[:id])
+    @invoice.is_invoice = 1
+    @invoice.save!
+    redirect_to district_invoice_invoices_path
+  end
+
   
   def new
     @invoice = Invoice.new

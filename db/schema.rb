@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140304074654) do
+ActiveRecord::Schema.define(:version => 20140305071421) do
 
   create_table "admin_blocks", :force => true do |t|
     t.string   "block_name"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20140304074654) do
     t.date     "approved_date"
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+    t.integer  "user_id"
   end
 
   create_table "mobile_devices", :force => true do |t|
@@ -168,6 +169,7 @@ ActiveRecord::Schema.define(:version => 20140304074654) do
     t.integer  "is_dist_approved",         :default => 0
     t.text     "reason_for_dist_rejected"
     t.integer  "district_level_status"
+    t.string   "districtname"
   end
 
   create_table "users", :force => true do |t|

@@ -96,7 +96,8 @@
                 </thead>
                  <tbody>
                 <% @survey_reports.each_with_index.each do |survey_report,i |  %> 
-                 
+
+                  <%#if survey_report.districtname == current_user.district_name %>
                     <tr id="<%= dom_id(survey_report) %>">
                       <td><%= i+1 %></td>
                       <td><%= survey_report.water_source_code rescue nil%></td>
@@ -115,12 +116,13 @@
                           </div>
                       </td>
                     </tr>
+                  <%#end%>
                 <% end %> 
                 </tbody>
               </table>
               <section id="paginations">
                 <div class="digg_pagination">
-                  <%#= will_paginate @survey_reports %>
+                  <%= will_paginate @survey_reports %>
                 </div>
               </section>
             </section>

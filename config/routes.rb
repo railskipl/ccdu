@@ -22,6 +22,8 @@ Ccdu::Application.routes.draw do
   resources :invoices do 
     get 'payment',:on => :collection
     get 'outstanding',:on => :collection
+    get 'district_invoice', :on => :collection 
+    get 'approve_invoice', :on => :member
   end
   
 
