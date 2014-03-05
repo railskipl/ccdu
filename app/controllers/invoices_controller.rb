@@ -74,7 +74,7 @@ class InvoicesController < ApplicationController
       end
     
       else
-        redirect_to new_invoice_path, notice: 'select current date.'
+        redirect_to new_invoice_path, notice: 'Invoice date can not be greater than current date.'
       end
   end
   
