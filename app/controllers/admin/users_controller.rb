@@ -3,11 +3,8 @@ class Admin::UsersController < ApplicationController
   load_and_authorize_resource
   layout 'admin'
   def index
-  	@users = User.all
+  	@users = User.where(:status => true)
     #raise @user.inspect
-    respond_to do |format|
-      format.html # index.html.erb
-    end
   end
 
   def new
@@ -46,7 +43,6 @@ class Admin::UsersController < ApplicationController
 
   def destroy
      @user = User.find(params[:id])
-
      @user.destroy
 
 
