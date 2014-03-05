@@ -85,7 +85,6 @@ class SurveyReportsController < ApplicationController
     #raise params.inspect
     location = params["location"].split("%")
     @surveyor = User.find_by_block_manager_id(params[:CurrentUserId])
-    raise @surveyor.inspect
     @survey_report = SurveyReport.create(
       :latitude => location[0],
       :longitude => location[1],

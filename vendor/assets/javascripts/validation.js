@@ -17,7 +17,7 @@ jQuery(document).ready(function() {
 		},
 	messages: {
 	"mobile_device[imei]":{
-					  required: "Name cannot be blank!"
+					  required: "IMEI cannot be blank!"
 					 
 				}	,
 	    "mobile_device[manufacturer_name]" :{

@@ -48,19 +48,19 @@
                     </td>
                     <td>Water Source </td>
                     <td><span class="controls">
-                      <%= f.select :source_name_eq, SurveyReport.find(:all,:conditions=>"actions != 1", :order=>"id desc",:select => ("DISTINCT source_name")).map{|s| [s.source_name, s.source_name]}, {:prompt => "Select Source Name"}%>
+                      <%= f.select :source_name_eq, SurveyReport.find(:all,:conditions=>"actions != 1", :order=>"id desc").map{|s| [s.source_name, s.source_name]}, {:prompt => "Select Source Name"}%>
                       </span>
                     </td>
                   </tr>
                   <tr>
                     <td>Types</td>
                     <td><span class="controls">
-                      <%= f.select :water_source_type_eq, SurveyReport.find(:all,:conditions=>"actions != 1", :order=>"id desc",:select => ("DISTINCT water_source_type")).map{|s| [s.water_source_type, s.water_source_type]},{:prompt => "Select Source Type"} %>
+                      <%= f.select :water_source_type_eq, SurveyReport.find(:all,:conditions=>"actions != 1", :order=>"id desc").map{|s| [s.water_source_type, s.water_source_type]},{:prompt => "Select Source Type"} %>
                       </span>
                     </td>
                     <td>Habitation</td>
                     <td><span class="controls">
-                      <%= f.select :habitation_eq, SurveyReport.find(:all,:conditions=>"actions != 1", :order=>"id desc",:select => ("DISTINCT habitation")).map{|s| [s.habitation, s.habitation]}, {:prompt => "Select Habitation"}%>
+                      <%= f.select :habitation_eq, SurveyReport.find(:all,:conditions=>"actions != 1", :order=>"id desc").map{|s| [s.habitation, s.habitation]}, {:prompt => "Select Habitation"}%>
                       </span>
                     </td>
                     <td>&nbsp;</td>
@@ -106,6 +106,7 @@
                     <th>Water source type</th>
                     <th>Date time</th>
                     <th>Surveyor name</th>
+                    <th>Surveyor Remark</th>
                     <th>Source Image</th>
                     <th>Source Location Image</th>
                     <th style="width:20%">Action</th>
@@ -122,6 +123,7 @@
                       <td><%= survey_report.water_source_type rescue nil%></td>
                       <td><%= survey_report.created_at.strftime("%d-%m-%Y %I:%M %p") rescue nil%></td>
                       <td><%= survey_report.surveyor_name rescue nil%></td>
+                      <td><%= survey_report.remarks rescue nil%></td>
                       <td><%= image_tag survey_report.image.url, :height=> 100, :width=>100 rescue nil%></td>
                       <td><%= image_tag survey_report.image1.url, :height=> 100, :width=>100 rescue nil%></td>
                       <td><%= link_to "View", survey_report_path(survey_report), :class=>"btn" %> | 

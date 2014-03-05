@@ -114,6 +114,7 @@
                     <th>Water source type</th>
                     <th>Date time</th>
                     <th>Surveyor name</th>
+                    <th>Surveyor Remark</th>
                     <th>Source Image</th>
                     <th>Source Location Image</th>
                     <th style="width:20%">Action</th>
@@ -130,6 +131,7 @@
                       <td><%= survey_report.water_source_type rescue nil%></td>
                       <td><%= survey_report.created_at.strftime("%d-%m-%Y %I:%M %p") rescue nil%></td>
                       <td><%= survey_report.surveyor_name rescue nil%></td>
+                      <td><%= survey_report.remarks rescue nil%></td>
                       <td><%= image_tag survey_report.image.url, :height=> 100, :width=>100 rescue nil%></td>
                       <td><%= image_tag survey_report.image1.url, :height=> 100, :width=>100 rescue nil%></td>
                       <td><div style="float:left; margin-right:3px;"><%= link_to "View", laboratory_report_path(survey_report), :class=>"btn" %> </div>
