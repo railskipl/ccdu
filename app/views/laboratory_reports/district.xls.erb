@@ -1,0 +1,47 @@
+<div class="page-header-custom">
+            <h3 align = "center">
+               District Testing Reports</h3>
+            <!--subnav-->
+          
+</div>
+
+<table cellpadding="1" cellspacing="1" border="1" class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>Sr. No. </th>
+                    <th>Sample Code</th>
+                    <th>pH</th>
+                    <th>TDS</th>
+                    <th>Residual Chlorine</th>
+                    <th>Fluoride</th>
+                    <th>Chloride</th>
+                    <th>Nitrate</th>
+                    <th>Alkalinity</th>
+                    <th>Total Hardness</th>
+                    <th>Pre Monsoon</th>
+                    <th>Post Monsoon</th>
+                  </tr>
+                </thead>
+                 <tbody>
+                <% @survey_reports.each_with_index.each do |survey_report,i |  %> 
+
+                  
+                    <tr id="<%= dom_id(survey_report) %>">
+                      <td><%= i+1 %></td>
+                      <td><%= survey_report.water_source_code rescue nil%></td>
+                      <td><%= survey_report.ph rescue nil%></td>
+                      <td><%= survey_report.tds rescue nil%></td>
+                      <td><%= survey_report.residual_chlorine rescue nil%></td>
+                      <td><%= survey_report.fluoride rescue nil%></td>
+                      <td><%= survey_report.chloride rescue nil%></td>
+                      <td><%= survey_report.nitrate rescue nil%></td>
+                      <td><%= survey_report.alkaliniy rescue nil%></td>
+                      <td><%= survey_report.total_hardness rescue nil%></td>
+                      <td><%= survey_report.bacteriological rescue nil %></td>
+                      <td><%= survey_report.postmonsoon rescue nil %></td>
+                      
+                    </tr>
+                  
+                <% end %> 
+                </tbody>
+              </table>

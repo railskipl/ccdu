@@ -60,7 +60,7 @@
                     <td>
                       <%= button_tag  :submit , name: "subaction",value: "update", :class => "btn btn btn-primary" %>
                       <!-- <button class="btn btn btn-primary" type="reset">Show</button> -->
-                      <!-- <button class="btn btn btn-primary" type="reset">Clear</button> -->
+                      <%= link_to "Clear", rejected_sample_laboratory_reports_path, :class=>"btn btn btn-primary"%>
                       
                     </td>
                       <td>&nbsp;</td>
@@ -79,8 +79,8 @@
                   <h3>LABORATORY REPORT</h3>
                 </div>
                 <div class="span6" style="text-align:right">
-                  <%= link_to image_tag('/assets/excel.png', :border=>"0", :align=>"absmiddle") + " Excel", laboratory_reports_path(params.merge(format: "xls")), :method=> :get, :class=>"btn btn-secondary" %>
-                  <%= link_to image_tag('/assets/pdf.png', :border=>"0", :align=>"absmiddle") + " PDF", laboratory_reports_path(params.merge(format: "pdf")), :method=> :get, :class=>"btn btn-secondary" %>
+                  <%= link_to image_tag('/assets/excel.png', :border=>"0", :align=>"absmiddle") + " Excel", rejected_sample_laboratory_reports_path(params.merge(format: "xls")), :method=> :get, :class=>"btn btn-secondary" %>
+                  <%= link_to image_tag('/assets/pdf.png', :border=>"0", :align=>"absmiddle") + " PDF", rejected_sample_laboratory_reports_path(params.merge(format: "pdf")), :method=> :get, :class=>"btn btn-secondary" %>
                    
                 </div>
               </div>
@@ -96,9 +96,12 @@
                     <th>Fluoride</th>
                     <th>Chloride</th>
                     <th>Nitrate</th>
-                    <th>Alkaliniy</th>
+                    <th>Alkalinity</th>
                     <th>Total Hardness</th>
-                    <th style="width:20%">Action</th>
+                    <th>Pre Monsoon</th>
+                    <th>Post Monsoon</th>
+                    <th>Reason For Reject</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                  <tbody>
@@ -115,7 +118,10 @@
                       <td><%= survey_report.nitrate rescue nil%></td>
                       <td><%= survey_report.alkaliniy rescue nil%></td>
                       <td><%= survey_report.total_hardness rescue nil%></td>
-                      <td><div style="float:left; margin-right:3px;"><%= link_to "View", laboratory_report_path(survey_report), :class=>"btn" %> </div></td>
+                      <td><%= survey_report.bacteriological rescue nil %></td>
+                      <td><%= survey_report.postmonsoon rescue nil %></td>
+                      <td><%= survey_report.reason_for_dist_rejected rescue nil%></td>
+                      <td><div style="float:left; margin-right:3px;"><%= link_to "Retest Report", update_testing_report_laboratory_report_path(survey_report), remote: true, :class=>"btn" %> </div></td>
                     </tr>
                 <% end %> 
                 </tbody>

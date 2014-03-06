@@ -1,5 +1,3 @@
-
-
 <div class="main">
   <div class="container">
     <div class="row">
@@ -47,9 +45,11 @@
                       <td><%= invoice.invoice_date.strftime("%d-%m-%Y") rescue nil%></td>
                       <td><%= invoice.no_of_sample rescue nil%></td>
                       <td><%= invoice.amount rescue nil%></td>
-                      <td><%= link_to "View", invoice_path(invoice), :class=>"btn" %>
+                      <td>
                         <%if invoice.is_invoice == 0 %>
-                          <%= link_to "Approve", approve_invoice_invoice_path(invoice), :class=>"btn" %>
+                          <%= link_to "Payment", approve_invoice_invoice_path(invoice), :class=>"btn" %>
+                        <%else%>
+                           <%= "Paid"%>
                         <%end%>
                       </td>
                     </tr>

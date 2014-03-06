@@ -1,61 +1,100 @@
-<%= form_for(@survey_report) do |f| %>
-  <% if @survey_report.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@survey_report.errors.count, "error") %> prohibited this survey_report from being saved:</h2>
+<div class="main">
+  <div class="container">
+    <div class="row">
+      <div class="span12">          
+        <div class="widget stacked ">
+          <div class="widget-header">
+            <i class="icon-pencil"></i>
+            <h3>Survey Reports</h3>
+          </div> <!-- /widget-header -->
+          <div class="widget-content">
+            <div style="margin-bottom:10px" class="row-fluid">
+              <!-- <div class="span12">
+                <a href="<%= admin_blocks_path%>" class="btn">Back</a>          
+              </div> -->
+            </div>
+            <%= form_for  @survey_report, :html => {:id => "survey_report",:class => "form-horizontal"}  do |f| %>
+              <% if @survey_report.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@survey_report.errors.count, "error") %> prohibited this from being saved:</h2>
+                  <ul>
+                    <% @survey_report.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <fieldset>
+                <div class="control-group">
+                  <label for="name" class="control-label">Block Name</label>
+                  <div class="controls">
+                    <%= f.text_field :source_name , :class => "input-large",:readonly => true%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Code</label>
+                  <div class="controls">
+                    <%= f.text_field :water_source_code , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Source Location</label>
+                  <div class="controls">
+                    <%= f.text_field :source_location,:class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Habitation</label>
+                  <div class="controls">
+                    <%= f.text_field :habitation, :class => "input-large" %>
+                  </div>
+                </div>
+                
+                <div class="control-group">
+                  <label for="name" class="control-label">Village</label>
+                  <div class="controls">
+                    <%= f.text_field :village , :class => "input-large"%>
+                    
+                  </div>
+                </div>
 
-      <ul>
-      <% @survey_report.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+                <div class="control-group">
+                  <label for="name" class="control-label">Grampanchyat</label>
+                  <div class="controls">
+                    <%= f.text_field :grampanchayat, :class => "input-large"%>
+                    
+                  </div>
+                </div>
 
-  <div class="field">
-    <%= f.label :Image1 %><br />
-    <%= f.file_field :image %>
-  </div>
-  <div class="field">
-    <%= f.label :Image2 %><br />
-    <%= f.file_field :image1 %>
-  </div>
-  <div class="field">
-    <%= f.label :source_name %><br />
-    <%= f.text_field :source_name %>
-  </div>
-  <div class="field">
-    <%= f.label :source_code %><br />
-    <%= f.text_field :source_code %>
-  </div>
-  <div class="field">
-    <%= f.label :source_location %><br />
-    <%= f.text_field :source_location %>
-  </div>
-  <div class="field">
-    <%= f.label :habitation %><br />
-    <%= f.text_field :habitation %>
-  </div>
-  <div class="field">
-    <%= f.label :village %><br />
-    <%= f.text_field :village %>
-  </div>
-  <div class="field">
-    <%= f.label :grampanchayat %><br />
-    <%= f.text_field :grampanchayat %>
-  </div>
-  <div class="field">
-    <%= f.label :water_source_type %><br />
-    <%= f.text_field :water_source_type %>
-  </div>
-  <div class="field">
-    <%= f.label :date_time %><br />
-    <%= f.datetime_select :date_time %>
-  </div>
-  <div class="field">
-    <%= f.label :surveyor_name %><br />
-    <%= f.text_field :surveyor_name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+                <div class="control-group">
+                  <label for="name" class="control-label">Source Type</label>
+                  <div class="controls">
+                    <%= f.text_field :water_source_type, :class => "input-large"%>
+                    
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <label for="name" class="control-label">Surveyor Name</label>
+                  <div class="controls">
+                    <%= f.text_field :surveyor_name, :class => "input-large", :readonly => true%>
+                    
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="controls">
+                    <%= f.submit "Submit", :class => "btn"%>
+                  </div>
+                </div>
+                
+              </fieldset>
+            <%end%>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
+      </div>
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</div> <!-- /main -->
+
+
+

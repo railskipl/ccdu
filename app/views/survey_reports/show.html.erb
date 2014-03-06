@@ -1,51 +1,102 @@
-<p id="notice"><%= notice %></p>
+<div class="main">
+  <div class="container">
+    <div class="row">
+      <div class="span12">          
+        <div class="widget stacked ">
+          <div class="widget-header">
+            <i class="icon-pencil"></i>
+            <h3>Show Survey Reports</h3>
+          </div> <!-- /widget-header -->
+          <div class="widget-content">
+            <div class="row-fluid">
+              <div class="span12">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>&nbsp;</td>
+                      <td>
+                        <%#= link_to "Back", admin_habitations_path, :class => "btn"%>
+                        <%#= link_to "Edit Village", edit_admin_habitation_path(@admin_habitation), :class=>"btn", :type=>"reset"%>
+                      </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            </br>
+            <section id="tables">
+              <table class="table table-bordered table-striped">
+                   
+                    <tbody>
+                      <tr>
+                        <td>Source name</td>
+                        <td><%= @survey_report.source_name rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Source code</td>
+                        <td><%= @survey_report.water_source_code rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Source location</td>
+                        <td><%= @survey_report.source_location rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Habitation</td>
+                        <td><%= @survey_report.habitation rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Village</td>
+                        <td><%= @survey_report.village rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Grampanchayat</td>
+                        <td><%= @survey_report.grampanchayat rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Water source type</td>
+                        <td><%= @survey_report.water_source_type rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Date time</td>
+                        <td><%= @survey_report.created_at.strftime("%d-%m-%Y %I:%M %p") rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Surveyor name</td>
+                        <td><%= @survey_report.surveyor_name rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Surveyor Remarks</td>
+                        <td><%= @survey_report.remarks rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Latitude</td>
+                        <td><%= @survey_report.latitude rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Longitude</td>
+                        <td><%= @survey_report.longitude rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Source Image</td>
+                        <td><%= image_tag @survey_report.image.url, :width=>200 rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Source Location Image</td>
+                        <td><%= image_tag @survey_report.image1.url, :width=>200 rescue nil%></td>
+                      </tr>
+                    </tbody>
+              </table>
+            </section>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
+      </div>
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</div> <!-- /main -->
 
-<p>
-  <b>Source name:</b>
-  <%= @survey_report.source_name %>
-</p>
-
-<p>
-  <b>Source code:</b>
-  <%= @survey_report.source_code %>
-</p>
-
-<p>
-  <b>Source location:</b>
-  <%= @survey_report.source_location %>
-</p>
-
-<p>
-  <b>Habitation:</b>
-  <%= @survey_report.habitation %>
-</p>
-
-<p>
-  <b>Village:</b>
-  <%= @survey_report.village %>
-</p>
-
-<p>
-  <b>Grampanchayat:</b>
-  <%= @survey_report.grampanchayat %>
-</p>
-
-<p>
-  <b>Water source type:</b>
-  <%= @survey_report.water_source_type %>
-</p>
-
-<p>
-  <b>Date time:</b>
-  <%= @survey_report.created_at.strftime("%d-%m-%Y %I:%M %p") %>
-</p>
-
-<p>
-  <b>Surveyor name:</b>
-  <%= @survey_report.surveyor_name %>
-</p>
 
 
 
 
-<%= link_to 'Back', survey_reports_path %>

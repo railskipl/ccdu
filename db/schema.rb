@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140305071421) do
+ActiveRecord::Schema.define(:version => 20140306105135) do
 
   create_table "admin_blocks", :force => true do |t|
     t.string   "block_name"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20140305071421) do
     t.text     "reason_for_dist_rejected"
     t.integer  "district_level_status"
     t.string   "districtname"
+    t.string   "postmonsoon"
   end
 
   create_table "users", :force => true do |t|

@@ -109,7 +109,8 @@
                     <th>Surveyor Remark</th>
                     <th>Source Image</th>
                     <th>Source Location Image</th>
-                    <th style="width:20%">Action</th>
+                    <th style="width:15%">Action</th>
+                    <th>Edit</th>
                   </tr>
                 </thead>
                  <tbody>
@@ -126,14 +127,16 @@
                       <td><%= survey_report.remarks rescue nil%></td>
                       <td><%= image_tag survey_report.image.url, :height=> 100, :width=>100 rescue nil%></td>
                       <td><%= image_tag survey_report.image1.url, :height=> 100, :width=>100 rescue nil%></td>
-                      <td><%= link_to "View", survey_report_path(survey_report), :class=>"btn" %> | 
+                      <td><%= link_to "View", survey_report_path(survey_report), :class=>"btn" %> 
                         <div id="action<%= survey_report.id %>">
                         <% if survey_report.actions == 0 %>
                           <%= link_to "Accept", accept_survey_report_path(survey_report), remote: true, :class=>"btn" %>
                           <%= link_to "Reject", reject_survey_report_path(survey_report), remote: true, :class=>"btn" %>
                         <% end %>
                         </div>
+
                       </td>
+                      <td><%= link_to "Edit", edit_survey_report_path(survey_report), :class=>"btn" %></td>
                     </tr>
                 <% end %> 
                 </tbody>

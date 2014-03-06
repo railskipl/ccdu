@@ -10,12 +10,16 @@ Ccdu::Application.routes.draw do
   resources :laboratory_reports do
     get 'district',:on => :collection
     get 'send_for_testing',:on => :member
+    get 'update_testing_report',:on => :member
+    post 'submit_update_test',:on => :member
     post 'submit_test',:on => :member
     get 'accept',:on => :member
     get 'reject',:on => :member
     post 'reason_for_reject' , :on => :member
     get 'accepted_sample',:on => :collection
     get 'rejected_sample',:on => :collection
+    get 'district_accept', :on => :collection
+    get 'district_reject', :on => :collection
   end
   
   resources :block_laboratories

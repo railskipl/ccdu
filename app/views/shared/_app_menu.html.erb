@@ -11,12 +11,18 @@
 			<div class="subnav-collapse collapse">
 				<ul class="mainnav">
 				  <% if current_user.has_role? :district %>
-				        <li class="dropdown">
-    						<a href="<%= district_laboratory_reports_path %>">
-
-    							<span>Laboratory Report</span>
-    						</a>	    				
-    					</li>
+				        
+    					<li class="dropdown">
+						  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"> Laboratory Report<b class="caret"></b></a>
+						
+						    <ul class="dropdown-menu">
+							    <li class="dropdown">	<a href="<%= district_laboratory_reports_path %>" ><span>Tested Report</span></a></li>
+		                        <li class="divider"></li>
+		                        <li class="dropdown">	<a href="<%= district_accept_laboratory_reports_path%>" ><span>Accepted Report</span></a></li>
+		                        <li class="divider"></li>
+		                        <li class="dropdown">	<a href="<%= district_reject_laboratory_reports_path%>" ><span>Rejected Report</span></a></li>
+					 	    </ul>
+					    </li>
 
     					<li class="dropdown">
     						<a href="<%= district_invoice_invoices_path %>">
@@ -44,13 +50,13 @@
 					<li class="dropdown">
 					  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"> Laboratory Report<b class="caret"></b></a>
 					
-					  <ul class="dropdown-menu">
-					    <li class="dropdown">	<a href="<%= laboratory_reports_path %>" ><span>Testing Report</span></a></li>
-              <li class="divider"></li>
-              <li class="dropdown">	<a href="<%= accepted_sample_laboratory_reports_path%>" ><span>Accept Report</span></a></li>
-              <li class="divider"></li>
-              <li class="dropdown">	<a href="<%= rejected_sample_laboratory_reports_path%>" ><span>Reject Report</span></a></li>
-				 		</ul>
+					    <ul class="dropdown-menu">
+						    <li class="dropdown">	<a href="<%= laboratory_reports_path %>" ><span>Testing Report</span></a></li>
+	                        <li class="divider"></li>
+	                        <li class="dropdown">	<a href="<%= accepted_sample_laboratory_reports_path%>" ><span>Accept Report</span></a></li>
+	                        <li class="divider"></li>
+	                        <li class="dropdown">	<a href="<%= rejected_sample_laboratory_reports_path%>" ><span>Reject Report</span></a></li>
+				 	    </ul>
 					</li>
 					
 					<li class="dropdown">

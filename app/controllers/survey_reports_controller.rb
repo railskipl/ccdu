@@ -56,7 +56,7 @@ class SurveyReportsController < ApplicationController
   # GET /survey_reports/1.json
   def show
     @survey_report = SurveyReport.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @survey_report }
@@ -77,6 +77,8 @@ class SurveyReportsController < ApplicationController
   # GET /survey_reports/1/edit
   def edit
     @survey_report = SurveyReport.find(params[:id])
+    # @code = @survey_report.water_source_code.split("/")
+    # raise @code[4].inspect
   end
 
   # POST /survey_reports

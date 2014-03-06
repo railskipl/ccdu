@@ -20,11 +20,27 @@ class InvoicesController < ApplicationController
   def payment
     @invoice = current_user.invoices.find(:all, :conditions=>"is_invoice = 1", :order=>"id desc")
     @invoices = @invoice.paginate(page: params[:page], per_page: 10)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xls
+      format.pdf do
+         render :pdf => "district_invoice"
+      end
+    end
   end
   
   def outstanding
     @invoice = current_user.invoices.find(:all, :conditions=>"is_invoice = 0", :order=>"id desc")
     @invoices = @invoice.paginate(page: params[:page], per_page: 10)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xls
+      format.pdf do
+         render :pdf => "district_invoice"
+      end
+    end
   end
 
   def district_invoice
