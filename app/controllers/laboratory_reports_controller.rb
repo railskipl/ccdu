@@ -312,6 +312,18 @@ class LaboratoryReportsController < ApplicationController
     end
 
   end
+
+  def zonal_reports
+    
+  end
+
+  def zone_accept
+    
+  end
+
+  def zone_reject
+    
+  end
   
   
 end

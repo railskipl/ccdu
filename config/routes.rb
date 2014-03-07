@@ -9,6 +9,9 @@ Ccdu::Application.routes.draw do
   
   resources :laboratory_reports do
     get 'district',:on => :collection
+    get 'zonal_reports',:on => :collection
+    get 'zone_accept', :on => :collection
+    get 'zone_reject', :on => :collection
     get 'send_for_testing',:on => :member
     get 'update_testing_report',:on => :member
     post 'submit_update_test',:on => :member

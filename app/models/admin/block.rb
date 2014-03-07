@@ -4,7 +4,7 @@ class Admin::Block < ActiveRecord::Base
 	has_many :grampanchyats
   attr_accessible :block_name, :district_id, :code, :lab_name, :laboratory_present
 
-  validates_presence_of :block_name, :district_id, :code, :laboratory_present
+  
 
   before_save :name_code, :labname
 
