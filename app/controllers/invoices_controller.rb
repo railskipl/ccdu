@@ -56,6 +56,18 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def zone_invoice
+    @invoice = Invoice.find_all_by_zone_name(current_user.zone_name,:conditions=>"is_invoice = 1", :order=>"id desc")
+    @invoices = @invoice.paginate(page: params[:page], per_page: 10)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xls
+      format.pdf do
+         render :pdf => "zone_invoice"
+      end
+    end
+  end
+
   def approve_invoice
     @invoice = Invoice.find(params[:id])
     @invoice.is_invoice = 1
@@ -78,9 +90,12 @@ class InvoicesController < ApplicationController
     if params[:invoice][:invoice_date].to_date <= Time.now.to_date
 
       @invoice = Invoice.new(params[:invoice])
-    
+      @district = Admin::District.find_by_district_name( @invoice.district_name)
+      @zone = Admin::Zone.find(@district.zone_id)
+      @invoice.zone_name =  @zone.zone_name
       respond_to do |format|
         if @invoice.save
+          
           format.html { redirect_to invoices_url, notice: 'Invoice generated successfully.' }
           format.json { render json: @invoice, status: :created, location: @invoice }
         else

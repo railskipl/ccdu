@@ -1,1 +1,147 @@
-<%raise "hi"%>
+<%= stylesheet_link_tag "facebox.css" %>
+
+<%= javascript_include_tag "facebox.js", "jquery.validate.min" %>
+<script>
+(function() {
+
+  jQuery(function() {
+  jQuery('#start_date').datepicker( 
+    { altField  : '#start_date',  // selector of the hidden input field you want sent to the server
+      dateFormat: 'yy-mm-dd',
+      altFormat : 'yy-mm-dd' } );
+    });
+
+
+}).call(this);
+
+</script>
+
+<script>
+(function() {
+
+  jQuery(function() {
+  jQuery('#end_date').datepicker( 
+    { altField  : '#end_date',  // selector of the hidden input field you want sent to the server
+      dateFormat: 'yy-mm-dd',
+      altFormat : 'yy-mm-dd' } );
+    });
+
+
+}).call(this);
+
+</script> 
+<div class="main">
+  <div class="container">
+    <div class="row">
+      <div class="span12">          
+        <div class="widget stacked ">
+          <div class="widget-header">
+            <i class="icon-pencil"></i>
+            <h3>Accepted at District Lab </h3>
+          </div> <!-- /widget-header -->
+          <div class="widget-content">
+            <div class="row-fluid">
+              <div class="span12">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <%= form_tag accepted_sample_laboratory_reports_path ,:method => :get do %>
+                  <tr>
+                    <td>From Date </td>
+                    <td><span class="controls">
+                      <%= text_field_tag :start_date %>
+                    </span></td>
+                    <td>To Date </td>
+                    <td><span class="controls">
+                      <%= text_field_tag :end_date %>
+                       </span>
+                    </td>
+            
+                  </tr>
+                  
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                      <%= button_tag  :submit , name: "subaction",value: "update", :class => "btn btn btn-primary" %>
+                      <!-- <button class="btn btn btn-primary" type="reset">Show</button> -->
+                      <%= link_to "Clear", accepted_sample_laboratory_reports_path, :class=>"btn btn btn-primary"%>
+                      
+                    </td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                  </tr>
+                 <% end %>
+                </table>
+              </div>
+            </div>
+            </br>
+            <section id="tables">
+              <div class="row-fluid">
+                <div class="span6">
+                  <h3>LABORATORY REPORT</h3>
+                </div>
+                <div class="span6" style="text-align:right">
+                  <%= link_to image_tag('/assets/excel.png', :border=>"0", :align=>"absmiddle") + " Excel", accepted_sample_laboratory_reports_path(params.merge(format: "xls")), :method=> :get, :class=>"btn btn-secondary" %>
+                  <%= link_to image_tag('/assets/pdf.png', :border=>"0", :align=>"absmiddle") + " PDF", accepted_sample_laboratory_reports_path(params.merge(format: "pdf")), :method=> :get, :class=>"btn btn-secondary" %>
+                   
+                </div>
+              </div>
+              
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Sr. No. </th>
+                    <th>Sample Code</th>
+                    <th>pH</th>
+                    <th>TDS</th>
+                    <th>Residual Chlorine</th>
+                    <th>Fluoride</th>
+                    <th>Chloride</th>
+                    <th>Nitrate</th>
+                    <th>Alkalinity</th>
+                    <th>Total Hardness</th>
+                    <th>Pre Monsoon</th>
+                    <th>Post Monsoon</th>
+                    <!-- th style="width:20%">Action</th> -->
+                  </tr>
+                </thead>
+                 <tbody>
+                <% @survey_reports.each_with_index.each do |survey_report,i |  %> 
+                 
+                    <tr id="<%= dom_id(survey_report) %>">
+                      <td><%= i+1 %></td>
+                      <td><%= survey_report.water_source_code rescue nil%></td>
+                      <td><%= survey_report.ph rescue nil%></td>
+                      <td><%= survey_report.tds rescue nil%></td>
+                      <td><%= survey_report.residual_chlorine rescue nil%></td>
+                      <td><%= survey_report.fluoride rescue nil%></td>
+                      <td><%= survey_report.chloride rescue nil%></td>
+                      <td><%= survey_report.nitrate rescue nil%></td>
+                      <td><%= survey_report.alkaliniy rescue nil%></td>
+                      <td><%= survey_report.total_hardness rescue nil%></td>
+                      <td><%= survey_report.bacteriological rescue nil %></td>
+                      <td><%= survey_report.postmonsoon rescue nil %></td>
+                      <!-- <td><div style="float:left; margin-right:3px;"><%= link_to "View", laboratory_report_path(survey_report), :class=>"btn" %> </div></td> -->
+                    </tr>
+                <% end %> 
+                </tbody>
+              </table>
+              <section id="paginations">
+                <div class="digg_pagination">
+                  <%= will_paginate @survey_reports %>
+                </div>
+              </section>
+            </section>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
+      </div>
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</div> <!-- /main -->
+    
+
+
+
+
+
+

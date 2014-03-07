@@ -1,0 +1,74 @@
+<div class="main">
+  <div class="container">
+    <div class="row">
+      <div class="span12">          
+        <div class="widget stacked ">
+          <div class="widget-header">
+            <i class="icon-pencil"></i>
+            <h3>Payment Received</h3>
+          </div> <!-- /widget-header -->
+          <div class="widget-content">
+            
+            <section id="tables">
+              <div class="row-fluid">
+                <div class="span6">
+
+                </div>
+                <div class="span6" style="text-align:right">
+                  <%= link_to image_tag('/assets/excel.png', :border=>"0", :align=>"absmiddle") + " Excel", payment_invoices_path(params.merge(format: "xls")), :method=> :get, :class=>"btn btn-secondary" %>
+                  <%= link_to image_tag('/assets/pdf.png', :border=>"0", :align=>"absmiddle") + " PDF", payment_invoices_path(params.merge(format: "pdf")), :method=> :get, :class=>"btn btn-secondary" %>
+                   
+                </div>
+              </div>
+              
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Sr. No. </th>
+                    <th>Invoice Number</th>
+                    <th>District Name</th>
+                    <th>Block Name</th>
+                    <th>Invoice Date</th>
+                    <th>Number of Sample</th>
+                    <th>Amount</th>
+                    
+                  </tr>
+                </thead>
+                 <tbody>
+                <% @invoices.each.with_index(1) do |invoice,index |  %> 
+                 
+                    <tr id="<%= dom_id(invoice) %>">
+                      <td><%= index%></td>
+                      <td><%= invoice.invoice_no rescue nil%></td>
+                      <td><%= invoice.district_name rescue nil%></td>
+                      <td><%= invoice.block_name rescue nil%></td>
+                      <td><%= invoice.invoice_date.strftime("%d-%m-%Y") rescue nil%></td>
+                      <td><%= invoice.no_of_sample rescue nil%></td>
+                      <td><%= invoice.amount rescue nil%></td>
+                      
+                       
+                        </div>
+                      </td>
+                    </tr>
+                <% end %> 
+                </tbody>
+              </table>
+              <section id="paginations">
+                <div class="digg_pagination">
+                  <%= will_paginate @invoices %>
+                </div>
+              </section>
+            </section>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
+      </div>
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</div> <!-- /main -->
+    
+
+
+
+
+
+

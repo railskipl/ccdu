@@ -87,6 +87,13 @@ class SurveyReportsController < ApplicationController
     #raise params.inspect
     location = params["location"].split("%")
     @surveyor = User.find_by_block_manager_id(params[:CurrentUserId])
+    #this @surveyor used to store name of mobile surveyor
+    @user  = User.find(params[:CurrentUserId]) 
+    #this @user used to find district name from block manager 
+    @district = Admin::District.find_by_district_name(@user.district_name)
+    # we will use @user for finding district example "JODHPUR,zone_id = 1"
+    @zone = Admin::Zone.find(@district.zone_id)
+    #And last we will find zone name with the help of @district credentials
     @survey_report = SurveyReport.create(
       :latitude => location[0],
       :longitude => location[1],
@@ -103,7 +110,8 @@ class SurveyReportsController < ApplicationController
       :remarks => params[:Remark],
       :water_source_code => params[:WaterSourceCode],
       :user_id => params[:CurrentUserId],
-      :surveyor_name => @surveyor.user_fullname
+      :surveyor_name => @surveyor.user_fullname,
+      :zone_name => @zone.zone_name
 
     )
     @surveycode = @survey_report.water_source_code

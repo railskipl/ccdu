@@ -51,11 +51,19 @@
 									Block <%= current_user.block_name%>
 									<b ></b>
 								</a>
-							<%else%>
+							<%elsif current_user.has_role?(:district)%>
    
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									
 									District &nbsp;&nbsp;<%= current_user.district_name%>
+									<b ></b>
+								</a>
+
+							<%else%>
+ 
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									
+									Zone &nbsp;&nbsp;<%= current_user.zone_name%>
 									<b ></b>
 								</a>
 							<%end%>

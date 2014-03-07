@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140306105135) do
+ActiveRecord::Schema.define(:version => 20140307135212) do
 
   create_table "admin_blocks", :force => true do |t|
     t.string   "block_name"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20140306105135) do
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
     t.integer  "user_id"
+    t.string   "zone_name"
   end
 
   create_table "mobile_devices", :force => true do |t|
@@ -171,6 +172,7 @@ ActiveRecord::Schema.define(:version => 20140306105135) do
     t.integer  "district_level_status"
     t.string   "districtname"
     t.string   "postmonsoon"
+    t.string   "zone_name"
   end
 
   create_table "users", :force => true do |t|

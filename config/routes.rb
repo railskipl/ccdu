@@ -31,6 +31,7 @@ Ccdu::Application.routes.draw do
     get 'outstanding',:on => :collection
     get 'district_invoice', :on => :collection 
     get 'approve_invoice', :on => :member
+    get 'zone_invoice', :on => :collection
   end
   
 
