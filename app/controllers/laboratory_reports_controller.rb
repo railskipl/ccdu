@@ -326,25 +326,25 @@ class LaboratoryReportsController < ApplicationController
 
          @survey_report = SurveyReport.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
          @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
-         
+         zone
         else start_from <= start_to
 
           if start_from.blank?
             @survey_reports = SurveyReport.find_all_by_districtname(districtname,:conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc" ).paginate(page: params[:page], per_page: 10)
+            zone
             #@survey_reports = @survey_report.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
            
           else
             @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
             @survey_reports = @survey_report.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
-            
+            zone
           end
         end
       else
 
         @survey_report = SurveyReport.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
-        zone = Admin::Zone.find_by_zone_name(current_user.zone_name) 
-        @districts = Admin::District.find_all_by_zone_id(zone.id)
+        zone
         
 
       end
@@ -359,6 +359,16 @@ class LaboratoryReportsController < ApplicationController
     
   end
 
+  def zone #this method is used to find districts according to the zones
+    if current_user.has_role?(:zone)
+      #raise "hi"
+      zone = Admin::Zone.find_by_zone_name(current_user.zone_name) 
+      @districts = Admin::District.find_all_by_zone_id(zone.id)
+    else
+     
+    end
+  end
+
   def zone_reject
 
     if params[:subaction] == "update"
@@ -371,25 +381,25 @@ class LaboratoryReportsController < ApplicationController
 
          @survey_report = SurveyReport.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc")
          @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+         zone
         else start_from <= start_to
 
           if start_from.blank?
             @survey_reports = SurveyReport.find_all_by_districtname(districtname, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc").paginate(page: params[:page], per_page: 10)
-            zone = Admin::Zone.find_by_zone_name(current_user.zone_name) 
-            @districts = Admin::District.find_all_by_zone_id(zone.id)
+            zone
             #@survey_reports = @survey_report.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
            
           else
             @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
             @survey_reports = @survey_report.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            zone
           end
         end
       else
 
         @survey_report = SurveyReport.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc")
         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
-        zone = Admin::Zone.find_by_zone_name(current_user.zone_name) 
-        @districts = Admin::District.find_all_by_zone_id(zone.id)
+        zone
       end
 
       respond_to do |format|
