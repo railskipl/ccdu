@@ -343,6 +343,8 @@ class LaboratoryReportsController < ApplicationController
 
         @survey_report = SurveyReport.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+        zone = Admin::Zone.find_by_zone_name(current_user.zone_name) 
+        @districts = Admin::District.find_all_by_zone_id(zone.id)
         
 
       end
@@ -386,6 +388,8 @@ class LaboratoryReportsController < ApplicationController
 
         @survey_report = SurveyReport.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc")
         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+        zone = Admin::Zone.find_by_zone_name(current_user.zone_name) 
+        @districts = Admin::District.find_all_by_zone_id(zone.id)
       end
 
       respond_to do |format|
