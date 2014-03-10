@@ -44,8 +44,8 @@ class InvoicesController < ApplicationController
   end
 
   def district_invoice
-    @invoice = Invoice.find_all_by_district_name(current_user.district_name, :order=>"id desc")
-    @invoices = @invoice.paginate(page: params[:page], per_page: 10)
+    @invoice = Invoice.where('district_name = ? ',current_user.district_name)
+    @invoices = @invoice.find(:all ,:order=>"id desc").paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -57,8 +57,10 @@ class InvoicesController < ApplicationController
   end
 
   def zone_invoice
-    @invoice = Invoice.find_all_by_zone_name(current_user.zone_name,:conditions=>"is_invoice = 1", :order=>"id desc")
-    @invoices = @invoice.paginate(page: params[:page], per_page: 10)
+    #@invoice = Invoice.find_all_by_zone_name(current_user.zone_name,:conditions=>"is_invoice = 1", :order=>"id desc")
+    @invoice = Invoice.where('zone_name = ?',current_user.zone_name)
+
+    @invoices = @invoice.find(:all,:conditions=>"is_invoice = 1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
     respond_to do |format|
       format.html # index.html.erb
       format.xls

@@ -15,8 +15,8 @@
 
                 </div>
                 <div class="span6" style="text-align:right">
-                  <%= link_to image_tag('/assets/excel.png', :border=>"0", :align=>"absmiddle") + " Excel", payment_invoices_path(params.merge(format: "xls")), :method=> :get, :class=>"btn btn-secondary" %>
-                  <%= link_to image_tag('/assets/pdf.png', :border=>"0", :align=>"absmiddle") + " PDF", payment_invoices_path(params.merge(format: "pdf")), :method=> :get, :class=>"btn btn-secondary" %>
+                  <%= link_to image_tag('/assets/excel.png', :border=>"0", :align=>"absmiddle") + " Excel", zone_invoice_invoices_path(params.merge(format: "xls")), :method=> :get, :class=>"btn btn-secondary" %>
+                  <%= link_to image_tag('/assets/pdf.png', :border=>"0", :align=>"absmiddle") + " PDF", zone_invoice_invoices_path(params.merge(format: "pdf")), :method=> :get, :class=>"btn btn-secondary" %>
                    
                 </div>
               </div>

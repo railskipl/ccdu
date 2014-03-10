@@ -314,21 +314,23 @@ class LaboratoryReportsController < ApplicationController
   end
 
   def zone_accept
+    
+    #raise @districts.inspect
     if params[:subaction] == "update"
         start_from = params[:start_date] rescue ""
         start_to   = params[:end_date] rescue ""
-        district_name = params[:district_name][:district_name_eq] rescue ""
+        districtname = params[:district_name][:district_name_eq] rescue ""
         
         if start_from > start_to 
          flash[:notice] = "Start date cannot be greater than end date"
 
          @survey_report = SurveyReport.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
          @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+         
         else start_from <= start_to
 
           if start_from.blank?
-            @user = User.find_by_block_name(block_name)
-            @survey_reports = SurveyReport.find_all_by_zone_name(@user, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = SurveyReport.find_all_by_districtname(districtname,:conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc" ).paginate(page: params[:page], per_page: 10)
             #@survey_reports = @survey_report.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
            
           else
@@ -341,6 +343,8 @@ class LaboratoryReportsController < ApplicationController
 
         @survey_report = SurveyReport.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+        
+
       end
 
       respond_to do |format|
@@ -358,7 +362,7 @@ class LaboratoryReportsController < ApplicationController
     if params[:subaction] == "update"
         start_from = params[:start_date] rescue ""
         start_to   = params[:end_date] rescue ""
-        district_name = params[:district_name][:district_name_eq] rescue ""
+        districtname = params[:district_name][:district_name_eq] rescue ""
         
         if start_from > start_to 
          flash[:notice] = "Start date cannot be greater than end date"
@@ -368,14 +372,14 @@ class LaboratoryReportsController < ApplicationController
         else start_from <= start_to
 
           if start_from.blank?
-            @user = User.find_by_block_name(block_name)
-            @survey_reports = SurveyReport.find_all_by_user_id(@user, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = SurveyReport.find_all_by_districtname(districtname, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            zone = Admin::Zone.find_by_zone_name(current_user.zone_name) 
+            @districts = Admin::District.find_all_by_zone_id(zone.id)
             #@survey_reports = @survey_report.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
            
           else
             @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
             @survey_reports = @survey_report.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc").paginate(page: params[:page], per_page: 10)
-            
           end
         end
       else

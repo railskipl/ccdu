@@ -43,7 +43,7 @@
             <div class="row-fluid">
               <div class="span12">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <%= form_tag accepted_sample_laboratory_reports_path ,:method => :get do %>
+                  <%= form_tag zone_accept_laboratory_reports_path ,:method => :get do %>
                   <tr>
                     <td>From Date </td>
                     <td><span class="controls">
@@ -54,6 +54,11 @@
                       <%= text_field_tag :end_date %>
                        </span>
                     </td>
+                    <td>District</td>
+                    <td><span class="controls">
+                      <%= collection_select :district_name, :district_name_eq, @districts, :district_name, :district_name ,{:prompt => "Select District Name"} %>
+                      </span>
+                    </td>
             
                   </tr>
                   
@@ -62,7 +67,7 @@
                     <td>
                       <%= button_tag  :submit , name: "subaction",value: "update", :class => "btn btn btn-primary" %>
                       <!-- <button class="btn btn btn-primary" type="reset">Show</button> -->
-                      <%= link_to "Clear", accepted_sample_laboratory_reports_path, :class=>"btn btn btn-primary"%>
+                      <%= link_to "Clear", zone_accept_laboratory_reports_path, :class=>"btn btn btn-primary"%>
                       
                     </td>
                       <td>&nbsp;</td>
@@ -81,8 +86,8 @@
                   <h3>LABORATORY REPORT</h3>
                 </div>
                 <div class="span6" style="text-align:right">
-                  <%= link_to image_tag('/assets/excel.png', :border=>"0", :align=>"absmiddle") + " Excel", accepted_sample_laboratory_reports_path(params.merge(format: "xls")), :method=> :get, :class=>"btn btn-secondary" %>
-                  <%= link_to image_tag('/assets/pdf.png', :border=>"0", :align=>"absmiddle") + " PDF", accepted_sample_laboratory_reports_path(params.merge(format: "pdf")), :method=> :get, :class=>"btn btn-secondary" %>
+                  <%= link_to image_tag('/assets/excel.png', :border=>"0", :align=>"absmiddle") + " Excel", zone_accept_laboratory_reports_path(params.merge(format: "xls")), :method=> :get, :class=>"btn btn-secondary" %>
+                  <%= link_to image_tag('/assets/pdf.png', :border=>"0", :align=>"absmiddle") + " PDF", zone_accept_laboratory_reports_path(params.merge(format: "pdf")), :method=> :get, :class=>"btn btn-secondary" %>
                    
                 </div>
               </div>
