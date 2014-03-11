@@ -50,15 +50,15 @@
     #   Admin::District.create(:district_name => f,:zone_id => @zone.id, :code => "J",:lab_name => "",:lab_present => "No")
     # end
 
-    @c = ["BIKANER",
-           "DUNGARGARH",
-           "KOLAYAT",
-           "LUNKARANSAR",
-           "NOKHA"
-         ]
+    # @c = ["BIKANER",
+    #        "DUNGARGARH",
+    #        "KOLAYAT",
+    #        "LUNKARANSAR",
+    #        "NOKHA"
+    #      ]
     
-    @c.each do |f|
-      @district = Admin::District.find_by_district_name("BIKANER")
-      Admin::Block.create(:block_name => f, :district_id => @district.id, :code => "", :lab_name => "", :laboratory_present => "No")
-    end
+    # @c.each do |f|
+    #   @district = Admin::District.find_by_district_name("BIKANER")
+    #   Admin::Block.create(:block_name => f, :district_id => @district.id, :code => "", :lab_name => "", :laboratory_present => "No")
+    # end
 

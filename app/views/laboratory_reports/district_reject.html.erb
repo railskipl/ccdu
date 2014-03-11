@@ -57,7 +57,7 @@
 
                     <td>Block </td>
                     <td><span class="controls">
-                      <%= collection_select :block_name, :block_name_eq, User.find_all_by_district_name(current_user.district_name), :block_name, :block_name ,{:prompt => "Select Block Name"}%>
+                      <%= collection_select :block_name, :block_name_eq, @blocks, :block_name, :block_name ,{:prompt => "Select Block Name"}%>
                       </span>
                     </td>
                   </tr>

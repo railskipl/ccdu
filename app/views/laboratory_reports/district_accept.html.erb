@@ -56,7 +56,7 @@
                     </td>
                     <td>Block </td>
                     <td><span class="controls">
-                      <%= collection_select :block_name, :block_name_eq, Admin::Block.all, :block_name, :block_name ,{:prompt => "Select Block Name"}%>
+                      <%= collection_select :block_name, :block_name_eq, @blocks, :block_name, :block_name ,{:prompt => "Select Block Name"}%>
                       </span>
                     </td>
             
