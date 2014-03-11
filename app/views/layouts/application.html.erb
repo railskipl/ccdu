@@ -27,7 +27,7 @@
 					<i class="icon-cog"></i>
 				</a>
 				
-				<a class="brand" href="./index.html">
+				<a class="brand" href="javascript:void(0);">
 					<img src="/assets/logo.png" alt="">
 				</a>		
 				
@@ -37,7 +37,7 @@
 
 						<li class="dropdown">
 							
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
 								Welcome&nbsp;&nbsp; <%= current_user.user_fullname%>
 								<b></b>
 							</a>
@@ -46,14 +46,14 @@
 
 						<li class="dropdown">
 							<%if current_user.has_role?(:block)%>
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
 									
 									Block <%= current_user.block_name%>
 									<b ></b>
 								</a>
 							<%elsif current_user.has_role?(:district)%>
    
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
 									
 									District &nbsp;&nbsp;<%= current_user.district_name%>
 									<b ></b>
@@ -61,7 +61,7 @@
 
 							<%else%>
  
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
 									
 									Zone &nbsp;&nbsp;<%= current_user.zone_name%>
 									<b ></b>
@@ -72,25 +72,12 @@
 				
 						<li class="dropdown">
 							
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<i class="icon-user"></i> 
-								Logout
-								<b class="caret"></b>
-							</a>
-							
-							<ul class="dropdown-menu">
-								<!-- <li><a href="#">My Profile</a></li> -->
-								
-								<li class="divider"></li>
-						
-							    <li><% if user_signed_in? %> 
-				                    <%= link_to "Logout", destroy_user_session_path,:method => :delete %> 
-			                       <% else %> 
-				
-			                       <% end %>
-			                    </li>
-							
-							</ul>
+							<% if user_signed_in? %>
+
+							   <%= link_to "Logout", destroy_user_session_path,:method => :delete, :class => "dropdown-toggle"%>
+							<% else %> 
+
+							<% end %> 
 							
 						</li>
 					</ul>
