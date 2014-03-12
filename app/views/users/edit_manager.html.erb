@@ -1,12 +1,39 @@
 <!-- To transfer mobile surveyor to other block manager -->
 
-<%= form_for :user, :url => update_manager_user_path(@user.id) do |f| %>
+<div class="main">
+  <div class="container">
+    <div class="row">
+      <div class="span12">          
+        <div class="widget stacked ">
+          <div class="widget-header">
+            <i class="icon-pencil"></i>
+            <h3>New User</h3>
+          </div> <!-- /widget-header -->
+          <div class="widget-content">
+            <div style="margin-bottom:10px" class="row-fluid">
+              <!-- <div class="span12">
+                <a href="<%= users_path%>" class="btn">Back</a>          
+              </div> -->
+            </div>
+            <%= form_for :user, :url => update_manager_user_path(@user.id) do |f| %>
+              
+              <fieldset>
+                
   
-  <div class="field">
-    <%= f.select :block_manager_id, User.with_role(:block).map {|d| [d.block_name, d.id]},{:prompt => "Select Block Name"}  %>
-  </div>
-  
-  <div class="actions">
-    <%= f.submit "Save", :confirm => "Are you sure, you want to transfer mobile surveyor." %>
-  </div>
-<% end %>
+				  <div class="field">
+				    <%= f.select :block_manager_id, User.with_role(:block).map {|d| [d.block_name, d.id]},{:prompt => "Select Block Name"}  %>
+				  </div>
+				  
+				  <div class="actions">
+				    <%= f.submit "Save", :confirm => "Are you sure, you want to transfer mobile surveyor." %>
+				  </div>
+              
+              </fieldset>
+            <%end%>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
+      </div>
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</div> <!-- /main -->
+

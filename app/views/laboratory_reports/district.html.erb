@@ -2,6 +2,36 @@
 
 <%= javascript_include_tag "facebox.js", "jquery.validate.min" %>
 
+<script>
+(function() {
+
+  jQuery(function() {
+  jQuery('#start_date').datepicker( 
+    { altField  : '#start_date',  // selector of the hidden input field you want sent to the server
+      dateFormat: 'yy-mm-dd',
+      altFormat : 'yy-mm-dd' } );
+    });
+
+
+}).call(this);
+
+</script>
+
+<script>
+(function() {
+
+  jQuery(function() {
+  jQuery('#end_date').datepicker( 
+    { altField  : '#end_date',  // selector of the hidden input field you want sent to the server
+      dateFormat: 'yy-mm-dd',
+      altFormat : 'yy-mm-dd' } );
+    });
+
+
+}).call(this);
+
+</script> 
+
 <div class="main">
   <div class="container">
     <div class="row">
