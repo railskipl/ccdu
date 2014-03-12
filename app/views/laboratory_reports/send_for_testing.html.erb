@@ -104,13 +104,14 @@ jQuery(document).ready(function() {
                 <div class="control-group">
                   <label class="control-label" for="name">Pre Monsoon Reading</label>
                   <div class="controls">
-                    <%= f.text_field :postmonsoon %>
+                    <%= f.text_field :bacteriological%>
+                    
                   </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label" for="name">Post Monsoon Reading</label>
                   <div class="controls">
-                    <%= f.text_field :bacteriological%>
+                    <%= f.text_field :postmonsoon %>
                     <%= f.hidden_field :is_tested, :value=>1 %>
                    
                     <%= f.hidden_field :districtname, :value=> current_user.district_name %>
