@@ -58,9 +58,9 @@
                       <%= f.select :water_source_type_eq, SurveyReport.find(:all,:conditions=>"actions != 1", :order=>"id desc").map{|s| [s.water_source_type, s.water_source_type]},{:prompt => "Select Source Type"} %>
                       </span>
                     </td>
-                    <td>Habitation</td>
+                    <!-- <td>Habitation</td> -->
                     <td><span class="controls">
-                      <%= f.select :habitation_eq, SurveyReport.find(:all,:conditions=>"actions != 1", :order=>"id desc").map{|s| [s.habitation, s.habitation]}, {:prompt => "Select Habitation"}%>
+                      <%#= f.select :habitation_eq, SurveyReport.find(:all,:conditions=>"actions != 1", :order=>"id desc").map{|s| [s.habitation, s.habitation]}, {:prompt => "Select Habitation"}%>
                       </span>
                     </td>
                     <td>&nbsp;</td>
