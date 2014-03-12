@@ -48,10 +48,29 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   #update block manager id and transfer the mobile surveyor 
+  #update block manager id and transfer the mobile surveyor 
   def update_manager
     @user = User.find(params[:id])
-    @user.update_column(:block_manager_id, params[:user][:block_manager_id])
+    @user.update_attributes(:block_manager_id => params[:user][:block_manager_id], :is_transfer => true, :old_manager_id => current_user.id)
+    @user.save
     redirect_to users_path, notice: 'Mobile surveyor was successfully transferred.'
+  end
+
+  def accept_user
+    @user = User.find(params[:id])
+    @user.update_attributes( :is_transfer => false, :old_manager_id => nil)
+    @user.save
+    redirect_to users_path, notice: 'Mobile surveyor added.'
+  end
+
+  def reject_user
+    @user = User.find(params[:id])
+
+
+    @user.update_attributes(:block_manager_id => @user.old_manager_id, :is_transfer => false, :old_manager_id => nil)
+    @user.save
+    redirect_to users_path, notice: 'Mobile surveyor rejected.'
+    
   end
 
 

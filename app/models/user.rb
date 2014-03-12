@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username ,:role_ids, :mobile_no,
-  :user_fullname, :zone_name, :district_name, :block_name,:status,:block_manager_id
+  :user_fullname, :zone_name, :district_name, :block_name,:status,:block_manager_id,:is_transfer, :old_manager_id
   # attr_accessible :title, :body
   has_many :zones
   has_many :district

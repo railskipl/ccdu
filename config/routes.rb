@@ -65,6 +65,8 @@ Ccdu::Application.routes.draw do
   resources :users do
     get 'edit_manager',:on => :member
     post 'update_manager',:on => :member
+    get 'accept_user', :on => :member
+    get 'reject_user', :on => :member
   end
 
   # The priority is based upon order of creation:

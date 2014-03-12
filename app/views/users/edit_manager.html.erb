@@ -3,10 +3,10 @@
 <%= form_for :user, :url => update_manager_user_path(@user.id) do |f| %>
   
   <div class="field">
-    <%= f.select :block_manager_id, User.with_role(:block).map {|d| [d.block_name, d.id]},{:prompt => "Select Block" }  %>
+    <%= f.select :block_manager_id, User.with_role(:block).map {|d| [d.block_name, d.id]},{:prompt => "Select Block Name"}  %>
   </div>
   
   <div class="actions">
-    <%= f.submit "Save" %>
+    <%= f.submit "Save", :confirm => "Are you sure, you want to transfer mobile surveyor." %>
   </div>
 <% end %>

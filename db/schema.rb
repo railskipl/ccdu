@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140307135212) do
+ActiveRecord::Schema.define(:version => 20140312050601) do
 
   create_table "admin_blocks", :force => true do |t|
     t.string   "block_name"
@@ -196,6 +196,8 @@ ActiveRecord::Schema.define(:version => 20140307135212) do
     t.string   "block_name"
     t.boolean  "status",                 :default => false
     t.integer  "block_manager_id"
+    t.integer  "old_manager_id"
+    t.boolean  "is_transfer",            :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
