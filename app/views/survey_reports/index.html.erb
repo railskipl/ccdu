@@ -96,48 +96,120 @@
                 </div>
               </div>
               
-              <table class="table table-bordered table-striped">
+              <table class="table table-bordered ">
                 <thead>
                   <tr>
                     <th>Sr. No. </th>
                     <th>Source name</th>
                     <th>Source code</th>
-                    <th>Source location</th>
+                    <th>Nearest Milestone</th>
                     <th>Water source type</th>
                     <th>Date time</th>
                     <th>Surveyor name</th>
                     <th>Surveyor Remark</th>
+                    <th>Status</th>
                     <th>Source Image</th>
                     <th>Source Location Image</th>
                     <th style="width:15%">Action</th>
-                    <th>Edit</th>
+                    
+                   
                   </tr>
                 </thead>
-                 <tbody>
-                <% @survey_reports.each.with_index(1) do |survey_report,index |  %> 
-                 
-                    <tr id="<%= dom_id(survey_report) %>">
-                      <td><%= index%></td>
-                      <td><%= survey_report.source_name rescue nil%></td>
-                      <td><%= survey_report.water_source_code rescue nil%></td>
-                      <td><%= survey_report.source_location rescue nil%></td>
-                      <td><%= survey_report.water_source_type rescue nil%></td>
-                      <td><%= survey_report.created_at.strftime("%d-%m-%Y %I:%M %p") rescue nil%></td>
-                      <td><%= survey_report.surveyor_name rescue nil%></td>
-                      <td><%= survey_report.remarks rescue nil%></td>
-                      <td><%= image_tag survey_report.image.url, :height=> 100, :width=>100 rescue nil%></td>
-                      <td><%= image_tag survey_report.image1.url, :height=> 100, :width=>100 rescue nil%></td>
-                      <td><%= link_to "View", survey_report_path(survey_report), :class=>"btn" %> 
-                        <div id="action<%= survey_report.id %>">
-                        <% if survey_report.actions == 0 %>
-                          <%= link_to "Accept", accept_survey_report_path(survey_report), remote: true, :class=>"btn" %>
-                          <%= link_to "Reject", reject_survey_report_path(survey_report), remote: true, :class=>"btn" %>
-                        <% end %>
-                        </div>
 
-                      </td>
-                      <td><%= link_to "Edit", edit_survey_report_path(survey_report), :class=>"btn" %></td>
-                    </tr>
+
+                 <tbody >
+                <% @survey_reports.each.with_index(1) do |survey_report,index |  %> 
+
+                    <%if survey_report.actions == 0 %>
+                 
+                      <tr id="<%= dom_id(survey_report) %>" >
+                        <td><%= index%></td>
+                        <td><%= survey_report.source_name rescue nil%></td>
+                        <%unless survey_report.district_level_status == 1%>
+                          <td><%= survey_report.water_source_code rescue nil%></td>
+                          
+                        <%else%>
+                          <td style="background:#FF3333"><%= survey_report.water_source_code rescue nil%></td>
+                        <%end%> 
+                        <td><%= survey_report.source_location rescue nil%></td>
+                        <td><%= survey_report.water_source_type rescue nil%></td>
+                        <td><%= survey_report.created_at.strftime("%d-%m-%Y %I:%M %p") rescue nil%></td>
+                        <td><%= survey_report.surveyor_name rescue nil%></td>
+                        <td><%= survey_report.remarks rescue nil%></td>
+                        <% if survey_report.actions == 0 %>
+                         <td>No Action</td>
+                        <% end %>
+                        <td><%= image_tag survey_report.image.url, :style => "height:100px" rescue nil%></td>
+                        <td><%= image_tag survey_report.image1.url, :style => "height:100px" rescue nil%></td>
+                        <td><%= link_to "View", survey_report_path(survey_report), :class=>"btn" %>
+                          <%= link_to "Edit", edit_survey_report_path(survey_report), :class=>"btn" %>  
+                          <div id="action<%= survey_report.id %>">
+
+                          <% if survey_report.actions == 0 %>
+                            <%= link_to "Accept", accept_survey_report_path(survey_report), remote: true, :class=>"btn" %>
+                            <%= link_to "Reject", reject_survey_report_path(survey_report), remote: true, :class=>"btn" %>
+                          <% end %>
+                          
+                          </div>
+
+                        </td>
+                        
+                      </tr>
+                    <%elsif survey_report.actions == 1 %>
+                      <tr id="<%= dom_id(survey_report) %>"  style="background:#E6FFE6">
+                        <td><%= index%></td>
+                        <td><%= survey_report.source_name rescue nil%></td>
+                        <%unless survey_report.district_level_status == 1%>
+                          <td><%= survey_report.water_source_code rescue nil%></td>
+                        <%else%>
+                          <td style="background:#FF3333"><%= survey_report.water_source_code rescue nil%></td>
+                        <%end%>
+                        <td><%= survey_report.source_location rescue nil%></td>
+                        <td><%= survey_report.water_source_type rescue nil%></td>
+                        <td><%= survey_report.created_at.strftime("%d-%m-%Y %I:%M %p") rescue nil%></td>
+                        <td><%= survey_report.surveyor_name rescue nil%></td>
+                        <td><%= survey_report.remarks rescue nil%></td>
+                        <% if survey_report.actions == 1 %>
+                         <td>Sample Accepted</td>
+                        <% end %>
+                        <td><%= image_tag(survey_report.image.url, :style => "height:100px") rescue nil%></td>
+                        <td><%= image_tag(survey_report.image1.url,:style => "height:100px") rescue nil%></td>
+                        <td><%= link_to "View", survey_report_path(survey_report), :class=>"btn" %>
+                          <%= link_to "Edit", edit_survey_report_path(survey_report), :class=>"btn" %>  
+
+                        </td>
+                        
+                        
+                      </tr>
+                    <%else survey_report.actions == 2%>
+
+                      <tr id="<%= dom_id(survey_report) %>" style="background:#FFB2B2">
+                        <td><%= index%></td>
+                        <td><%= survey_report.source_name rescue nil%></td>
+                        <%unless survey_report.district_level_status == 1%>
+                          <td><%= survey_report.water_source_code rescue nil%></td>
+                        <%else%>
+                          <td style="background:#FF3333"><%= survey_report.water_source_code rescue nil%></td>
+                        <%end%>
+                        <td><%= survey_report.source_location rescue nil%></td>
+                        <td><%= survey_report.water_source_type rescue nil%></td>
+                        <td><%= survey_report.created_at.strftime("%d-%m-%Y %I:%M %p") rescue nil%></td>
+                        <td><%= survey_report.surveyor_name rescue nil%></td>
+                        <td><%= survey_report.remarks rescue nil%></td>
+                        <% if survey_report.actions == 2 %>
+                         <td>Sample Rejected</td>
+                        <% end %>
+                        <td><%= image_tag survey_report.image.url, :style => "height:100px" rescue nil%></td>
+                        <td><%= image_tag survey_report.image1.url, :style => "height:100px" rescue nil%></td>
+                        <td><%= link_to "View", survey_report_path(survey_report), :class=>"btn" %>
+                          <%= link_to "Edit", edit_survey_report_path(survey_report), :class=>"btn" %>  
+        
+
+                        </td>
+                        
+                        
+                      </tr>
+                    <%end%>
                 <% end %> 
                 </tbody>
               </table>

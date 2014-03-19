@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag "facebox.css" %>
+
+<%= javascript_include_tag "facebox.js", "jquery.validate.min" %>
 <div class="main">
   <div class="container">
     <div class="row">
@@ -46,10 +49,13 @@
                       <td><%= invoice.no_of_sample rescue nil%></td>
                       <td><%= invoice.amount rescue nil%></td>
                       <td>
-                        <%if invoice.is_invoice == 0 %>
-                          <%= link_to "Payment", approve_invoice_invoice_path(invoice), :class=>"btn" %>
+                        <%if invoice.is_dist_invoice == 0 %>
+                          <%= link_to "Accept", approve_invoice_invoice_path(invoice , :accept => "Accept"), :class=>"btn" %> <%= link_to "Reject", reject_invoice_invoice_path(invoice),remote: true, :class=>"btn" %>
+
+                        <%elsif invoice.is_dist_invoice == 1%>
+                           <%= "Accepted Invoice"%>
                         <%else%>
-                           <%= "Paid"%>
+                           <%= "Rejected Invoice"%>
                         <%end%>
                       </td>
                     </tr>

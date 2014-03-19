@@ -24,14 +24,29 @@ Ccdu::Application.routes.draw do
     get 'district_accept', :on => :collection
     get 'district_reject', :on => :collection
   end
+
+  resources :mis_reports do 
+    get 'block_mis_report', :on => :collection 
+    get 'search_block_mis_report', :on => :collection
+    get 'district_mis_report', :on => :collection
+    get 'search_district_mis_report', :on => :collection
+    get 'zone_mis_report', :on => :collection
+    get 'search_zone_mis_report', :on => :collection
+  end
   
+
   resources :block_laboratories
+  
   resources :invoices do 
     get 'payment',:on => :collection
     get 'outstanding',:on => :collection
     get 'district_invoice', :on => :collection 
     get 'approve_invoice', :on => :member
     get 'zone_invoice', :on => :collection
+    post 'sample_code_count' , :on => :collection
+    get 'submit_invoice', :on => :member
+    get 'reject_invoice', :on => :member
+    post 'remarks_for_rejection', :on => :member
   end
   
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140312050601) do
+ActiveRecord::Schema.define(:version => 20140319061350) do
 
   create_table "admin_blocks", :force => true do |t|
     t.string   "block_name"
@@ -83,12 +83,14 @@ ActiveRecord::Schema.define(:version => 20140312050601) do
     t.float    "amount"
     t.string   "invoice_no"
     t.text     "remark"
-    t.integer  "is_invoice",    :default => 0
+    t.integer  "is_invoice",            :default => 0
     t.date     "approved_date"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.integer  "user_id"
     t.string   "zone_name"
+    t.integer  "is_dist_invoice",       :default => 0
+    t.text     "remarks_for_rejection"
   end
 
   create_table "mobile_devices", :force => true do |t|
@@ -173,6 +175,8 @@ ActiveRecord::Schema.define(:version => 20140312050601) do
     t.string   "districtname"
     t.string   "postmonsoon"
     t.string   "zone_name"
+    t.integer  "is_invoiced",              :default => 0
+    t.integer  "invoice_id"
   end
 
   create_table "users", :force => true do |t|

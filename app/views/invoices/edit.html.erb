@@ -15,28 +15,28 @@
 
 <script>
 jQuery(document).ready(function() {
-  jQuery("#invoice").validate({
-    errorElement:'div',
-    rules: {
-      "invoice[district_name]" : { required: true },
-      "invoice[block_name]" : { required: true },
-      "invoice[invoice_date]" : { required: true },
-      "invoice[no_of_sample]" : { required: true, number: true },
-      "invoice[amount]" : { required: true, number: true },
-      "invoice[invoice_no]" : { required: true },
-      "invoice[remark]" : { required: true }
-      },
-    messages: {
-        "invoice[district_name]" : { required: "Please enter district name" },
-        "invoice[block_name]" : { required: "Please enter block name" },
-        "invoice[invoice_date]" : { required: "Please enter date" },
-        "invoice[no_of_sample]" : { required: "Please enter number of sample" },
-        "invoice[amount]":{ required:  "Please enter amount", number: "Please enter valid number" },
-        "invoice[invoice_no]" : { required: "Please enter invoice number" },
-        "invoice[remark]" : { required: "Please enter remark" }
-      }
+	jQuery("#invoice").validate({
+		errorElement:'div',
+		rules: {
+		  "invoice[district_name]" : { required: true },
+		  "invoice[block_name]" : { required: true },
+		  "invoice[invoice_date]" : { required: true },
+		  "invoice[no_of_sample]" : { required: true, number: true },
+			"invoice[amount]" : { required: true, number: true },
+			"invoice[invoice_no]" : { required: true },
+			"invoice[remark]" : { required: true }
+			},
+		messages: {
+		    "invoice[district_name]" : { required: "Please enter district name" },
+		    "invoice[block_name]" : { required: "Please enter block name" },
+		    "invoice[invoice_date]" : { required: "Please enter date" },
+		    "invoice[no_of_sample]" : { required: "Please enter number of sample" },
+			  "invoice[amount]":{ required:  "Please enter amount", number: "Please enter valid number" },
+			  "invoice[invoice_no]" : { required: "Please enter invoice number" },
+			  "invoice[remark]" : { required: "Please enter remark" }
+			}
        
-    });
+		});
  });
 </script>
 
@@ -70,6 +70,8 @@ jQuery(document).ready(function() {
 
 </script>
 
+
+
 <div class="main">
   <div class="container">
     <div class="row">
@@ -82,7 +84,7 @@ jQuery(document).ready(function() {
           <div class="widget-content">
             <div style="margin-bottom:10px" class="row-fluid">
               <div class="span6">
-                <%= form_for  @invoice, :html => {:id => "invoice",:class => "form-horizontal" }, :url => invoices_path(@invoice, :a => params[:survey_invoices]) do |f| %>
+                <%= form_for  @invoice, :html => {:id => "invoice",:class => "form-horizontal"} , :url => invoice_path(@invoice, :a => params[:survey_invoices]) do |f| %>
                 <% if @invoice.errors.any? %>
                   <div id="error_explanation">
                     <ul>
@@ -93,6 +95,7 @@ jQuery(document).ready(function() {
                   </div>
                 <% end %>
                 <fieldset>
+                  <%#raise @invoice.inspect%>
                   <div class="control-group">
                     <label for="name" class="control-label">District Name</label>
                     <div class="controls">
@@ -114,9 +117,16 @@ jQuery(document).ready(function() {
                   
                   <div class="control-group">
                     <label for="name" class="control-label">Number of Sample</label>
-                    <div class="controls">
-                      <%= f.text_field :no_of_sample , :value => params[:count],:class => "input-large", :readonly => true%>
-                    </div>
+                    <% if params[:subaction] == "edit" %>
+                      <%#raise params[:a].inspect%>
+                      <div class="controls">
+                        <%= f.text_field :no_of_sample , :value => (@invoice.no_of_sample).to_i + (params[:count]).to_i,:class => "input-large", :readonly => true%>
+                      </div>
+                    <%else%>
+                      <div class="controls">
+                        <%= f.text_field :no_of_sample,:class => "input-large", :readonly => true%>
+                      </div>
+                    <%end%>
                   </div>
                   
                   <div class="control-group">
@@ -132,8 +142,7 @@ jQuery(document).ready(function() {
                       <%= f.text_field :invoice_no , :class => "input-large"%>
                     </div>
                   </div>
-                   <%#= f.hidden_field :surveyids, :value => params[:a] %>
-                   <%#raise params[:a].inspect%>
+                   
                   <div class="control-group">
                     <label for="name" class="control-label">Remark</label>
                     <div class="controls">
@@ -151,43 +160,44 @@ jQuery(document).ready(function() {
                <%end%>
               </div>
               <div class="span6">
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <%= form_tag new_invoice_path ,:method => :get do %>
-                  <tr>
-                    <td>From Date </td>
-                    <td><span class="controls">
-                      <%= text_field_tag :start_date %>
-                    </span></td>
-                    <td>To Date </td>
-                    <td><span class="controls">
-                      <%= text_field_tag :end_date %>
-                       </span>
-                    </td>
-                    
-                  </tr>
-                  
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                      <%= button_tag  :submit , name: "subaction",value: "update", :class => "btn btn btn-primary"%>
-                      <!-- <button class="btn btn btn-primary" type="reset">Show</button> -->
-                      <%= link_to "Clear", new_invoice_path, :class=>"btn btn btn-primary"%>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <%= form_tag edit_invoice_path ,:method => :get do %>
+                    <tr>
+                      <td>From Date </td>
+                      <td><span class="controls">
+                        <%= text_field_tag :start_date %>
+                      </span></td>
+                      <td>To Date </td>
+                      <td><span class="controls">
+                        <%= text_field_tag :end_date %>
+                         </span>
+                      </td>
                       
-                    </td>
+                    </tr>
+                    
+                    <tr>
                       <td>&nbsp;</td>
-                      <td>&nbsp;</td>
-                      <td>&nbsp;</td>
-                      <td>&nbsp;</td>
-                  </tr>
-                 <% end %>
-                </table>
-
+                      <td>
+                        <%= button_tag  :submit , name: "subaction",value: "update", :class => "btn btn btn-primary"%>
+                        <!-- <button class="btn btn btn-primary" type="reset">Show</button> -->
+                        <%= link_to "Clear", new_invoice_path, :class=>"btn btn btn-primary"%>
+                        
+                      </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                   <% end %>
+                  </table>
+                <%#raise params[:id].inspect%>
                 <% if  params[:subaction] == "update"%>
-                  <%= form_tag sample_code_count_invoices_path , method: :post do %>
+                  <%= form_tag sample_code_count_invoices_path(:id => params[:id]) , method: :post do %>
+
                     <% @survey_reports.each do |survey|%>
                       <%= check_box_tag "survey_ids[]",survey.id %><%= survey.water_source_code rescue nil%><br/>
                     <%end%>
-                    <%= button_tag  :submit , name: "subaction",value: "update" %>
+                    <%= button_tag "Sample count" , name: "subaction",value: "edit" %>
                   <%end%>
                 <%else%>
 

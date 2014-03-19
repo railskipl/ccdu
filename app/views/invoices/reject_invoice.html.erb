@@ -1,0 +1,59 @@
+<script>
+jQuery(document).ready(function() {
+	jQuery("#invoice").validate({
+		errorElement:'div',
+		rules: {
+			"invoice[remarks_for_rejection]" : { required: true }
+			},
+		messages: {
+			  "invoice[remarks_for_rejection]":{ required:  "Please enter reason" }
+			},
+			submitHandler: function(form) {
+          jQuery.ajax({
+              url: "<%= remarks_for_rejection_invoice_path(@invoice.id) %>",
+              type: "POST",
+              data: jQuery(form).serialize(),
+              success: function(response) {
+                           jQuery('#action<%= @invoice.id %>')
+                             .html("Rejected")
+                           	.hide()
+                           	.fadeIn()
+                           jQuery(document).trigger('close.facebox');
+                       }            
+               });
+          
+       }
+       
+		});
+ });
+</script>
+
+<h4>Reason for rejecting</h4>
+          <!-- /widget-header -->
+          <div class="widget-content">
+            <div class="row-fluid" style="margin-bottom:10px">
+              <!-- <div class="span12">
+                <a href="/mobile_users" class="btn">Back</a>          
+              </div> -->
+            </div>
+           
+            <%= form_for :invoice, :url => remarks_for_rejection_invoice_path(@invoice.id), :html=>{:id=>"invoice"} do |f| %>
+              
+              <fieldset>
+                <div class="control-group">
+                  <label class="control-label" for="name">Reason for rejecting sample</label>
+                  <div class="controls">
+                    <%= f.text_area :remarks_for_rejection, :rows =>"12",:style => "width:560px ; overflow-y: scroll; height: 200px; ",:maxlength => 1000 %>
+                    <%= f.hidden_field :is_invoice, :value=>0 %>
+                  </div>
+                </div>
+                
+                
+                <div class="control-group">
+                  <div class="controls">
+                    <%= f.submit "Save", :class=>"btn" %>
+                  </div>
+                </div>
+              </fieldset>
+			      <% end %>
+			</div> <!-- /widget-content --> 

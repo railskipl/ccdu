@@ -24,7 +24,7 @@ class SessionsController < Devise::SessionsController
 	             
                   @user = User.find_by_id(current_user.block_manager_id)
                   
-                  @u = "#{@user.id},#{@user.block_name}, #{@user.district_name}"
+                  @u = "#{@user.id},#{@user.block_name},#{@user.district_name}"
 			      render :status =>200,:json => @u.to_json
 			    else
 			      flash[:alert] = "Invalid password"

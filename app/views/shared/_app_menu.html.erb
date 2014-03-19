@@ -30,6 +30,13 @@
     							<span>Invoices</span>
     						</a>	    				
     					</li>
+
+    					<li class="dropdown">
+    						<a href="<%= district_mis_report_mis_reports_path %>">
+
+    							<span>Summary Report</span>
+    						</a>	    				
+    					</li>
     					
 				    <% elsif current_user.has_role? :block %>
 					<li class="dropdown">
@@ -71,6 +78,14 @@
 				 		</ul>
 					</li>
 
+					<li class="dropdown">					
+						<a href="<%= block_mis_report_mis_reports_path%>">
+							
+							<span>Summary Report</span>
+						</a>	
+				    </li>
+
+
 					<%else current_user.has_role? :zone%>
                         <li class="dropdown">
 						  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"> Laboratory Report<b class="caret"></b></a>
@@ -89,7 +104,14 @@
     							<span>Invoices</span>
     						</a>	    				
     					</li>
+    					<li class="dropdown">
+    						<a href="<%= zone_mis_report_mis_reports_path %>">
 
+    							<span>Summary Report</span>
+    						</a>	    				
+    					</li>
+
+    					
               
 					<%end%>
 				</ul>

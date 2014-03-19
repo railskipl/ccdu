@@ -1,0 +1,160 @@
+<script>
+(function() {
+
+  jQuery(function() {
+  jQuery('#start_date').datepicker( 
+    { altField  : '#start_date',  // selector of the hidden input field you want sent to the server
+      dateFormat: 'yy-mm-dd',
+      altFormat : 'yy-mm-dd' } );
+    });
+
+
+}).call(this);
+
+</script>
+
+<script>
+(function() {
+
+  jQuery(function() {
+  jQuery('#end_date').datepicker( 
+    { altField  : '#end_date',  // selector of the hidden input field you want sent to the server
+      dateFormat: 'yy-mm-dd',
+      altFormat : 'yy-mm-dd' } );
+    });
+
+
+}).call(this);
+
+</script> 
+
+<div class="main">
+  <div class="container">
+    <div class="row">
+      <div class="span12">      		
+      	<div class="widget stacked ">
+      		<div class="widget-header">
+      			<i class="icon-pencil"></i>
+      			<h3>SUMMARY REPORT</h3>
+  				</div> <!-- /widget-header -->
+  				<div class="widget-content">
+  				  <div class="row-fluid">
+  				    <div class="span12">
+  				      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <%= form_tag search_district_mis_report_mis_reports_path , :method => :get do%>
+                    <tr>
+                      <td>From Date </td>
+                      <td><span class="controls">
+                        <%= text_field_tag :start_date%>
+                      </span></td>
+                      <td>To Date </td>
+                      <td><span class="controls">
+                        <%= text_field_tag :end_date%>
+                      </span></td>
+                      <!-- <td>Firm/ Lab </td>
+                      <td><span class="controls">
+                        <select name="select2">
+                          <option>All</option>
+                        </select>
+                      </span></td> -->
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>
+                      	<%= submit_tag "Search",:class=>"btn btn btn-primary"%>
+                      	<!-- <button class="btn btn btn-primary" type="reset">Clear</button>
+                      	<button class="btn btn btn-primary" type="reset">Close</button>	 -->
+                        <%= link_to "Clear", district_mis_report_mis_reports_path, :class=>"btn btn btn-primary"%>
+                      </td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                    </tr>
+                  <%end%>
+                </table>
+  				    </div>
+  				  </div>
+  				  </br>
+  				  <section id="tables">
+  			      <div class="row-fluid">
+  					    <div class="span6">
+  					      <h3>SUMMARY REPORT</h3>
+  					    </div>
+  					    <div class="span6" style="text-align:right">
+  					      <a href="#" class="btn btn-secondary"><img src="img/excel.png" alt=""> Excel</a> <a href="#" class="btn btn-secondary"><i class="icon"><img src="img/pdf.png" alt=""></i> PDF</a>
+                </div>
+  					  </div>
+  	          <table class="table table-bordered table-striped">
+                <col width="64">
+                <col width="78">
+                <col width="97">
+                <col width="89">
+                <col width="102">
+                <col width="88">
+                <col width="102">
+                <col width="105">
+                <tr>
+                  <td rowspan="2"><strong>Date</strong></td>
+                  <td rowspan="2"><strong>Water Samples</strong></td>
+                  <td colspan="2"><strong>Today</strong></td>
+                  <td colspan="2"><strong>Current    Month Till Date</strong></td>
+                  <td colspan="2"><strong>Total (Till date from Project Live)</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Paid/Accepted</strong></td>
+                  <td><strong>Outstanding/Rejected</strong></td>
+                  <td><strong>Paid/Accepted</strong></td>
+                  <td><strong>Outstanding/Rejected</strong></td>
+                  <td><strong>Paid/Accepted</strong></td>
+                  <td><strong>Outstanding    /Rejected</strong></td>
+                </tr>
+                <tr>
+                  <td rowspan="3"><%= Date.today%></td>
+                  <td>Collected</td>
+                  <td align="right"><%= @survey_reports.count%></td>
+                  <td align="right"><%= @survey_reports_rej.count%></td>
+                  <td align="right"><%= @survey_reports1.count%></td>
+                  <td align="right"><%= @survey_reports1_rej.count%></td>
+                  <td align="right"><%= @survey_reports2.count%></td>
+                  <td align="right"><%= @survey_reports2_rej.count%></td>
+                </tr>
+                <tr>
+                  <td>Tested</td>
+                  <td align="right"><%= @survey_reports_dist.count%></td>
+                  <td align="right"><%= @survey_reports_dist_rej.count%></td>
+                  <td align="right"><%= @survey_reports_dist1.count%></td>
+                  <td align="right"><%= @survey_reports_dist1_rej.count%></td>
+                  <td align="right"><%= @survey_reports_dist2.count%></td>
+                  <td align="right"><%= @survey_reports_dist2_rej.count%></td>
+                </tr>
+                <tr>
+                  <td>Invoiced</td>
+                  <td align="right"><%= @invoice.count%></td>
+                  <td align="right"><%= @invoice_rej.count%></td>
+                  <td align="right"><%= @invoice1.count%></td>
+                  <td align="right"><%= @invoice1_rej.count%></td>
+                  <td align="right"><%= @invoice2.count%></td>
+                  <td align="right"><%= @invoice2_rej.count%></td>
+                </tr>
+              </table>
+  				    <section id="paginations">
+  					    <div class="pagination">
+      					  <!-- <ul>
+      					    <li><a href="javascript:;">Prev</a></li>
+      					    <li class="active">
+      					      <a href="javascript:;">1</a>					    </li>
+      					    <li><a href="javascript:;">2</a></li>
+      					    <li><a href="javascript:;">3</a></li>
+      					    <li><a href="javascript:;">4</a></li>
+      					    <li><a href="javascript:;">Next</a></li>
+      					  </ul> -->
+  					    </div>
+  				    </section>
+  				  </section>
+  				</div> <!-- /widget-content -->
+  			</div> <!-- /widget -->
+      </div>
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</div> <!-- /main -->

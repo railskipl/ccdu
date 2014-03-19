@@ -147,7 +147,7 @@ class LaboratoryReportsController < ApplicationController
 
           if start_from.blank?
             @user = User.find_by_block_name(block_name)
-            @survey_reports = SurveyReport.find_all_by_user_id(@user, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = SurveyReport.where('user_id = ?',@user).find(:all,:conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
             #@survey_reports = @survey_report.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
             block
           else
@@ -193,7 +193,7 @@ class LaboratoryReportsController < ApplicationController
 
           if start_from.blank?
             @user = User.find_by_block_name(block_name)
-            @survey_reports = SurveyReport.find_all_by_user_id(@user, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = SurveyReport.where('user_id = ?',@user).find(:all,:conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc").paginate(page: params[:page], per_page: 10)
             #@survey_reports = @survey_report.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
             block
           else
@@ -432,3 +432,7 @@ class LaboratoryReportsController < ApplicationController
   
   
 end
+
+
+
+

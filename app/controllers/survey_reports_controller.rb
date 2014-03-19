@@ -9,7 +9,7 @@ class SurveyReportsController < ApplicationController
   def index
     
     # @survey_report = SurveyReport.find(:all, :conditions=>"actions != 1", :order=>"id desc")
-    # @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+    # @survey_reports = @survey_report.paginate(page: params[:page], per_page: 20)
 
     if params[:subaction] == "update"
       
@@ -21,25 +21,25 @@ class SurveyReportsController < ApplicationController
       
         if start_from > start_to 
          flash[:notice] = "Start date cannot be greater than end date"
-         @survey_report = current_user.survey_reports.find(:all, :conditions=>"actions != 1", :order=>"id desc")
-         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10) 
+         @survey_report = current_user.survey_reports.find(:all, :order=>"id desc")
+         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 20) 
         elsif start_from <= start_to
 
           if start_from.blank?
             @survey_report = current_user.survey_reports.where("source_name = ? or water_source_type = ? or habitation = ?", source_name,water_source_type,habitation)
-            @survey_reports = @survey_report.find(:all,:conditions=>"actions != 1", :order=>"id desc").paginate(page: params[:page], per_page: 10) 
+            @survey_reports = @survey_report.find(:all, :order=>"id desc").paginate(page: params[:page], per_page: 20) 
           else
             @survey_report = current_user.survey_reports.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
-            @survey_reports = @survey_report.find(:all,:conditions=>"actions != 1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = @survey_report.find(:all,:order=>"id desc").paginate(page: params[:page], per_page: 20)
           end
         else
           @survey_report = current_user.survey_reports.where("created_at >= ? and Date(created_at) <= ? and source_name = ? and water_source_type = ? and habitation = ?",start_from,start_to, source_name,water_source_type,habitation)
-          @survey_reports = @survey_report.find(:all,:conditions=>"actions != 1", :order=>"id desc").paginate(page: params[:page], per_page: 10) 
+          @survey_reports = @survey_report.find(:all,:order=>"id desc").paginate(page: params[:page], per_page: 20) 
         end
     else
         
-        @survey_report = current_user.survey_reports.find(:all,:conditions=>"actions != 1", :order=>"id desc")
-        @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+        @survey_report = current_user.survey_reports.find(:all,:order=>"id desc")
+        @survey_reports = @survey_report.paginate(page: params[:page], per_page: 20)
     end
     
     respond_to do |format|
@@ -77,8 +77,6 @@ class SurveyReportsController < ApplicationController
   # GET /survey_reports/1/edit
   def edit
     @survey_report = SurveyReport.find(params[:id])
-    # @code = @survey_report.water_source_code.split("/")
-    # raise @code[4].inspect
   end
 
   # POST /survey_reports
@@ -86,6 +84,18 @@ class SurveyReportsController < ApplicationController
   def create
     #raise params.inspect
     location = params["location"].split("%")
+    @code = params[:WaterSourceCode].split("/")
+    @code1 = @code[3].split("-")
+    @village = Admin::Village.where('village_name = ? ' , @code1[0])
+    @grampanchayat = Admin::Grampanchyat.where('gram_name = ?', @code1[0])
+    @habitation = Admin::Habitation.where('habitation_name =  ?', @code1[1] )
+    
+    unless @grampanchayat.present? or @village.present? and @habitation.present?
+      @status = 1
+    else 
+      @status = 0
+    end
+    #raise @status.inspect
     @surveyor = User.find_by_block_manager_id(params[:CurrentUserId])
     #this @surveyor used to store name of mobile surveyor
     @user  = User.find(params[:CurrentUserId]) 
@@ -111,7 +121,8 @@ class SurveyReportsController < ApplicationController
       :water_source_code => params[:WaterSourceCode],
       :user_id => params[:CurrentUserId],
       :surveyor_name => @surveyor.user_fullname,
-      :zone_name => @zone.zone_name
+      :zone_name => @zone.zone_name,
+      :district_level_status => @status
 
     )
     @surveycode = @survey_report.water_source_code
@@ -122,10 +133,26 @@ class SurveyReportsController < ApplicationController
   # PUT /survey_reports/1
   # PUT /survey_reports/1.json
   def update
+    #raise params.inspect
     @survey_report = SurveyReport.find(params[:id])
-
+    
     respond_to do |format|
       if @survey_report.update_attributes(params[:survey_report])
+
+          #raise params[:survey_report][:source_location].inspect
+          @code = @survey_report[:water_source_code].split("/")
+          @code1 = @code[3].split("-")
+          @village = Admin::Village.where('village_name = ? ' , @code1[0])
+          @grampanchayat = Admin::Grampanchyat.where('gram_name = ?', @code1[0])
+          @habitation = Admin::Habitation.where('habitation_name =  ?', @code1[1] )
+          #raise @habitation.inspect
+
+          if ((@grampanchayat.present? or @village.present?) and @habitation.present?)
+             @survey_report.update_column(:district_level_status, 0)
+          else 
+              @survey_report.update_column(:district_level_status, 1)   
+          end
+
         format.html { redirect_to @survey_report, notice: 'Survey report was successfully updated.' }
         format.json { head :no_content }
       else
@@ -133,6 +160,8 @@ class SurveyReportsController < ApplicationController
         format.json { render json: @survey_report.errors, status: :unprocessable_entity }
       end
     end
+
+
   end
   
   
