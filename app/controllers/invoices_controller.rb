@@ -100,19 +100,23 @@ class InvoicesController < ApplicationController
   end
 
   def sample_code_count
-    #raise params.inspect
-    @survey_invoices = params[:survey_ids] rescue nil
-    
-    u = @survey_invoices.count rescue nil
-    @survey_invoices.each do |survey|
-       @survey_reports = SurveyReport.find_by_id(survey)
-       @survey_reports.update_column(:is_invoiced , 1)
-    end
-    if params[:subaction] == "update"
-      redirect_to new_invoice_path(:count => u , :survey_invoices => params[:survey_ids] )
+    if params[:survey_ids].present?
+      @survey_invoices = params[:survey_ids] rescue nil
       
+      u = @survey_invoices.count rescue nil
+      @survey_invoices.each do |survey|
+         @survey_reports = SurveyReport.find_by_id(survey)
+         @survey_reports.update_column(:is_invoiced , 1)
+      end
+      if params[:subaction] == "update"
+        redirect_to new_invoice_path(:count => u , :survey_invoices => params[:survey_ids] )
+        
+      else
+        redirect_to edit_invoice_path(params[:id], :survey_invoices => params[:survey_ids], :count => u ,:subaction => "edit")
+      end
     else
-      redirect_to edit_invoice_path(params[:id], :survey_invoices => params[:survey_ids], :count => u ,:subaction => "edit")
+      flash[:alert] = "Sample cannot be blank !"
+      redirect_to :back 
     end
   end
 
@@ -127,13 +131,13 @@ class InvoicesController < ApplicationController
       start_to   = params[:end_date] rescue ""
       #raise start_to.inspect
       if start_from > start_to
-        flash[:notice] = "Start date cannot be greater than end date !"
-  
+        flash.now[:alert] = "Start date cannot be greater than end date !"
+        
       else start_from <= start_to
 
        if start_from.blank?
-         flash[:notice] = "Start date cannot be blank !"
-      
+         flash.now[:alert] = "Start date cannot be blank !"
+  
        else
         #raise current_user.survey_reports.inspect
         @survey_reports = current_user.survey_reports.where('created_at >= ? and Date(created_at) <= ?',start_from, start_to).find(:all, :select => 'id ,water_source_code', :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc") 
