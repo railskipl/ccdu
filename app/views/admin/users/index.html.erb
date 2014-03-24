@@ -56,11 +56,11 @@
                               <% end %>
                             </tr>
                           </thead>
-                        <% @users.each_with_index.each do |user,i |  %> 
+                        <% @users.each.with_index(1).each do |user,index |  %> 
                           <tbody>
                             <%#raise user.roles.inspect%>
-                            <tr>
-                              <td><%= i+1 %></td>
+                            <tr id="<%= dom_id(user) %>">
+                              <td><%= index %></td>
                               <td><%= user.username rescue nil%></td>
                               <td><%= (user.roles.first.display_name) rescue nil%></td>
                               

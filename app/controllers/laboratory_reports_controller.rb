@@ -17,25 +17,20 @@ class LaboratoryReportsController < ApplicationController
         
         if start_from > start_to 
          flash[:notice] = "Start date cannot be greater than end date"
-         @survey_report = current_user.survey_reports.find(:all, :conditions=>"actions = 1", :order=>"id desc")
-         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10) 
+         @survey_reports = current_user.survey_reports.find(:all, :conditions=>"actions = 1", :order=>"id desc").paginate(page: params[:page], per_page: 10) 
         elsif start_from <= start_to
 
           if start_from.blank?
-            @survey_report = current_user.survey_reports.where("source_name = ? or water_source_type = ? or habitation = ?", source_name,water_source_type,habitation)
-            @survey_reports = @survey_report.find(:all,:conditions=>"actions = 1", :order=>"id desc").paginate(page: params[:page], per_page: 10) 
+            @survey_reports = current_user.survey_reports.where("source_name = ? or water_source_type = ? or habitation = ?", source_name,water_source_type,habitation).find(:all,:conditions=>"actions = 1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
           else
-            @survey_report = current_user.survey_reports.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
-            @survey_reports = @survey_report.find(:all,:conditions=>"actions = 1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = current_user.survey_reports.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to).find(:all,:conditions=>"actions = 1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
           end
         else
-          @survey_report = @survey_report = current_user.survey_reports.where("created_at >= ? and Date(created_at) <= ? and source_name = ? and water_source_type = ? and habitation = ?",start_from,start_to, source_name,water_source_type,habitation)
-          @survey_reports = @survey_report.find(:all,:conditions=>"actions = 1", :order=>"id desc").paginate(page: params[:page], per_page: 10) 
+          @survey_reports = current_user.survey_reports.where("created_at >= ? and Date(created_at) <= ? and source_name = ? and water_source_type = ? and habitation = ?",start_from,start_to, source_name,water_source_type,habitation).find(:all,:conditions=>"actions = 1", :order=>"id desc").paginate(page: params[:page], per_page: 10) 
         end
       else
 
-        @survey_report = current_user.survey_reports.find(:all, :conditions=>"actions = 1", :order=>"id desc")
-        @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+        @survey_reports = current_user.survey_reports.find(:all, :conditions=>"actions = 1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
       end
       
 
@@ -133,22 +128,34 @@ class LaboratoryReportsController < ApplicationController
         if start_from > start_to 
          flash[:notice] = "Start date cannot be greater than end date"
 
-         @survey_report = SurveyReport.where('districtname = ?', current_user.district_name).find(:all, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+         @survey_reports = SurveyReport.where('districtname = ?', current_user.district_name).find(:all,
+                                              :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon', 
+                                              :conditions=>"is_tested = 1 and is_dist_approved=1", 
+                                              :order=>"id desc").paginate(page: params[:page], per_page: 10)
          block #refer block method
         else start_from <= start_to
 
           if start_from.blank?
             @user = User.where('block_name = ?', block_name)
-            @survey_reports = SurveyReport.where('user_id = ?',@user).find(:all,:conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = SurveyReport.where('user_id = ?',@user).find(:all,
+                                                 :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                                 :conditions=>"is_tested = 1 and is_dist_approved=1", 
+                                                 :order=>"id desc").paginate(page: params[:page], per_page: 10)
             block
           else
-            @survey_reports = SurveyReport.where("created_at >= ? and Date(created_at) <= ?, districtname = ?", start_from,start_to,current_user.district_name).find(:all,:conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = SurveyReport.where("created_at >= ? and Date(created_at) <= ?, districtname = ?", start_from,start_to,current_user.district_name).find(:all,
+                                                :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                                :conditions=>"is_tested = 1 and is_dist_approved=1",
+                                                :order=>"id desc").paginate(page: params[:page], per_page: 10)
             block
           end
         end
       else
 
-        @survey_report = SurveyReport.where('districtname = ?',current_user.district_name).find(:all,:conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+        @survey_reports = SurveyReport.where('districtname = ?',current_user.district_name).find(:all,
+                                            :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                            :conditions=>"is_tested = 1 and is_dist_approved=1",
+                                            :order=>"id desc").paginate(page: params[:page], per_page: 10)
         block
       end
 
@@ -173,26 +180,35 @@ class LaboratoryReportsController < ApplicationController
         if start_from > start_to 
          flash[:notice] = "Start date cannot be greater than end date"
 
-         @survey_report = SurveyReport.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc")
-         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+         @survey_reports = SurveyReport.where('districtname',current_user.district_name).find(:all,
+                                             :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                             :conditions=>"is_tested = 1 and is_dist_approved=2",
+                                             :order=>"id desc").paginate(page: params[:page], per_page: 10)
          block
         else start_from <= start_to
 
           if start_from.blank?
             @user = User.find_by_block_name(block_name)
-            @survey_reports = SurveyReport.where('user_id = ?',@user).find(:all,:conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = SurveyReport.where('user_id = ?',@user).find(:all,
+                                          :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                          :conditions=>"is_tested = 1 and is_dist_approved=2",
+                                          :order=>"id desc").paginate(page: params[:page], per_page: 10)
             #@survey_reports = @survey_report.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
             block
           else
-            @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
-            @survey_reports = @survey_report.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = SurveyReport.where("created_at >= ? and Date(created_at) <= ? and districtname = ?", start_from,start_to,current_user.district_name).find(:all ,
+                                          :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                          :conditions=>"is_tested = 1 and is_dist_approved=2",
+                                          :order=>"id desc").paginate(page: params[:page], per_page: 10) 
             block
           end
         end
       else
 
-        @survey_report = SurveyReport.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc")
-        @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+        @survey_reports = SurveyReport.where('districtname = ?',current_user.district_name).find(:all,
+                                      :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                      :conditions=>"is_tested = 1 and is_dist_approved=2", 
+                                      :order=>"id desc").paginate(page: params[:page], per_page: 10)
         block
       end
 
@@ -227,22 +243,27 @@ class LaboratoryReportsController < ApplicationController
         
         if start_from > start_to 
          flash[:notice] = "Start date cannot be greater than end date"
-         @survey_report = current_user.survey_reports.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
-         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+         @survey_reports = current_user.survey_reports.find(:all,
+                                                      :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                                      :conditions=>"is_tested = 1 and is_dist_approved=1", 
+                                                      :order=>"id desc").paginate(page: params[:page], per_page: 10)
         else start_from <= start_to
 
           if start_from.blank?
-            @survey_report = current_user.survey_reports.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
-            @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+            @survey_reports = current_user.survey_reports.find(:all,
+                                                         :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                                         :conditions=>"is_tested = 1 and is_dist_approved=1",
+                                                         :order=>"id desc").paginate(page: params[:page], per_page: 10)
           else
-            @survey_report = current_user.survey_reports.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
-            @survey_reports = @survey_report.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = current_user.survey_reports.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to).find(:all, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
           end
         end
       else
 
-        @survey_report = current_user.survey_reports.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
-        @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+        @survey_reports = current_user.survey_reports.find(:all,
+                                                :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                                :conditions=>"is_tested = 1 and is_dist_approved=1",
+                                                :order=>"id desc").paginate(page: params[:page], per_page: 10)
       end
 
       respond_to do |format|
@@ -265,22 +286,30 @@ class LaboratoryReportsController < ApplicationController
         
         if start_from > start_to 
          flash[:notice] = "Start date cannot be greater than end date"
-         @survey_report = current_user.survey_reports.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc")
-         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+         @survey_reports = current_user.survey_reports.find(:all,
+                                       :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                       :conditions=>"is_tested = 1 and is_dist_approved=2", 
+                                       :order=>"id desc").paginate(page: params[:page], per_page: 10)
         else start_from <= start_to
 
           if start_from.blank?
             flash[:notice] = "Start date can not be blank."
-            @survey_report = current_user.survey_reports.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc")
-            @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+            @survey_reports = current_user.survey_reports.find(:all,
+                              :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon', 
+                              :conditions=>"is_tested = 1 and is_dist_approved=2", 
+                              :order=>"id desc").paginate(page: params[:page], per_page: 10)
           else
-            @survey_report = current_user.survey_reports.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
-            @survey_reports = @survey_report.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = current_user.survey_reports.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to).find(:all,
+                                          :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon', 
+                                          :conditions=>"is_tested = 1 and is_dist_approved=2", 
+                                          :order=>"id desc").paginate(page: params[:page], per_page: 10)
           end
         end
       else
-        @survey_report = current_user.survey_reports.find(:all, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc")
-        @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+        @survey_reports = current_user.survey_reports.find(:all,
+                                 :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon', 
+                                 :conditions=>"is_tested = 1 and is_dist_approved=2", 
+                                 :order=>"id desc").paginate(page: params[:page], per_page: 10)
       end
 
       respond_to do |format|
@@ -330,26 +359,35 @@ class LaboratoryReportsController < ApplicationController
         if start_from > start_to 
          flash[:notice] = "Start date cannot be greater than end date"
 
-         @survey_report = SurveyReport.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
-         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+         @survey_reports = SurveyReport.where('zone_name = ?',current_user.zone_name).find(:all,
+                                       :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                       :conditions=>"is_tested = 1 and is_dist_approved=1", 
+                                       :order=>"id desc").paginate(page: params[:page], per_page: 10)
          zone
         else start_from <= start_to
 
           if start_from.blank?
-            @survey_reports = SurveyReport.find_all_by_districtname(districtname,:conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc" ).paginate(page: params[:page], per_page: 10)
+            @survey_reports = SurveyReport.where('districtname = ?',districtname).find(:all,
+                                          :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                          :conditions=>"is_tested = 1 and is_dist_approved=1", 
+                                          :order=>"id desc" ).paginate(page: params[:page], per_page: 10)
             zone
             #@survey_reports = @survey_report.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
            
           else
-            @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
-            @survey_reports = @survey_report.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = SurveyReport.where("created_at >= ? and Date(created_at) <= ? and zone_name = ?", start_from,start_to,current_user.zone_name).find(:all,
+                                          :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                          :conditions=>"is_tested = 1 and is_dist_approved=1", 
+                                          :order=>"id desc").paginate(page: params[:page], per_page: 10)
             zone
           end
         end
       else
 
-        @survey_report = SurveyReport.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
-        @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+        @survey_reports = SurveyReport.where('zone_name = ?',current_user.zone_name).find(:all,
+                                      :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon', 
+                                      :conditions=>"is_tested = 1 and is_dist_approved=1", 
+                                      :order=>"id desc").paginate(page: params[:page], per_page: 10)
         zone
         
 
@@ -384,27 +422,36 @@ class LaboratoryReportsController < ApplicationController
         if start_from > start_to 
          flash[:notice] = "Start date cannot be greater than end date"
 
-         @survey_report = SurveyReport.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc")
-         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+         @survey_reports = SurveyReport.where('zone_name = ?',current_user.zone_name).find(:all,
+                                       :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                       :conditions=>"is_tested = 1 and is_dist_approved=2", 
+                                       :order=>"id desc").paginate(page: params[:page], per_page: 10) 
          zone
         else start_from <= start_to
 
           if start_from.blank?
-            @survey_reports = SurveyReport.find_all_by_districtname(districtname, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = SurveyReport.where('districtname = ?',districtname).find(:all,
+                                          :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon' ,
+                                          :conditions=>"is_tested = 1 and is_dist_approved=2", 
+                                          :order=>"id desc").paginate(page: params[:page], per_page: 10)
             zone
-            #@survey_reports = @survey_report.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            
            
           else
-            @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
-            @survey_reports = @survey_report.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = SurveyReport.where("created_at >= ? and Date(created_at) <= ? and zone_name = ?", start_from,start_to,current_user.zone_name).find(:all,
+                                          :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                          :conditions=>"is_tested = 1 and is_dist_approved=2", 
+                                          :order=>"id desc").paginate(page: params[:page], per_page: 10)
             zone
           end
         end
       else
 
-        @survey_report = SurveyReport.find_all_by_zone_name(current_user.zone_name, :conditions=>"is_tested = 1 and is_dist_approved=2", :order=>"id desc")
-        @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
-        zone
+        @survey_reports = SurveyReport.where('zone_name = ?',current_user.zone_name).find(:all,
+                                      :select => 'id,water_source_code,ph,tds,residual_chlorine,fluoride,chloride,nitrate,alkaliniy,total_hardness,bacteriological,reason_for_rejecting,postmonsoon',
+                                      :conditions=>"is_tested = 1 and is_dist_approved=2", 
+                                      :order=>"id desc").paginate(page: params[:page], per_page: 10) 
+        zone #refer zone method
       end
 
       respond_to do |format|
@@ -416,8 +463,6 @@ class LaboratoryReportsController < ApplicationController
       end
     
   end
-  
-  
 end
 
 

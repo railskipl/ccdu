@@ -43,13 +43,13 @@
                     <% end %>
                   </tr>
                 </thead>
-                    <% @users.each_with_index.each do |user,i |  %>
+                    <% @users.each.with_index(1).each do |user,index |  %>
                       <%if current_user.id == user.block_manager_id%> 
                         <tbody>
-                          <tr>
-                            <td><%= i+1 %></td>
+                          <tr id="<%= dom_id(user)%>">
+                            <td><%= index %></td>
                             <td><%= user.username rescue nil%></td>
-                            <td><%= user.roles.map { |e| e.display_name  } rescue nil%></td>
+                            <td><%= user.roles.first.display_name rescue nil%></td>
                             <% if current_user.has_role? :block %>
                               <td><%= link_to "Edit", edit_user_path(user) , :class => "btn"%></td>
                               <%if user.is_transfer == true %>
