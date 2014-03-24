@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140319061350) do
+ActiveRecord::Schema.define(:version => 20140324050953) do
 
   create_table "admin_blocks", :force => true do |t|
     t.string   "block_name"
@@ -75,6 +75,29 @@ ActiveRecord::Schema.define(:version => 20140319061350) do
     t.integer  "user_id"
   end
 
+  create_table "complaints", :force => true do |t|
+    t.string   "supplier_name"
+    t.string   "incident_title"
+    t.text     "incident_description"
+    t.string   "raised_by"
+    t.datetime "raised_on"
+    t.string   "sample_impacted"
+    t.text     "other_impact"
+    t.string   "assigned_to"
+    t.date     "assigned_on"
+    t.string   "status"
+    t.date     "closed_on"
+    t.string   "closed_by"
+    t.string   "action_taken"
+    t.string   "district_name"
+    t.string   "block_name"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.integer  "user_id"
+    t.string   "priority"
+    t.integer  "actions",              :default => 0
+  end
+
   create_table "invoices", :force => true do |t|
     t.string   "district_name"
     t.string   "block_name"
@@ -98,9 +121,11 @@ ActiveRecord::Schema.define(:version => 20140319061350) do
     t.string   "manufacturer_name"
     t.string   "phone_no"
     t.date     "purchase_date"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.integer  "user_id"
+    t.integer  "status",                 :default => 0
+    t.text     "remarks_for_deactivate"
   end
 
   create_table "mobile_users", :force => true do |t|
@@ -115,6 +140,12 @@ ActiveRecord::Schema.define(:version => 20140319061350) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "priorities", :force => true do |t|
+    t.string   "priority_name"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "roles", :force => true do |t|
@@ -213,5 +244,11 @@ ActiveRecord::Schema.define(:version => 20140319061350) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "water_source_types", :force => true do |t|
+    t.string   "source_type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
 end

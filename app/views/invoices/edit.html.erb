@@ -120,7 +120,7 @@ jQuery(document).ready(function() {
                     <% if params[:subaction] == "edit" %>
                       <%#raise params[:a].inspect%>
                       <div class="controls">
-                        <%= f.text_field :no_of_sample , :value => (@invoice.no_of_sample).to_i + (params[:count]).to_i,:class => "input-large", :readonly => true%>
+                        <%= f.text_field :no_of_sample , :value => ((@invoice.no_of_sample).to_i + (params[:count]).to_i - (params[:d]).to_i).round ,:class => "input-large", :readonly => true%>
                       </div>
                     <%else%>
                       <div class="controls">
@@ -163,13 +163,13 @@ jQuery(document).ready(function() {
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <%= form_tag edit_invoice_path ,:method => :get do %>
                     <tr>
-                      <td>From Date </td>
-                      <td><span class="controls">
-                        <%= text_field_tag :start_date %>
+                      <td style="width: 68px;">From Date </td>
+                      <td style="width: 180px;"><span class="controls" >
+                        <%= text_field_tag :start_date,Date.today,:style=>"width: 180px;" %>
                       </span></td>
-                      <td>To Date </td>
-                      <td><span class="controls">
-                        <%= text_field_tag :end_date %>
+                      <td style="width: 51px;">To Date </td>
+                      <td style="width: 180px;"><span class="controls" style="width: 180px;">
+                        <%= text_field_tag :end_date,Date.today, :style=>"width: 180px;" %>
                          </span>
                       </td>
                       
@@ -180,7 +180,7 @@ jQuery(document).ready(function() {
                       <td>
                         <%= button_tag  :submit , name: "subaction",value: "update", :class => "btn btn btn-primary"%>
                         <!-- <button class="btn btn btn-primary" type="reset">Show</button> -->
-                        <%= link_to "Clear", new_invoice_path, :class=>"btn btn btn-primary"%>
+                        <%= link_to "Clear", edit_invoice_path, :class=>"btn btn btn-primary"%>
                         
                       </td>
                         <td>&nbsp;</td>
@@ -191,23 +191,31 @@ jQuery(document).ready(function() {
                    <% end %>
                   </table>
                 <%#raise params[:id].inspect%>
-                <% if  params[:subaction] == "update"%>
+                <%# if  params[:subaction] == "update"%>
+               
                   <%= form_tag sample_code_count_invoices_path(:id => params[:id]) , method: :post do %>
+                    <% @survey_reportss.each do |survey|%>
+                      <%= hidden_field_tag "surveyidss[]",survey.id %>
 
-                    <% @survey_reports.each do |survey|%>
-                      <%= check_box_tag "survey_ids[]",survey.id %><%= survey.water_source_code rescue nil%><br/>
-                    <%end%>
-                    <%= button_tag "Sample count" , name: "subaction",value: "edit" %>
+                      <%= check_box_tag "surveyids[]",survey.id, true %><%= survey.water_source_code %><br/>
+
                   <%end%>
-                <%else%>
+                    
+                    <% if  params[:subaction] == "update"%>
+                      <% @survey_reports.each do |survey|%>
+                        <%= check_box_tag "survey_ids[]",survey.id rescue nil%><%= survey.water_source_code rescue nil%><br/>
+                      <%end%>
+                    <%else%>
 
-                <%end%>
+                    <%end%>
+                    <%= button_tag  :submit , name: "subaction",value: "edit",:class => "btn btn btn-primary" %>
+                  <%end%>
+                <%#else%>
+
+                <%#end%>
+              
               </div>
-            <%#raise params[:a].inspect%>
-           
-
             </div>
-            
           </div> <!-- /widget-content -->
         </div> <!-- /widget -->
       </div>

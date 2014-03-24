@@ -1,0 +1,106 @@
+<div class="main">
+  <div class="container">
+    <div class="row">
+      <div class="span12">          
+        <div class="widget stacked ">
+          <div class="widget-header">
+            <i class="icon-pencil"></i>
+            <h3>View Complaint </h3>
+          </div> <!-- /widget-header -->
+          <div class="widget-content">
+            <div class="row-fluid">
+              <div class="span12">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>&nbsp;</td>
+                      <td>
+                        <%#= link_to "Back", admin_habitations_path, :class => "btn"%>
+                        <%#= link_to "Edit Village", edit_admin_habitation_path(@admin_habitation), :class=>"btn", :type=>"reset"%>
+                      </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            </br>
+            <section id="tables">
+              <table class="table table-bordered table-striped">
+                   
+                    <tbody>
+                      <tr>
+                        <td>District name</td>
+                        <td><%= @complaint.district_name rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Block name</td>
+                        <td><%= @complaint.block_name rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Supplier Name</td>
+                        <td><%= @complaint.supplier_name rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Incident Title</td>
+                        <td><%= @complaint.incident_title rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Incident Description</td>
+                        <td><%= @complaint.incident_description rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Raised By</td>
+                        <td><%= @complaint.raised_by rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Raised On</td>
+                        <td><%= @complaint.raised_on.strftime("%d-%m-%Y %I:%M %p") rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Sample Impacted</td>
+                        <td><%= @complaint.sample_impacted rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Other Impacted</td>
+                        <td><%= @complaint.other_impact rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Assigned To</td>
+                        <td><%= @complaint.assigned_to rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Assigned On</td>
+                        <td><%= @complaint.assigned_on.strftime("%d-%m-%Y") rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Status</td>
+                        <td><%= @complaint.status rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Closed On</td>
+                        <td><%= @complaint.closed_on.strftime("%d-%m-%Y") rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Closed By</td>
+                        <td><%= @complaint.closed_by rescue nil%></td>
+                      </tr>
+                      <tr>
+                        <td>Action Taken</td>
+                        <td><%= @complaint.action_taken rescue nil%></td>
+                      </tr>
+                    </tbody>
+              </table>
+            </section>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
+      </div>
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</div> <!-- /main -->
+
+
+
+
+

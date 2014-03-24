@@ -39,11 +39,11 @@
                   <tr>
                     <td>From Date </td>
                     <td><span class="controls">
-                      <%= f.text_field :start_date %>
+                      <%= f.text_field :start_date, :value => Date.today %>
                     </span></td>
                     <td>To Date </td>
                     <td><span class="controls">
-                      <%= f.text_field :end_date %>
+                      <%= f.text_field :end_date, :value => Date.today %>
                        </span>
                     </td>
                     <td>Water Source </td>
@@ -55,7 +55,7 @@
                   <tr>
                     <td>Types</td>
                     <td><span class="controls">
-                      <%= f.select :water_source_type_eq, SurveyReport.find(:all,:conditions=>"actions != 1", :order=>"id desc").map{|s| [s.water_source_type, s.water_source_type]},{:prompt => "Select Source Type"} %>
+                      <%= f.select :water_source_type_eq, WaterSourceType.all.map{|s| [s.source_type, s.source_type]},{:prompt => "Select Source Type"} %>
                       </span>
                     </td>
                     <!-- <td>Habitation</td> -->

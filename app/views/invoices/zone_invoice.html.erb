@@ -31,6 +31,7 @@
                     <th>Invoice Date</th>
                     <th>Number of Sample</th>
                     <th>Amount</th>
+                    <th style="width:20%">Action</th>
                     
                   </tr>
                 </thead>
@@ -45,7 +46,7 @@
                       <td><%= invoice.invoice_date.strftime("%d-%m-%Y") rescue nil%></td>
                       <td><%= invoice.no_of_sample rescue nil%></td>
                       <td><%= invoice.amount rescue nil%></td>
-                      
+                      <td><%= link_to "View", zone_invoice_show_invoice_path(invoice) , :class=>"btn"%></td>
                        
                         </div>
                       </td>

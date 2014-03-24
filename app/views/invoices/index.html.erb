@@ -51,6 +51,7 @@
                       <td><%= invoice.amount rescue nil%></td>
                       <td><%= invoice.remarks_for_rejection[0..50] rescue nil%></td>
                       <td><%= link_to "Edit", edit_invoice_path(invoice) , :class=>"btn"%>
+                          <%= link_to "View", invoice_path(invoice), :class => "btn"%>
                           <%= link_to "Submit", submit_invoice_invoice_path(invoice), :class=>"btn"%></td>
                       
                        

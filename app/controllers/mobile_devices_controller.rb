@@ -7,6 +7,28 @@ class MobileDevicesController < ApplicationController
    	@mobile_devices = MobileDevice.all
    end
 
+   def activate_mobile
+     @mobile_device = MobileDevice.find(params[:id])
+     #raise @mobile_device.inspect
+     @mobile_device.update_column(:status, 1)
+     flash.now[:alert] = "Mobile has been activated."
+     redirect_to :back
+   end
+
+   def deactivate_mobile
+     @mobile_device = MobileDevice.find(params[:id])
+      #raise @mobile_device.inspect
+   end
+
+   def remarks_for_deactivate
+     @mobile_device = MobileDevice.find(params[:id])
+     if @mobile_device.update_attributes(params[:mobile_device])
+        flash[:notice] = "Remark added"
+      else
+        render :deactivate_mobile
+      end
+   end
+
    def new
    	@mobile_device = MobileDevice.new
    end

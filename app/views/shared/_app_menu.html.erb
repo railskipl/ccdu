@@ -38,6 +38,12 @@
     						</a>	    				
     					</li>
     					
+    					<li class="dropdown">
+    						<a href="<%= complaint_district_complaints_path %>">
+
+    							<span>Complaint Box</span>
+    						</a>	    				
+    					</li>
 				    <% elsif current_user.has_role? :block %>
 					<li class="dropdown">
 						<a href="<%= users_path%>">
@@ -82,6 +88,13 @@
 						<a href="<%= block_mis_report_mis_reports_path%>">
 							
 							<span>Summary Report</span>
+						</a>	
+				    </li>
+
+				    <li class="dropdown">					
+						<a href="<%= complaints_path%>">
+							
+							<span>Complaint Box</span>
 						</a>	
 				    </li>
 

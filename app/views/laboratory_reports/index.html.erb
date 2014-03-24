@@ -47,11 +47,11 @@
                   <tr>
                     <td>From Date </td>
                     <td><span class="controls">
-                      <%= text_field_tag :start_date %>
+                      <%= text_field_tag :start_date,  Date.today %>
                     </span></td>
                     <td>To Date </td>
                     <td><span class="controls">
-                      <%= text_field_tag :end_date %>
+                      <%= text_field_tag :end_date, Date.today %>
                        </span>
                     </td>
                     <td>Water Source </td>
@@ -63,7 +63,7 @@
                   <tr>
                     <td>Types</td>
                     <td><span class="controls">
-                      <%= collection_select :water_source_type, :water_source_type_eq, SurveyReport.all, :water_source_type, :water_source_type, {:prompt => "Select Source Type"} %>
+                      <%= collection_select :water_source_type, :water_source_type_eq, WaterSourceType.all, :source_type, :source_type, {:prompt => "Select Source Type"} %>
                       </span>
                     </td>
                     <!-- <td>Habitation</td>
@@ -137,7 +137,7 @@
                       <td><!-- <div style="float:left; margin-right:3px;"><%= link_to "View", laboratory_report_path(survey_report), :class=>"btn" %> </div> -->
                           <% if survey_report.is_tested == 0 %>
                           <div id="action<%= survey_report.id %>" style="float:left;">
-                          <%= link_to "Send for Testing", send_for_testing_laboratory_report_path(survey_report), remote: true, :class=>"btn" %>
+                          <%= link_to "Edit Test Result", send_for_testing_laboratory_report_path(survey_report), remote: true, :class=>"btn" %>
                           <% elsif survey_report.is_dist_approved == 1%>
                             <%= "Approved by district manager" %><br/>
                             <%= link_to "Update Testing Report", send_for_testing_laboratory_report_path(survey_report), remote: true, :class=>"btn" %>

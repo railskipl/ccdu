@@ -1,0 +1,59 @@
+<script>
+jQuery(document).ready(function() {
+	jQuery("#mobile_device").validate({
+		errorElement:'div',
+		rules: {
+			"mobile_device[remarks_for_deactivate]" : { required: true }
+			},
+		messages: {
+			  "mobile_device[remarks_for_deactivate]":{ required:  "Please enter reason" }
+			},
+			submitHandler: function(form) {
+          jQuery.ajax({
+              url: "<%= remarks_for_deactivate_mobile_device_path(@mobile_device.id) %>",
+              type: "POST",
+              data: jQuery(form).serialize(),
+              success: function(response) {
+                           jQuery('#action<%= @mobile_device.id %>')
+                             .html("Rejected")
+                           	.hide()
+                           	.fadeIn()
+                           jQuery(document).trigger('close.facebox');
+                       }            
+               });
+          
+       }
+       
+		});
+ });
+</script>
+
+<h4>Reason For Deactivating Mobile</h4>
+          <!-- /widget-header -->
+          <div class="widget-content">
+            <div class="row-fluid" style="margin-bottom:10px">
+              <!-- <div class="span12">
+                <a href="/mobile_users" class="btn">Back</a>          
+              </div> -->
+            </div>
+           
+            <%= form_for :mobile_device, :url => remarks_for_deactivate_mobile_device_path(@mobile_device.id), :html=>{:id=>"mobile_device"} do |f| %>
+              
+              <fieldset>
+                <div class="control-group">
+                  <label class="control-label" for="name">Reason</label>
+                  <div class="controls">
+                    <%= f.text_area :remarks_for_deactivate, :rows =>"12",:style => "width:560px ; overflow-y: scroll; height: 200px; ",:maxlength => 1000 %>
+                    <%= f.hidden_field :status, :value=> 2 %>
+                  </div>
+                </div>
+                
+                
+                <div class="control-group">
+                  <div class="controls">
+                    <%= f.submit "Save", :class=>"btn" %>
+                  </div>
+                </div>
+              </fieldset>
+			      <% end %>
+			</div> <!-- /widget-content --> 

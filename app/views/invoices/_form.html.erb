@@ -157,11 +157,11 @@ jQuery(document).ready(function() {
                   <tr>
                     <td>From Date </td>
                     <td><span class="controls">
-                      <%= text_field_tag :start_date %>
+                      <%= text_field_tag :start_date,Date.today %>
                     </span></td>
                     <td>To Date </td>
                     <td><span class="controls">
-                      <%= text_field_tag :end_date %>
+                      <%= text_field_tag :end_date ,Date.today%>
                        </span>
                     </td>
                     
@@ -184,11 +184,16 @@ jQuery(document).ready(function() {
                 </table>
 
                 <% if  params[:subaction] == "update"%>
-                  <%= form_tag sample_code_count_invoices_path , method: :post do %>
-                    <% @survey_reports.each do |survey|%>
-                      <%= check_box_tag "survey_ids[]",survey.id %><%= survey.water_source_code rescue nil%><br/>
+                  <% if @survey_reports.present?%>
+                    <%= form_tag sample_code_count_invoices_path , method: :post do %>
+
+                      <% @survey_reports.each do |survey|%>
+                        <%= check_box_tag "survey_ids[]",survey.id %><%= survey.water_source_code rescue nil%><br/>
+                      <%end%>
+                      <%= button_tag  :submit , name: "subaction",value: "update" %>
                     <%end%>
-                    <%= button_tag  :submit , name: "subaction",value: "update" %>
+                  <%else%>
+                    <%= "No Sample Record Found"%>
                   <%end%>
                 <%else%>
 

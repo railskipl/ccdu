@@ -62,15 +62,15 @@
                             <tr>
                               <td><%= i+1 %></td>
                               <td><%= user.username rescue nil%></td>
-                              <td><%= (user.roles.map{ |e| e.display_name.to_s.html_safe  }) rescue nil%></td>
+                              <td><%= (user.roles.first.display_name) rescue nil%></td>
                               
-                                <td>Zone :<%= user.zone_name rescue nil%></td>
+                                <td><%= user.zone_name rescue nil%></td>
                              
                               
-                                <td>District :<%= user.district_name rescue nil%></td>
+                                <td><%= user.district_name rescue nil%></td>
                               
                               
-                                <td>Block :<%= user.block_name rescue nil%></td>
+                                <td><%= user.block_name rescue nil%></td>
                               
                               <% if current_user.has_role? :admin %>
                                 <td><%= link_to "Edit", edit_admin_user_path(user),:class => "btn" %></td>

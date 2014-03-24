@@ -1,0 +1,86 @@
+
+
+<div class="main">
+  <div class="container">
+    <div class="row">
+      <div class="span12">          
+        <div class="widget stacked ">
+          <div class="widget-header">
+            <i class="icon-pencil"></i>
+            <h3>Complaint Box</h3>
+          </div> <!-- /widget-header -->
+          <div class="widget-content">
+            
+            <section id="tables">
+              <div class="row-fluid">
+                <div class="span6">
+                  
+                </div>
+                <!-- <div class="span6" style="text-align:right">
+                  <%= link_to image_tag('/assets/excel.png', :border=>"0", :align=>"absmiddle") + " Excel", invoices_path(params.merge(format: "xls")), :method=> :get, :class=>"btn btn-secondary" %>
+                  <%= link_to image_tag('/assets/pdf.png', :border=>"0", :align=>"absmiddle") + " PDF", invoices_path(params.merge(format: "pdf")), :method=> :get, :class=>"btn btn-secondary" %>
+                   
+                </div> -->
+              </div>
+              <br/>
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Sr. No. </th>
+                    <th>District Name</th>
+                    <th>Block Name</th>
+                    <th>Supplier Name</th>
+                    <th>Incident Title</th>
+                    <th>Raised By</th>
+                    <th>Raised On</th>
+                    <th>Assigned To</th>
+                    <th>Status</th>
+                    <th>Closed By</th>
+                    <th>Closed On</th>
+                    <th >Action</th>
+                   
+                  </tr>
+                </thead>
+                 <tbody>
+                <% @complaints.each.with_index(1) do |complaint,index |  %> 
+                 
+                    <tr id="<%= dom_id(complaint) %>">
+                      <td><%= index%></td>
+                      <td><%= complaint.district_name rescue nil%></td>
+                      <td><%= complaint.block_name rescue nil%></td>
+                      <td><%= complaint.supplier_name rescue nil%></td>
+                      <td><%= complaint.incident_title rescue nil%></td>
+                      <td><%= complaint.raised_by rescue nil%></td>
+                      <td><%= complaint.raised_on.strftime("%d-%m-%Y") rescue nil%></td>
+                      <td><%= complaint.assigned_to rescue nil%></td>
+                      <td><%= complaint.status rescue nil%></td>
+                      <td><%= complaint.closed_by rescue nil%></td>
+                      <td><%= complaint.closed_on.strftime("%d-%m-%Y") rescue nil%></td>
+                      <td><%= link_to "View", complaint_path(complaint), :class=>"btn"%></td>
+                      
+                       
+                        </div>
+                      </td>
+                    </tr>
+                <% end %> 
+                </tbody>
+              </table>
+              <section id="paginations">
+                <div class="digg_pagination">
+                  <%#= will_paginate @invoices %>
+                </div>
+              </section>
+            </section>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
+      </div>
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</div> <!-- /main -->
+    
+
+
+
+
+
+

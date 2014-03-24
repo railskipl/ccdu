@@ -52,77 +52,90 @@ jQuery(document).ready(function() {
             </div>
            
             <%= form_for(:survey_report, :url => submit_update_test_laboratory_report_path(@survey_report.id), :html=>{:id=>"lab_report"}) do |f| %>
-              <fieldset>
-                <div class="control-group">
-                  <label class="control-label" for="name">pH</label>
-                  <div class="controls">
-                    <%= f.text_field :ph %>
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="name">TDS</label>
-                  <div class="controls">
-                    <%= f.text_field :tds %>
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="name">Residual Chlorine</label>
-                  <div class="controls">
-                    <%= f.text_field :residual_chlorine %>
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="name">Fluoride</label>
-                  <div class="controls">
-                    <%= f.text_field :fluoride %>
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="name">Chloride</label>
-                  <div class="controls">
-                    <%= f.text_field :chloride %>
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="name">Nitrate</label>
-                  <div class="controls">
-                    <%= f.text_field :nitrate %>
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="name">Alkaliniy</label>
-                  <div class="controls">
-                    <%= f.text_field :alkaliniy %>
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="name">Total Hardness</label>
-                  <div class="controls">
-                    <%= f.text_field :total_hardness %>
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="name">Pre Monsoon Reading</label>
-                  <div class="controls">
-                    <%= f.text_field :postmonsoon %>
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="name">Post Monsoon Reading</label>
-                  <div class="controls">
-                    <%= f.text_field :bacteriological%>
-                    <%= f.hidden_field :is_tested, :value=>1 %>
-                    <%= f.hidden_field :is_dist_approved, :value=>0 %>
-                    <%= f.hidden_field :districtname, :value=> current_user.district_name %>
-                  </div>
-                </div>
-                
-                <div class="control-group">
-                  <div class="controls">
-                    <%= f.submit "Save", :class=>"btn" %>
-                  </div>
-                </div>
-              </fieldset>
+              <table width="750px" border="0" cellspacing="0" cellpadding="0">
+                  
+                  <tr>
+                    <td>pH</td>
+                    <td><span class="controls">
+                      <%= f.text_field :ph,:placeholder => "pH" %>
+                    </span></td>
+                    <td>TDS</td>
+                    <td><span class="controls">
+                      <%= f.text_field :tds ,:placeholder => "TDS"%>
+                       </span>
+                    </td>
+                    
+                  </tr>
+
+                  <tr>
+                    <td>Residual Chlorine</td>
+                    <td><span class="controls">
+                      <%= f.text_field :residual_chlorine,:placeholder => "Residual Chlorine" %>
+                    </span></td>
+                    <td>Fluoride </td>
+                    <td><span class="controls">
+                      <%= f.text_field :fluoride,:placeholder => "Fluoride" %>
+                       </span>
+                    </td>
+                    
+                  </tr>
+
+                  <tr>
+                    <td>Chloride</td>
+                    <td><span class="controls">
+                      <%= f.text_field :chloride , :placeholder => "Chloride" %>
+                    </span></td>
+                    
+                    <td>Nitrate</td>
+                    <td><span class="controls">
+                      <%= f.text_field :nitrate, :placeholder => "Nitrate"  %>
+                       </span>
+                    </td>
+                    
+                  </tr>
+
+                  <tr>
+                    <td>Total Hardness</td>
+                    <td><span class="controls">
+                      <%= f.text_field :total_hardness,:placeholder => "Total Hardness" %>
+                    </span></td>
+
+                    <td>Alkaliniy</td>
+                    <td><span class="controls">
+                      <%= f.text_field :alkaliniy , :placeholder => "Alkaliniy"%>
+                       </span>
+                    </td>
+                    
+                    
+                  </tr>
+
+                  <tr>
+                    <td>Pre Monsoon Reading</td>
+                    <td><span class="controls">
+                      <%= f.text_field :bacteriological,:placeholder => "Pre Monsoon Reading"%>
+                       </span>
+                    </td>
+                    <td>Post Monsoon Reading</td>
+                    <td><span class="controls">
+                      <%= f.text_field :postmonsoon,:placeholder => "Post Monsoon Reading" %>
+                      <%= f.hidden_field :is_tested, :value=>1 %>
+                      <%= f.hidden_field :is_dist_approved, :value => 0%>
+                      <%= f.hidden_field :districtname, :value=> current_user.district_name %>
+                    </span></td>
+                    
+                    
+                  </tr>
+                  
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                      <%= f.submit "Save", :class=>"btn" %>
+                      
+                    </td>
+                      
+                  </tr>
+                 
+                </table>
 			      <% end %>
 			</div> <!-- /widget-content -->
 			

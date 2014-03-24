@@ -18,6 +18,7 @@
                   
                 </div>
                 <div class="span6" style="text-align:right">
+
                   <%= link_to image_tag('/assets/excel.png', :border=>"0", :align=>"absmiddle") + " Excel", district_invoice_invoices_path(params.merge(format: "xls")), :method=> :get, :class=>"btn btn-secondary" %>
                   <%= link_to image_tag('/assets/pdf.png', :border=>"0", :align=>"absmiddle") + " PDF", district_invoice_invoices_path(params.merge(format: "pdf")), :method=> :get, :class=>"btn btn-secondary" %>
                    
@@ -49,6 +50,7 @@
                       <td><%= invoice.no_of_sample rescue nil%></td>
                       <td><%= invoice.amount rescue nil%></td>
                       <td>
+                        <%= link_to "View", district_invoice_show_invoice_path(invoice) , :class=>"btn"%>
                         <%if invoice.is_dist_invoice == 0 %>
                           <%= link_to "Accept", approve_invoice_invoice_path(invoice , :accept => "Accept"), :class=>"btn" %> <%= link_to "Reject", reject_invoice_invoice_path(invoice),remote: true, :class=>"btn" %>
 

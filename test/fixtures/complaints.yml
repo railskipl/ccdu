@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  supplier_name: MyString
+  incident_title: MyString
+  incident_description: MyText
+  raised_by: MyString
+  raised_on: 2014-03-20 11:59:47
+  sample_impacted: MyString
+  other_impact: MyText
+  assigned_to: MyString
+  assigned_on: 2014-03-20
+  status: MyString
+  closed_on: 2014-03-20
+  closed_by: MyString
+  action_taken: MyString
+  district_name: MyString
+  block_name: MyString
+
+two:
+  supplier_name: MyString
+  incident_title: MyString
+  incident_description: MyText
+  raised_by: MyString
+  raised_on: 2014-03-20 11:59:47
+  sample_impacted: MyString
+  other_impact: MyText
+  assigned_to: MyString
+  assigned_on: 2014-03-20
+  status: MyString
+  closed_on: 2014-03-20
+  closed_by: MyString
+  action_taken: MyString
+  district_name: MyString
+  block_name: MyString

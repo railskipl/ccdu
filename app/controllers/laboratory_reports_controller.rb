@@ -94,28 +94,23 @@ class LaboratoryReportsController < ApplicationController
         if start_from > start_to 
          flash[:notice] = "Start date cannot be greater than end date"
 
-         @survey_report = SurveyReport.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=0", :order=>"id desc")
-         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+         @survey_reports = SurveyReport.where('districtname = ?', current_user.district_name).find(:all, :conditions=>"is_tested = 1 and is_dist_approved=0", :order=>"id desc").paginate(page: params[:page], per_page: 10)
          block
         else start_from <= start_to
 
           if start_from.blank?
             @user = User.find_by_block_name(block_name)
-            @survey_reports = SurveyReport.find_all_by_user_id(@user, :conditions=>"is_tested = 1 and is_dist_approved=0", :order=>"id desc").paginate(page: params[:page], per_page: 10)
-            block
-            #@survey_reports = @survey_report.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
-           
+            @survey_reports = SurveyReport.where('user_id = ?',@user ).find(:all, :conditions=>"is_tested = 1 and is_dist_approved=0", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            block #refer block method
           else
-            @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
-            @survey_reports = @survey_report.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=0", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = SurveyReport.where("created_at >= ? and Date(created_at) <= ? and districtname = ?", start_from,start_to,current_user.district_name).find(:all, :conditions=>"is_tested = 1 and is_dist_approved=0", :order=>"id desc").paginate(page: params[:page], per_page: 10)
             block
           end
         end
       else
 
-        @survey_report = SurveyReport.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=0", :order=>"id desc")
-        @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
-        block
+        @survey_reports = SurveyReport.where('districtname = ?', current_user.district_name).find(:all, :conditions=>"is_tested = 1 and is_dist_approved=0", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+        block #refer block method
         
       end
 
@@ -126,8 +121,6 @@ class LaboratoryReportsController < ApplicationController
            render :pdf => "survey_reports"
         end
       end
-    # @survey_report = SurveyReport.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=0", :order=>"id desc")
-    # @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
   end
 
   def district_accept
@@ -140,30 +133,24 @@ class LaboratoryReportsController < ApplicationController
         if start_from > start_to 
          flash[:notice] = "Start date cannot be greater than end date"
 
-         @survey_report = SurveyReport.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
-         @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
-         block
+         @survey_report = SurveyReport.where('districtname = ?', current_user.district_name).find(:all, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+         block #refer block method
         else start_from <= start_to
 
           if start_from.blank?
-            @user = User.find_by_block_name(block_name)
+            @user = User.where('block_name = ?', block_name)
             @survey_reports = SurveyReport.where('user_id = ?',@user).find(:all,:conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
-            #@survey_reports = @survey_report.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
             block
           else
-            @survey_report = SurveyReport.where("created_at >= ? and Date(created_at) <= ?", start_from,start_to)
-            @survey_reports = @survey_report.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
+            @survey_reports = SurveyReport.where("created_at >= ? and Date(created_at) <= ?, districtname = ?", start_from,start_to,current_user.district_name).find(:all,:conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
             block
           end
         end
       else
 
-        @survey_report = SurveyReport.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
-        @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
+        @survey_report = SurveyReport.where('districtname = ?',current_user.district_name).find(:all,:conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc").paginate(page: params[:page], per_page: 10)
         block
       end
-    #   @survey_report = SurveyReport.find_all_by_districtname(current_user.district_name, :conditions=>"is_tested = 1 and is_dist_approved=1", :order=>"id desc")
-    #   @survey_reports = @survey_report.paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
       format.html # index.html.erb

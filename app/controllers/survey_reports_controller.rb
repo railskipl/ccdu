@@ -10,7 +10,7 @@ class SurveyReportsController < ApplicationController
     
     # @survey_report = SurveyReport.find(:all, :conditions=>"actions != 1", :order=>"id desc")
     # @survey_reports = @survey_report.paginate(page: params[:page], per_page: 20)
-
+    #raise params.inspect
     if params[:subaction] == "update"
       
       start_from = params[:survey][:start_date] rescue ""

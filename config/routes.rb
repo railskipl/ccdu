@@ -35,7 +35,12 @@ Ccdu::Application.routes.draw do
   end
   
 
-  resources :block_laboratories
+  resources :complaints do 
+    get 'invoice_submit', :on => :member
+    get 'complaint_district', :on => :collection
+  end
+
+  resources :priorities
   
   resources :invoices do 
     get 'payment',:on => :collection
@@ -47,11 +52,18 @@ Ccdu::Application.routes.draw do
     get 'submit_invoice', :on => :member
     get 'reject_invoice', :on => :member
     post 'remarks_for_rejection', :on => :member
+    get 'district_invoice_show', :on => :member
+    get 'zone_invoice_show', :on => :member
   end
   
 
-  #resources :parameters
-  resources :mobile_devices
+  resources :water_source_types
+
+  resources :mobile_devices do 
+    get 'activate_mobile', :on => :member
+    get 'deactivate_mobile', :on => :member
+    post 'remarks_for_deactivate', :on => :member
+  end
   #resources :mobile_users
   devise_for :users , :controllers => { :sessions => "sessions", :passwords => "passwords"}
 

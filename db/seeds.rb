@@ -62,3 +62,8 @@
     #   Admin::Block.create(:block_name => f, :district_id => @district.id, :code => "", :lab_name => "", :laboratory_present => "No")
     # end
 
+    @source = ["Public", "Private"]
+    @source.each do |f|
+        WaterSourceType.create(:source_type => f)
+    end
+

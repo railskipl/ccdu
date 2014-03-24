@@ -1,0 +1,186 @@
+<script>
+(function() {
+
+  jQuery(function() {
+  jQuery('#complaint_assigned_on').datepicker( 
+    { altField  : '#complaint_assigned_on',  // selector of the hidden input field you want sent to the server
+      dateFormat: 'd-m-yy',
+      altFormat : 'd-m-yy' } );
+    });
+
+
+}).call(this);
+
+</script>
+
+
+
+<script>
+jQuery(document).ready(function() {
+  jQuery("#complaint").validate({
+    errorElement:'div',
+    rules: {
+      "complaint[supplier_name]" : { required: true },
+      "complaint[incident_title]" : { required: true },
+      "complaint[incident_description]" : { required: true },
+      "complaint[raised_by]" : { required: true },
+      "complaint[raised_on]" : { required: true},
+      "complaint[priority]" : { required: true },
+      "complaint[sample_impacted]" : { required: true },
+      "complaint[assigned_to]" : { required: true },
+      "complaint[assigned_on]" : { required: true },
+      "complaint[status]" : { required: true }
+      },
+    messages: {
+        "complaint[supplier_name]" : { required: "Please enter supplier name" },
+        "complaint[incident_title]" : { required: "Please enter incident title" },
+        "complaint[incident_description]" : { required: "Please enter description" },
+        "complaint[raised_by]" : { required: "Please enter raised by" },
+        "complaint[raised_on]":{ required:  "Please enter date" },
+        "complaint[priority]" : { required: "Please enter priority" },
+        "complaint[sample_impacted]" : { required: "Please enter sample impacted" },
+        "complaint[assigned_to]" : { required: "Please enter assigned to " },
+        "complaint[assigned_on]" : { required: "Please enter assigned on" },
+        "complaint[status]" : { required: "Please enter status" }
+      }
+       
+    });
+ });
+</script>
+<div class="main">
+  <div class="container">
+    <div class="row">
+        <div class="span12">          
+          <div class="widget stacked ">
+            <div class="widget-header">
+              <i class="icon-pencil"></i>
+              <h3>Compalint Box</h3>
+            </div> <!-- /widget-header -->
+            <div class="widget-content">
+              <div style="margin-bottom:10px" class="row-fluid">
+            </div>
+            <%= form_for @complaint, :html => {:id => "complaint",:class => "form-horizontal"} do |f| %>
+              <% if @complaint.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@complaint.errors.count, "error") %> prohibited this complaint from being saved:</h2>
+                  <ul>
+                    <% @complaint.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <fieldset>
+                <div class="control-group">
+                  <label for="name" class="control-label">District Name</label>
+                  <div class="controls">
+                    <%= f.text_field :district_name ,:value => current_user.district_name, :readonly => true, :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Block Name</label>
+                  <div class="controls">
+                    <%= f.text_field :block_name ,:value => current_user.block_name, :readonly => true, :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Supplier Name</label>
+                  <div class="controls">
+                    <%= f.text_field :supplier_name , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Incident Title</label>
+                  <div class="controls">
+                    <%= f.text_field :incident_title , :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Incident Description</label>
+                  <div class="controls">
+                    <%= f.text_area :incident_description ,:style=>"width:350px ; height:100px", :class => "input-large"%>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Raised By</label>
+                  <div class="controls">
+                    <%= f.text_field :raised_by,:value => current_user.user_fullname,:readonly => true , :class => "input-large" %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Raised On</label>
+                  <div class="controls">
+                    <%= f.text_field :raised_on,:value => Time.now.strftime("%d-%m-%Y %I:%M %p"), :readonly => true ,:class => "input-large" %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Priority</label>
+                  <div class="controls">
+                    <%= f.collection_select :priority , Priority.all, :priority_name, :priority_name, :prompt => "Select Priority" %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Sample Impacted</label>
+                  <div class="controls">
+                    <%= f.text_field :sample_impacted, :class => "input-large" %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Other Impacted</label>
+                  <div class="controls">
+                    <%= f.text_area :other_impact,:style=>"width:350px ; height:100px", :class => "input-large" %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Assigned To </label>
+                  <div class="controls">
+                    <%= f.text_field :assigned_to, :class => "input-large" %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Assigned On </label>
+                  <div class="controls">
+                    <%= f.text_field :assigned_on, :class => "input-large" %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Status</label>
+                  <div class="controls">
+                    <%= f.text_field :status, :class => "input-large" %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Closed On</label>
+                  <div class="controls">
+                    <%= f.text_field :closed_on,:readonly => true, :class => "input-large" %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Closed By</label>
+                  <div class="controls">
+                    <%= f.text_field :closed_by,:readonly => true, :class => "input-large" %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label for="name" class="control-label">Action Taken</label>
+                  <div class="controls">
+                    <%= f.text_area :action_taken,:readonly => true,:style=>"width:350px ; height:100px", :class => "input-large" %>
+                  </div>
+                  <%= f.hidden_field :user_id, :value => current_user.id%>
+                </div>
+                <div class="control-group">
+                  <div class="controls">
+                    <%= f.submit "Submit", :class => "btn"%>
+                  </div>
+                </div>
+              </fieldset>
+            <%end%>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
+      </div>
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</div> <!-- /main -->
+
+
+

@@ -44,11 +44,11 @@
                     <tr>
                       <td>From Date </td>
                       <td><span class="controls">
-                        <%= text_field_tag :start_date%>
+                        <%= text_field_tag :start_date,Date.today%>
                       </span></td>
                       <td>To Date </td>
                       <td><span class="controls">
-                        <%= text_field_tag :end_date%>
+                        <%= text_field_tag :end_date,Date.today%>
                       </span></td>
                       <td></td>
                       <td><span class="controls">
@@ -109,30 +109,30 @@
                 <tr>
                   <td rowspan="3"><%= u%></td>
                    <td>Collected</td>
-                  <td align="right"><%= SurveyReport.where('districtname = ?  and Date(created_at) = ?',current_user.district_name, u).find(:all, :conditions => 'actions = 1').count%></td>
-                  <td align="right"><%= SurveyReport.where('districtname = ?  and Date(created_at) = ?',current_user.district_name, u).find(:all, :conditions => 'actions = 2').count%></td>
-                  <td align="right"><%= SurveyReport.where('districtname = ? and created_at >= ? and Date(created_at) <= ?',current_user.district_name,u.to_s.to_date.beginning_of_month, u).find(:all, :conditions => 'actions = 1').count%></td>
-                  <td align="right"><%= SurveyReport.where('districtname = ? and created_at >= ? and Date(created_at) <= ?',current_user.district_name,u.to_s.to_date.beginning_of_month, u).find(:all, :conditions => 'actions = 2').count%></td>
-                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) <= ? ',current_user.district_name, u).find(:all, :conditions => 'actions = 1').count%></td>
-                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) <= ? ',current_user.district_name, u).find(:all, :conditions => 'actions = 2').count%></td> 
+                  <td align="right"><%= SurveyReport.where('districtname = ?  and Date(created_at) = ?',current_user.district_name, u).find(:all,:select => 'id', :conditions => 'actions = 1').count%></td>
+                  <td align="right"><%= SurveyReport.where('districtname = ?  and Date(created_at) = ?',current_user.district_name, u).find(:all,:select => 'id', :conditions => 'actions = 2').count%></td>
+                  <td align="right"><%= SurveyReport.where('districtname = ? and created_at >= ? and Date(created_at) <= ?',current_user.district_name,u.to_s.to_date.beginning_of_month, u).find(:all,:select => 'id', :conditions => 'actions = 1').count%></td>
+                  <td align="right"><%= SurveyReport.where('districtname = ? and created_at >= ? and Date(created_at) <= ?',current_user.district_name,u.to_s.to_date.beginning_of_month, u).find(:all,:select => 'id', :conditions => 'actions = 2').count%></td>
+                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) <= ? ',current_user.district_name, u).find(:all,:select => 'id', :conditions => 'actions = 1').count%></td>
+                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) <= ? ',current_user.district_name, u).find(:all,:select => 'id', :conditions => 'actions = 2').count%></td> 
                 </tr>
                  <tr>
                   <td>Tested</td>
-                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) = ?', current_user.district_name, u).find(:all, :conditions => 'is_tested = 1 and is_dist_approved = 1').count%></td>
-                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) = ?',current_user.district_name, u).find(:all, :conditions => 'is_tested = 1 and is_dist_approved = 2').count%></td>
-                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) >= ? and Date(created_at) <= ?',current_user.district_name, u.to_s.to_date.beginning_of_month, u).find(:all, :conditions => 'is_tested = 1 and is_dist_approved = 1').count%></td>
-                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) >= ? and Date(created_at) <= ?',current_user.district_name, u.to_s.to_date.beginning_of_month, u).find(:all, :conditions => 'is_tested = 1 and is_dist_approved = 2').count%></td>
-                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) <= ?',current_user.district_name, u).find(:all, :conditions => 'actions = 1 and is_dist_approved = 1').count%></td>
-                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) <= ?',current_user.district_name, u).find(:all, :conditions => 'actions = 1 and is_dist_approved = 2').count%></td>
+                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) = ?', current_user.district_name, u).find(:all,:select => 'id', :conditions => 'is_tested = 1 and is_dist_approved = 1').count%></td>
+                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) = ?',current_user.district_name, u).find(:all,:select => 'id', :conditions => 'is_tested = 1 and is_dist_approved = 2').count%></td>
+                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) >= ? and Date(created_at) <= ?',current_user.district_name, u.to_s.to_date.beginning_of_month, u).find(:all,:select => 'id', :conditions => 'is_tested = 1 and is_dist_approved = 1').count%></td>
+                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) >= ? and Date(created_at) <= ?',current_user.district_name, u.to_s.to_date.beginning_of_month, u).find(:all,:select => 'id', :conditions => 'is_tested = 1 and is_dist_approved = 2').count%></td>
+                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) <= ?',current_user.district_name, u).find(:all,:select => 'id', :conditions => 'actions = 1 and is_dist_approved = 1').count%></td>
+                  <td align="right"><%= SurveyReport.where('districtname = ? and Date(created_at) <= ?',current_user.district_name, u).find(:all,:select => 'id', :conditions => 'actions = 1 and is_dist_approved = 2').count%></td>
                 </tr>
                  <tr>
                   <td>Invoiced</td>
-                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) = ?',current_user.district_name, u).find(:all, :conditions=>"is_invoice = 1", :order=>"id desc").count%></td>
-                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) = ?',current_user.district_name, u).find(:all, :conditions=>"is_invoice = 2", :order=>"id desc").count%></td>
-                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) >= ? and Date(created_at) <= ?',current_user.district_name, u.to_s.to_date.beginning_of_month, u).find(:all, :conditions=>"is_invoice = 1", :order=>"id desc").count%></td>
-                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) >= ? and Date(created_at) <= ?',current_user.district_name ,u.to_s.to_date.beginning_of_month, u).find(:all, :conditions=>"is_invoice = 2", :order=>"id desc").count%></td>
-                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) <= ?',current_user.district_name, u).find(:all, :conditions=>"is_invoice = 1", :order=>"id desc").count%></td>
-                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) <= ?',current_user.district_name, u).find(:all, :conditions=>"is_invoice = 2", :order=>"id desc").count%></td>
+                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) = ?',current_user.district_name, u).find(:all,:select => 'id', :conditions=>"is_invoice = 1", :order=>"id desc").count%></td>
+                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) = ?',current_user.district_name, u).find(:all,:select => 'id', :conditions=>"is_invoice = 2", :order=>"id desc").count%></td>
+                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) >= ? and Date(created_at) <= ?',current_user.district_name, u.to_s.to_date.beginning_of_month, u).find(:all,:select => 'id', :conditions=>"is_invoice = 1", :order=>"id desc").count%></td>
+                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) >= ? and Date(created_at) <= ?',current_user.district_name ,u.to_s.to_date.beginning_of_month, u).find(:all,:select => 'id', :conditions=>"is_invoice = 2", :order=>"id desc").count%></td>
+                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) <= ?',current_user.district_name, u).find(:all,:select => 'id', :conditions=>"is_invoice = 1", :order=>"id desc").count%></td>
+                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) <= ?',current_user.district_name, u).find(:all,:select => 'id', :conditions=>"is_invoice = 2", :order=>"id desc").count%></td>
                 </tr> 
                 <%end%>
               </table>

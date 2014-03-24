@@ -13,7 +13,7 @@ class SessionsController < Devise::SessionsController
 		
 	        user = User.find_by_username(params[:username])
 	        #check mobile device imei number matches with database imei
-	        @mobile_device = MobileDevice.find_by_imei(params[:imei]) 
+	        @mobile_device = MobileDevice.where('imei = ? and status = ?',params[:imei] , 1)
 	        #raise @mobile_device.inspect
 	        if @mobile_device.present? 
 		        #raise user.inspect
