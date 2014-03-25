@@ -1,0 +1,1 @@
+<%= select "user", :block_name, @blocks.map {|d| [d.block_name, d.id]},{:prompt => "Select Block " }rescue nil  %>

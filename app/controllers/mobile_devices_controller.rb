@@ -10,7 +10,7 @@ class MobileDevicesController < ApplicationController
    def activate_mobile
      @mobile_device = MobileDevice.find(params[:id])
      #raise @mobile_device.inspect
-     @mobile_device.update_column(:status, 1)
+     @mobile_device.update_column(:status, 0)
      flash.now[:alert] = "Mobile has been activated."
      redirect_to :back
    end

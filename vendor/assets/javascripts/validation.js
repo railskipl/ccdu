@@ -52,7 +52,7 @@ jQuery(document).ready(function() {
 
 	    "user[mobile_no]" :{
 	    	                   number :true,
-						       minlength:10
+						       maxlength:10
 	    },
         
         "user[role_ids]" :{

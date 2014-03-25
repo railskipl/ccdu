@@ -1,3 +1,4 @@
+
 <div class="main">
   <div class="container">
     <div class="row">
@@ -52,7 +53,7 @@
                               <th>Block</th>
                               <% if current_user.has_role? :admin %>
                                 <th>Edit User</th>
-                                <th>Delete User</th>
+                                <!-- <th>Delete User</th> -->
                               <% end %>
                             </tr>
                           </thead>
@@ -74,7 +75,7 @@
                               
                               <% if current_user.has_role? :admin %>
                                 <td><%= link_to "Edit", edit_admin_user_path(user),:class => "btn" %></td>
-                                <td><%= link_to "Delete", admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' },:class => "btn" %></td>
+                                <!-- <td><%= link_to "Delete", admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' },:class => "btn" %></td> -->
                               <% end %>
                             </tr>
                           </tbody>

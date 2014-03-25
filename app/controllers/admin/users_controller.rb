@@ -12,7 +12,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-     
+     #raise params.inspect
      @user = User.new(params[:user])
 
      respond_to do |format|
@@ -23,6 +23,15 @@ class Admin::UsersController < ApplicationController
          format.html { render :action => "new" }
        end
      end
+  end
+
+  def update_zone
+    @districts = Admin::District.where('zone_id = ?', params[:update_zone])
+  end
+
+  def update_district
+    @blocks = Admin::Block.where('district_id = ?', params[:update_district])
+
   end
 
   def edit

@@ -39,7 +39,7 @@
                     <% if current_user.has_role? :block %>
                     <th>Edit User</th>
                     <th>Transfer User</th>
-                    <th>Delete User</th>
+                    <!-- <th>Delete User</th> -->
                     <% end %>
                   </tr>
                 </thead>
@@ -57,7 +57,7 @@
                               <%else%>
                                 <td><%= link_to "Transfer user", edit_manager_user_path(user),:class => "btn" %></td>
                               <%end%> 
-                              <td><%= link_to "Delete", user_path(user), method: :delete, data: { confirm: 'Are you sure?' } ,:class => "btn"%></td>
+                              <!-- <td><%= link_to "Delete", user_path(user), method: :delete, data: { confirm: 'Are you sure?' } ,:class => "btn"%></td> -->
                             <% end %>
                           </tr>
                         </tbody>

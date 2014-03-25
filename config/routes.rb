@@ -76,10 +76,12 @@ Ccdu::Application.routes.draw do
     end
   end
   match "/users/update_user", :to => "users#update_user"
+  match "/admin/users/update_zone", :to => "admin/users#update_zone"
+  match "/admin/users/update_district", :to => "admin/users#update_district"
   
   namespace :admin do 
     match '/dashboard' => "dashboard#index", :as => :root
-    resources :users
+    resources :users 
     resources :habitations
     resources :villages
     resources :grampanchyats

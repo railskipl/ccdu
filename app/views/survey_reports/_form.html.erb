@@ -69,7 +69,8 @@
                 <div class="control-group">
                   <label for="name" class="control-label">Source Type</label>
                   <div class="controls">
-                    <%= f.text_field :water_source_type, :class => "input-large"%>
+                    <%= f.select :water_source_type, WaterSourceType.all.map{|s| [s.source_type, s.source_type]},{:prompt => "Select Source Type"} %>
+                    <%#= f.text_field :water_source_type, :class => "input-large"%>
                     
                   </div>
                 </div>

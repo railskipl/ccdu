@@ -54,7 +54,7 @@
                                   <th>Action</th>
                                   <% if current_user.has_role? :admin %>
                                     <th>Edit</th>
-                                    <th>Delete</th>
+                                    <!-- <th>Delete</th> -->
                                   <% end %>
                                 </tr>
                               </thead>
@@ -67,29 +67,24 @@
                                   <td><%= mobile_device.phone_no rescue nil%></td>
                                   <td><%= mobile_device.purchase_date rescue nil%></td>
                                   <td><% if mobile_device.status == 0 %>
-                                         <%= "Mobile Deactivate"%>
-                                      <%elsif mobile_device.status == 1%>
-                                        <%= "Activate"%>
-                                      <%else  mobile_device.status == 2%>
-                                        <%= "Deactivate"%>
+                                         <%= "Mobile Active"%>
+                                      <%else mobile_device.status == 1%>
+                                        <%= "Mobile Deactive"%>
                                       <%end%>
                                   </td>
 
                                   <td><%= mobile_device.remarks_for_deactivate[0..5] rescue nil%></td>
                                   <td>
                                     <%if mobile_device.status == 0%>
-                                    <%= link_to "Activate",activate_mobile_mobile_device_path(mobile_device),:class => "btn"%> <%= link_to "Deactivate",deactivate_mobile_mobile_device_path(mobile_device), :remote => true,:class => "btn"%>
-                                    <%elsif mobile_device.status == 1%>
-                                      <%= link_to "Deactivate",deactivate_mobile_mobile_device_path(mobile_device),:remote => true,:class => "btn"%>
-                                      
-                                    <%else%>
-                                      <%= link_to "Activate",activate_mobile_mobile_device_path(mobile_device),:class => "btn"%>
+                                     <%= link_to "Deactivate",deactivate_mobile_mobile_device_path(mobile_device), :remote => true,:class => "btn"%>
+                                    <%else mobile_device.status == 1%>
+                                       <%= link_to "Activate",activate_mobile_mobile_device_path(mobile_device),:class => "btn"%>
                                     <%end%>
                                     </td>
 
                                   <% if current_user.has_role? :admin %>
                                     <td><%= link_to "Edit", edit_mobile_device_path(mobile_device),:class => "btn" %></td>
-                                    <td><%= link_to "Delete", mobile_device, method: :delete, data: { confirm: 'Are you sure?' },:class => "btn" %></td>
+                                    <!-- <td><%= link_to "Delete", mobile_device, method: :delete, data: { confirm: 'Are you sure?' },:class => "btn" %></td> -->
                                   <% end %>
                                 </tr>
                               </tbody>

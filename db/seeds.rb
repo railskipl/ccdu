@@ -16,19 +16,22 @@
 # admin.roles = [Role.first]
 # admin.save
     
+      #puts "creating Zone"
     # @a = ["BIKANER","JODHPUR"]
 
     # @a.each do |f|
     # 	Admin::Zone.create(:zone_name => f)
     # end
-
+      
+      #puts "creating District for zone JODHPUR"
     # @b = ["JODHPUR"]
 
     # @b.each do |f|
     # 	@zone = Admin::Zone.find_by_zone_name("JODHPUR")
     # 	Admin::District.create(:district_name => f,:zone_id => @zone.id, :code => "J",:lab_name => "",:lab_present => "No")
     # end
-
+      
+      #puts "creating block for district JODHPUR"
     # @c = ["Bap",
     #        "Baleser",
     #        "Bhopalghar",
@@ -42,14 +45,14 @@
     # 	@district = Admin::District.find_by_district_name("JODHPUR")
     # 	Admin::Block.create(:block_name => f, :district_id => @district.id, :code => "", :lab_name => "", :laboratory_present => "No")
     # end
-
+      #puts "creating district for zone bikaner"
     # @bikaner = ["BIKANER"]
 
     # @bikaner.each do |f|
     #   @zone = Admin::Zone.find_by_zone_name("BIKANER")
     #   Admin::District.create(:district_name => f,:zone_id => @zone.id, :code => "J",:lab_name => "",:lab_present => "No")
     # end
-
+      #puts "creating block for district bikaner"
     # @c = ["BIKANER",
     #        "DUNGARGARH",
     #        "KOLAYAT",
@@ -62,8 +65,15 @@
     #   Admin::Block.create(:block_name => f, :district_id => @district.id, :code => "", :lab_name => "", :laboratory_present => "No")
     # end
 
-    @source = ["Public", "Private"]
-    @source.each do |f|
-        WaterSourceType.create(:source_type => f)
-    end
+     puts "creating water source type"
+    WaterSourceType.create(:source_type => "Public")
+    WaterSourceType.create(:source_type => "Private")
+
+     puts "creating priority"
+    Priority.create(:priority_name => "LOW")
+    Priority.create(:priority_name => "Medium")
+    Priority.create(:priority_name => "HIGH")
+
+
+
 

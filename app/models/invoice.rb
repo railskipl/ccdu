@@ -3,4 +3,6 @@ class Invoice < ActiveRecord::Base
   
   validates_presence_of :invoice_date, :invoice_no, :no_of_sample, :remark, :amount
   belongs_to :user
+
+  validates :invoice_no, :presence   => true ,:uniqueness => true
 end

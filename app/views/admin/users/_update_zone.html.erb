@@ -1,0 +1,7 @@
+<%= javascript_include_tag "prototype" %>
+
+<%= select "user", :district_name,   @districts.map {|s| [s.district_name, s.id]},{:prompt => "Select District"}  ,:onchange => "#{remote_function(:url => {:controller =>"admin/users", :action => "update_district"}, :with => "'update_district='+value",:loading => "Element.show('loader');",:complete => "Element.hide('loader');")}" rescue nil  %><br/><br/>
+
+<div id="district_name">  
+    <%= render "admin/users/update_district" %> 
+</div>

@@ -11,9 +11,9 @@ class SessionsController < Devise::SessionsController
 		#raise params[:device].inspect
 		if params[:device] == 'mobile' 
 		
-	        user = User.find_by_username(params[:username])
+	        user = User.where('username = ? and is_transfer = ?',params[:username], false )
 	        #check mobile device imei number matches with database imei
-	        @mobile_device = MobileDevice.where('imei = ? and status = ?',params[:imei] , 1)
+	        @mobile_device = MobileDevice.where('imei = ? and status = ?',params[:imei] , 0)
 	        #raise @mobile_device.inspect
 	        if @mobile_device.present? 
 		        #raise user.inspect
