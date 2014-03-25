@@ -30,17 +30,17 @@
 <div class="main">
   <div class="container">
     <div class="row">
-      <div class="span12">      		
-      	<div class="widget stacked ">
-      		<div class="widget-header">
-      			<i class="icon-pencil"></i>
-      			<h3>SUMMARY REPORT</h3>
-  				</div> <!-- /widget-header -->
-  				<div class="widget-content">
-  				  <div class="row-fluid">
-  				    <div class="span12">
-  				      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <%= form_tag search_block_mis_report_mis_reports_path , :method => :get do%>
+      <div class="span12">          
+        <div class="widget stacked ">
+          <div class="widget-header">
+            <i class="icon-pencil"></i>
+            <h3>SUMMARY REPORT</h3>
+          </div> <!-- /widget-header -->
+          <div class="widget-content">
+            <div class="row-fluid">
+              <div class="span12">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <%= form_tag search_zone_mis_report_mis_reports_path , :method => :get do%>
                     <tr>
                       <td>From Date </td>
                       <td><span class="controls">
@@ -58,9 +58,9 @@
                     <tr>
                       <td>&nbsp;</td>
                       <td>
-                      	<%= submit_tag "Search",:class=>"btn btn btn-primary"%>
-                      	 <!-- <button class="btn btn btn-primary" type="reset">Clear</button> -->
-                      	<%= link_to "Clear", block_mis_report_mis_reports_path, :class=>"btn btn btn-primary"%>
+                        <%= submit_tag "Search",:class=>"btn btn btn-primary"%>
+                         <!-- <button class="btn btn btn-primary" type="reset">Clear</button> -->
+                        <%= link_to "Clear", zone_mis_report_mis_reports_path, :class=>"btn btn btn-primary"%>
                       </td>
                       <td>&nbsp;</td>
                       <td>&nbsp;</td>
@@ -69,19 +69,19 @@
                     </tr>
                   <%end%>
                 </table>
-  				    </div>
-  				  </div>
-  				  </br>
-  				  <section id="tables">
-  			      <div class="row-fluid">
-  					    <div class="span6">
-  					      <h3>SUMMARY REPORT</h3>
-  					    </div>
-  					    <div class="span6" style="text-align:right">
-  					      <a href="#" class="btn btn-secondary"><img src="img/excel.png" alt=""> Excel</a> <a href="#" class="btn btn-secondary"><i class="icon"><img src="img/pdf.png" alt=""></i> PDF</a>
+              </div>
+            </div>
+            </br>
+            <section id="tables">
+              <div class="row-fluid">
+                <div class="span6">
+                  <h3>SUMMARY REPORT</h3>
                 </div>
-  					  </div>
-  	          <table class="table table-bordered table-striped">
+                <div class="span6" style="text-align:right">
+                  <a href="#" class="btn btn-secondary"><img src="img/excel.png" alt=""> Excel</a> <a href="#" class="btn btn-secondary"><i class="icon"><img src="img/pdf.png" alt=""></i> PDF</a>
+                </div>
+              </div>
+              <table class="table table-bordered table-striped">
                 <col width="64">
                 <col width="78">
                 <col width="97">
@@ -127,31 +127,31 @@
                 </tr>
                  <tr>
                   <td>Invoiced</td>
-                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) = ?',current_user.zone_name, u).find(:all,:select => 'id', :conditions=>"is_invoice = 1", :order=>"id desc").count%></td>
-                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) = ?',current_user.zone_name, u).find(:all,:select => 'id', :conditions=>"is_invoice = 2", :order=>"id desc").count%></td>
-                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) >= ? and Date(created_at) <= ?',current_user.zone_name, u.to_s.to_date.beginning_of_month, u).find(:all,:select => 'id', :conditions=>"is_invoice = 1", :order=>"id desc").count%></td>
-                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) >= ? and Date(created_at) <= ?',current_user.zone_name ,u.to_s.to_date.beginning_of_month, u).find(:all,:select => 'id', :conditions=>"is_invoice = 2", :order=>"id desc").count%></td>
-                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) <= ?',current_user.zone_name, u).find(:all,:select => 'id', :conditions=>"is_invoice = 1", :order=>"id desc").count%></td>
-                  <td align="right"><%= Invoice.where('district_name = ? and Date(created_at) <= ?',current_user.zone_name, u).find(:all,:select => 'id', :conditions=>"is_invoice = 2", :order=>"id desc").count%></td>
+                  <td align="right"><%= Invoice.where('zone_name = ? and Date(created_at) = ?',current_user.zone_name, u).find(:all,:select => 'id', :conditions=>"is_invoice = 1", :order=>"id desc").count%></td>
+                  <td align="right"><%= Invoice.where('zone_name = ? and Date(created_at) = ?',current_user.zone_name, u).find(:all,:select => 'id', :conditions=>"is_invoice = 2", :order=>"id desc").count%></td>
+                  <td align="right"><%= Invoice.where('zone_name = ? and Date(created_at) >= ? and Date(created_at) <= ?',current_user.zone_name, u.to_s.to_date.beginning_of_month, u).find(:all,:select => 'id', :conditions=>"is_invoice = 1", :order=>"id desc").count%></td>
+                  <td align="right"><%= Invoice.where('zone_name = ? and Date(created_at) >= ? and Date(created_at) <= ?',current_user.zone_name ,u.to_s.to_date.beginning_of_month, u).find(:all,:select => 'id', :conditions=>"is_invoice = 2", :order=>"id desc").count%></td>
+                  <td align="right"><%= Invoice.where('zone_name = ? and Date(created_at) <= ?',current_user.zone_name, u).find(:all,:select => 'id', :conditions=>"is_invoice = 1", :order=>"id desc").count%></td>
+                  <td align="right"><%= Invoice.where('zone_name = ? and Date(created_at) <= ?',current_user.zone_name, u).find(:all,:select => 'id', :conditions=>"is_invoice = 2", :order=>"id desc").count%></td>
                 </tr> 
                 <%end%>
               </table>
-  				    <section id="paginations">
-  					    <div class="pagination">
-      					  <!-- <ul>
-      					    <li><a href="javascript:;">Prev</a></li>
-      					    <li class="active">
-      					      <a href="javascript:;">1</a>					    </li>
-      					    <li><a href="javascript:;">2</a></li>
-      					    <li><a href="javascript:;">3</a></li>
-      					    <li><a href="javascript:;">4</a></li>
-      					    <li><a href="javascript:;">Next</a></li>
-      					  </ul> -->
-  					    </div>
-  				    </section>
-  				  </section>
-  				</div> <!-- /widget-content -->
-  			</div> <!-- /widget -->
+              <section id="paginations">
+                <div class="pagination">
+                  <!-- <ul>
+                    <li><a href="javascript:;">Prev</a></li>
+                    <li class="active">
+                      <a href="javascript:;">1</a>              </li>
+                    <li><a href="javascript:;">2</a></li>
+                    <li><a href="javascript:;">3</a></li>
+                    <li><a href="javascript:;">4</a></li>
+                    <li><a href="javascript:;">Next</a></li>
+                  </ul> -->
+                </div>
+              </section>
+            </section>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
       </div>
     </div> <!-- /row -->
   </div> <!-- /container -->

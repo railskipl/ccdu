@@ -32,6 +32,8 @@ Ccdu::Application.routes.draw do
     get 'search_district_mis_report', :on => :collection
     get 'zone_mis_report', :on => :collection
     get 'search_zone_mis_report', :on => :collection
+    get 'admin_mis_report', :on => :collection
+    get 'search_admin_mis_report', :on => :collection
   end
   
 
