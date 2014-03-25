@@ -83,7 +83,6 @@ class MisReportsController < ApplicationController
         @survey_reports_dist2_rej =  SurveyReport.where('districtname = ?', current_user.district_name).find(:all,:select => 'id', :conditions => 'actions = 1 and is_dist_approved = 2')
         @invoice2_rej = Invoice.where('district_name = ?', current_user.district_name).find(:all,:select => 'id', :conditions=>"is_invoice = 2", :order=>"id desc")
 
-        layout "admin"
    end
    
 
