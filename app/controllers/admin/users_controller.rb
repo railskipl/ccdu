@@ -14,7 +14,7 @@ class Admin::UsersController < ApplicationController
   def create
      #raise params.inspect
      @user = User.new(params[:user])
-
+     
      respond_to do |format|
        if @user.save
          

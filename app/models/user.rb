@@ -22,35 +22,5 @@ class User < ActiveRecord::Base
   has_many :invoices
   has_many :complaints
   validates :username, :presence   => true ,:uniqueness => true
-  before_save :check_area
-  #check role & than save area of user
-  def check_area 
-
-    role = Role.find_by_id(self.role_ids)
-    @zone_name = Admin::Zone.find(self.zone_name) rescue nil
-    @district_name = Admin::District.find(self.district_name) rescue nil
-    @block_name = Admin::Block.find(self.block_name) rescue nil
-    if role.name == "zone"
-       self.zone_name = @zone_name.zone_name rescue nil
-       self.district_name = nil
-       self.block_name = nil
-    elsif role.name == "district"
-      self.zone_name =  @zone_name.zone_name rescue nil
-      self.district_name = @district_name.district_name rescue nil
-      self.block_name = nil
-    elsif role.name == "block"
-      self.zone_name = nil
-      self.district_name = @district_name.district_name rescue nil
-      self.block_name = @block_name.block_name rescue nil
-    elsif role.name == "mobile"
-      self.zone_name = nil
-      self.district_name = nil
-      self.block_name = nil
-    elsif role.name == "admin"
-      self.zone_name = nil
-      self.district_name = nil
-      self.block_name = nil
-    end
-    
-  end
+  
 end

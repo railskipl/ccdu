@@ -46,11 +46,14 @@ class UsersController < ApplicationController
   # find user, for changing block manager id
   def edit_manager 
     @user = User.find(params[:id])
+    #@district = Admin::District.find_by_district_name(current_user.district_name)
+    #@blocks = Admin::Block.where('district_id = ?', @district.id).find(:all, :select => 'id,block_name')
   end
   #update block manager id and transfer the mobile surveyor 
   #update block manager id and transfer the mobile surveyor 
   def update_manager
     @user = User.find(params[:id])
+    #raise @user.inspect
     @user.update_attributes(:block_manager_id => params[:user][:block_manager_id], :is_transfer => true, :old_manager_id => current_user.id)
     @user.save
     redirect_to users_path, notice: 'Mobile surveyor was successfully transferred.'
